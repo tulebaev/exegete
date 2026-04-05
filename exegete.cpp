@@ -1,10 +1,8 @@
 // exegete.cpp
 
-#include <list>
-#include <vector>
-#include <string>
 #include <iostream>
-#include <Magick++.h>
+#include "Magick++/Image.h"
+#include "Magick++/Functions.h"
 
 std::list<Magick::Image> imagesList;
 
