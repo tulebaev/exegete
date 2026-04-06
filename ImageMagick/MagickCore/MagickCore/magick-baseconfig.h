@@ -80,7 +80,7 @@
 /*
   Define to enable OpenCL
 */
-#define MAGICKCORE_HAVE_CL_CL_H
+#undef MAGICKCORE_HAVE_CL_CL_H
 
 /*
   Define to enable Distributed Pixel Cache

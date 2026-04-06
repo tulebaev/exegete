@@ -13,30 +13,20 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
-  MagickCore X11 window methods.
+  MagickCore private registry methods.
 */
-#ifndef MAGICKCORE_XWINDOW_H
-#define MAGICKCORE_XWINDOW_H
+#ifndef MAGICKCORE_REGISTRY_PRIVATE_H
+#define MAGICKCORE_REGISTRY_PRIVATE_H
 
 #if defined(__cplusplus) || defined(c_plusplus)
 extern "C" {
 #endif
 
-typedef struct _XImportInfo
-{
-  MagickBooleanType
-    frame,
-    borders,
-    screen,
-    descend,
-    silent;
-} XImportInfo;
+extern MagickPrivate MagickBooleanType
+  RegistryComponentGenesis(void);
 
-extern MagickExport Image
-  *XImportImage(const ImageInfo *,XImportInfo *,ExceptionInfo *);
-
-extern MagickExport void
-  XGetImportInfo(XImportInfo *);
+extern MagickPrivate void
+  RegistryComponentTerminus(void);
 
 #if defined(__cplusplus) || defined(c_plusplus)
 }
