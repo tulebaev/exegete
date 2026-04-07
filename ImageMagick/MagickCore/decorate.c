@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -58,7 +58,7 @@
 #include "MagickCore/resource_.h"
 #include "MagickCore/thread-private.h"
 #include "MagickCore/transform.h"
-
+
 /*
   Define declarations.
 */
@@ -67,7 +67,7 @@
 #define ShadowModulate  ScaleCharToQuantum(135)
 #define DepthModulate  ScaleCharToQuantum(185)
 #define TroughModulate  ScaleCharToQuantum(110)
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -132,7 +132,7 @@ MagickExport Image *BorderImage(const Image *image,
     border_image->matte_color=image->matte_color;
   return(border_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -590,7 +590,7 @@ MagickExport Image *FrameImage(const Image *image,const FrameInfo *frame_info,
     frame_image=DestroyImage(frame_image);
   return(frame_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

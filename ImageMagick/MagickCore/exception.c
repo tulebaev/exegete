@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -54,12 +54,12 @@
 #include "MagickCore/string_.h"
 #include "MagickCore/utility.h"
 #include "MagickCore/utility-private.h"
-
+
 /*
   Define declarations.
 */
 #define MaxExceptionList  64
-
+
 /*
   Forward declarations.
 */
@@ -76,7 +76,7 @@ static void
 #if defined(__cplusplus) || defined(c_plusplus)
 }
 #endif
-
+
 /*
   Global declarations.
 */
@@ -88,13 +88,13 @@ static FatalErrorHandler
 
 static WarningHandler
   warning_handler = DefaultWarningHandler;
-
+
 /*
   Static declarations.
 */
 static SemaphoreInfo
   *exception_semaphore = (SemaphoreInfo *) NULL;
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -123,7 +123,7 @@ MagickExport ExceptionInfo *AcquireExceptionInfo(void)
   exception->relinquish=MagickTrue;
   return(exception);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -177,7 +177,7 @@ MagickExport void ClearMagickException(ExceptionInfo *exception)
   UnlockSemaphoreInfo(exception->semaphore);
   errno=0;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -230,7 +230,7 @@ MagickExport void CatchException(ExceptionInfo *exception)
   UnlockSemaphoreInfo(exception->semaphore);
   ClearMagickException(exception);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -264,7 +264,7 @@ MagickExport ExceptionInfo *CloneExceptionInfo(ExceptionInfo *exception)
   clone_exception->relinquish=MagickTrue;
   return(clone_exception);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -306,7 +306,7 @@ static void DefaultErrorHandler(const ExceptionType magick_unused(severity),
   (void) FormatLocaleFile(stderr,".\n");
   (void) fflush(stderr);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -348,7 +348,7 @@ static void DefaultFatalErrorHandler(const ExceptionType severity,
   MagickCoreTerminus();
   exit((int) (severity-FatalErrorException)+1);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -390,7 +390,7 @@ static void DefaultWarningHandler(const ExceptionType magick_unused(severity),
   (void) FormatLocaleFile(stderr,".\n");
   (void) fflush(stderr);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -444,7 +444,7 @@ MagickExport ExceptionInfo *DestroyExceptionInfo(ExceptionInfo *exception)
     }
   return(exception);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -469,7 +469,7 @@ MagickPrivate MagickBooleanType ExceptionComponentGenesis(void)
     exception_semaphore=AcquireSemaphoreInfo();
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -496,7 +496,7 @@ MagickPrivate void ExceptionComponentTerminus(void)
   UnlockSemaphoreInfo(exception_semaphore);
   RelinquishSemaphoreInfo(&exception_semaphore);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -540,7 +540,7 @@ MagickExport char *GetExceptionMessage(const int error)
 #endif
   return(ConstantString(exception));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -659,7 +659,7 @@ MagickExport const char *GetLocaleExceptionMessage(const ExceptionType severity,
     return(tag);
   return(locale_message);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -709,7 +709,7 @@ MagickExport void InheritException(ExceptionInfo *exception,
   }
   UnlockSemaphoreInfo(relative->semaphore);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -741,7 +741,7 @@ MagickPrivate void InitializeExceptionInfo(ExceptionInfo *exception)
   exception->semaphore=AcquireSemaphoreInfo();
   exception->signature=MagickCoreSignature;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -776,7 +776,7 @@ MagickExport void MagickError(const ExceptionType error,const char *reason,
   if (error_handler != (ErrorHandler) NULL)
     (*error_handler)(error,reason,description);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -814,7 +814,7 @@ MagickExport void MagickFatalError(const ExceptionType error,const char *reason,
   MagickCoreTerminus();
   exit(1);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -848,7 +848,7 @@ MagickExport void MagickWarning(const ExceptionType warning,const char *reason,
   if (warning_handler != (WarningHandler) NULL)
     (*warning_handler)(warning,reason,description);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -885,7 +885,7 @@ MagickExport ErrorHandler SetErrorHandler(ErrorHandler handler)
   UnlockSemaphoreInfo(exception_semaphore);
   return(previous_handler);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -922,7 +922,7 @@ MagickExport FatalErrorHandler SetFatalErrorHandler(FatalErrorHandler handler)
   UnlockSemaphoreInfo(exception_semaphore);
   return(previous_handler);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -959,7 +959,7 @@ MagickExport WarningHandler SetWarningHandler(WarningHandler handler)
   UnlockSemaphoreInfo(exception_semaphore);
   return(previous_handler);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1053,7 +1053,7 @@ MagickExport MagickBooleanType ThrowException(ExceptionInfo *exception,
       "(exception processing is suspended)");
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

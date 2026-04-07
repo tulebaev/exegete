@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -63,7 +63,7 @@
 #include "MagickCore/stream.h"
 #include "MagickCore/stream-private.h"
 #include "MagickCore/string_.h"
-
+
 /*
   Typedef declarations.
 */
@@ -105,7 +105,7 @@ struct _StreamInfo
   size_t
     signature;
 };
-
+
 /*
   Declare pixel cache interfaces.
 */
@@ -128,7 +128,7 @@ static Quantum
 #if defined(__cplusplus) || defined(c_plusplus)
 }
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -172,7 +172,7 @@ MagickExport StreamInfo *AcquireStreamInfo(const ImageInfo *image_info,
   stream_info->signature=MagickCoreSignature;
   return(stream_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -247,7 +247,7 @@ static void DestroyPixelStream(Image *image)
     RelinquishSemaphoreInfo(&cache_info->semaphore);
   cache_info=(CacheInfo *) RelinquishAlignedMemory(cache_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -293,7 +293,7 @@ MagickExport StreamInfo *DestroyStreamInfo(StreamInfo *stream_info)
   stream_info=(StreamInfo *) RelinquishMagickMemory(stream_info);
   return(stream_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -331,7 +331,7 @@ static void *GetAuthenticMetacontentFromStream(const Image *image)
   assert(cache_info->signature == MagickCoreSignature);
   return(cache_info->metacontent);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -378,7 +378,7 @@ static Quantum *GetAuthenticPixelsStream(Image *image,const ssize_t x,
   pixels=QueueAuthenticPixelsStream(image,x,y,columns,rows,exception);
   return(pixels);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -415,7 +415,7 @@ static Quantum *GetAuthenticPixelsFromStream(const Image *image)
   assert(cache_info->signature == MagickCoreSignature);
   return(cache_info->pixels);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -476,7 +476,7 @@ static MagickBooleanType GetOneAuthenticPixelFromStream(Image *image,
   }
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -540,7 +540,7 @@ static MagickBooleanType GetOneVirtualPixelFromStream(const Image *image,
   }
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -569,7 +569,7 @@ MagickPrivate const void *GetStreamInfoClientData(StreamInfo *stream_info)
   assert(stream_info->signature == MagickCoreSignature);
   return(stream_info->client_data);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -609,7 +609,7 @@ static const Quantum *GetVirtualPixelsStream(const Image *image)
   assert(cache_info->signature == MagickCoreSignature);
   return(cache_info->pixels);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -647,7 +647,7 @@ static const void *GetVirtualMetacontentFromStream(const Image *image)
   assert(cache_info->signature == MagickCoreSignature);
   return(cache_info->metacontent);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -777,7 +777,7 @@ static const Quantum *GetVirtualPixelStream(const Image *image,
       cache_info->number_channels);
   return(cache_info->pixels);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -818,7 +818,7 @@ MagickExport MagickBooleanType OpenStream(const ImageInfo *image_info,
   status=OpenBlob(image_info,stream_info->stream,WriteBinaryBlobMode,exception);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -978,7 +978,7 @@ static Quantum *QueueAuthenticPixelsStream(Image *image,const ssize_t x,
       cache_info->number_channels);
   return(cache_info->pixels);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1059,7 +1059,7 @@ MagickExport Image *ReadStream(const ImageInfo *image_info,StreamHandler stream,
     }
   return(image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1081,7 +1081,7 @@ MagickExport Image *ReadStream(const ImageInfo *image_info,StreamHandler stream,
 MagickPrivate void ResetStreamAnonymousMemory(void)
 {
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1114,7 +1114,7 @@ MagickPrivate void SetStreamInfoClientData(StreamInfo *stream_info,
   assert(stream_info->signature == MagickCoreSignature);
   stream_info->client_data=client_data;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1145,7 +1145,7 @@ MagickExport void SetStreamInfoMap(StreamInfo *stream_info,const char *map)
   assert(stream_info->signature == MagickCoreSignature);
   (void) CloneString(&stream_info->map,map);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1178,7 +1178,7 @@ MagickExport void SetStreamInfoStorageType(StreamInfo *stream_info,
   assert(stream_info->signature == MagickCoreSignature);
   stream_info->storage_type=storage_type;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1338,7 +1338,7 @@ MagickExport Image *StreamImage(const ImageInfo *image_info,
     image=DestroyImage(image);
   return(image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2723,7 +2723,7 @@ static MagickBooleanType StreamImagePixels(const StreamInfo *stream_info,
   quantum_map=(QuantumType *) RelinquishMagickMemory(quantum_map);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2778,7 +2778,7 @@ static MagickBooleanType SyncAuthenticPixelsStream(Image *image,
   length=stream_handler(image,cache_info->pixels,(size_t) cache_info->columns);
   return(length == cache_info->columns ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

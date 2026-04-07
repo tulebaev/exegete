@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -89,12 +89,12 @@
 #include "MagickCore/transform.h"
 #include "MagickCore/xml-tree.h"
 #include "MagickCore/xml-tree-private.h"
-
+
 /*
   Define declarations.
 */
 #define ThresholdsFilename  "thresholds.xml"
-
+
 /*
   Typedef declarations.
 */
@@ -112,7 +112,7 @@ struct _ThresholdMap
     divisor,
     *levels;
 };
-
+
 /*
   Static declarations.
 */
@@ -138,13 +138,13 @@ static const char *const
     "  </threshold>"
     "</thresholds>";
 #endif
-
+
 /*
   Forward declarations.
 */
 static ThresholdMap
   *GetThresholdMapFile(const char *,const char *,const char *,ExceptionInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -359,7 +359,7 @@ MagickExport Image *AdaptiveThresholdImage(const Image *image,
     threshold_image=DestroyImage(threshold_image);
   return(threshold_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -760,7 +760,7 @@ MagickExport MagickBooleanType AutoThresholdImage(Image *image,
     (void) FormatLocaleFile(stdout,"%.*g%%\n",GetMagickPrecision(),threshold);
   return(BilevelImage(image,(double) QuantumRange*threshold/100.0,exception));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -894,7 +894,7 @@ MagickExport MagickBooleanType BilevelImage(Image *image,const double threshold,
   image_view=DestroyCacheView(image_view);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1056,7 +1056,7 @@ MagickExport MagickBooleanType BlackThresholdImage(Image *image,
   image_view=DestroyCacheView(image_view);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1183,7 +1183,7 @@ MagickExport MagickBooleanType ClampImage(Image *image,ExceptionInfo *exception)
   image_view=DestroyCacheView(image_view);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1398,7 +1398,7 @@ MagickExport MagickBooleanType ColorThresholdImage(Image *image,
   image->colorspace=sRGBColorspace;
   return(SyncImage(image,exception));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1433,7 +1433,7 @@ MagickExport ThresholdMap *DestroyThresholdMap(ThresholdMap *map)
   map=(ThresholdMap *) RelinquishMagickMemory(map);
   return(map);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1492,7 +1492,7 @@ MagickExport ThresholdMap *GetThresholdMap(const char *map_id,
 #endif
   return(map);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1698,7 +1698,7 @@ static ThresholdMap *GetThresholdMapFile(const char *xml,const char *filename,
   thresholds=DestroyXMLTree(thresholds);
   return(map);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1787,7 +1787,7 @@ MagickBooleanType ListThresholdMapFile(FILE *file,const char *xml,
   thresholds=DestroyXMLTree(thresholds);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1842,7 +1842,7 @@ MagickExport MagickBooleanType ListThresholdMaps(FILE *file,
   options=DestroyConfigureOptions(options);
   return(status != 0 ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2046,7 +2046,7 @@ MagickExport MagickBooleanType OrderedDitherImage(Image *image,
   map=DestroyThresholdMap(map);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2197,7 +2197,7 @@ MagickExport MagickBooleanType PerceptibleImage(Image *image,
   image_view=DestroyCacheView(image_view);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2339,7 +2339,7 @@ MagickExport MagickBooleanType RandomThresholdImage(Image *image,
   random_info=DestroyRandomInfoTLS(random_info);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2485,7 +2485,7 @@ MagickExport MagickBooleanType RangeThresholdImage(Image *image,
   image_view=DestroyCacheView(image_view);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -68,7 +68,7 @@
 #define VC_EXTRALEAN
 #include <windows.h>
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -104,7 +104,7 @@ MagickExport MagickBooleanType NTIsMagickConflict(const char *magick)
     (*magick)))-'A'))) != 0 ? MagickTrue : MagickFalse;
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -320,5 +320,5 @@ MagickExport MagickBooleanType NTAcquireTypeCache(SplayTreeInfo *type_cache,
   RegCloseKey(reg_key);
   return(MagickTrue);
 }
-
+
 #endif

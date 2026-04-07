@@ -59,7 +59,7 @@
 #include "MagickCore/token.h"
 #include "MagickCore/utility.h"
 #include "MagickCore/version.h"
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -464,7 +464,7 @@ MagickExport Image *ChannelFxImage(const Image *image,const char *expression,
     }
   return(GetFirstImageInList(destination_image));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -662,7 +662,7 @@ MagickExport Image *CombineImages(const Image *image,
     combine_image=DestroyImage(combine_image);
   return(combine_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -695,7 +695,7 @@ MagickExport MagickBooleanType GetImageAlphaChannel(const Image *image)
   assert(image->signature == MagickCoreSignature);
   return(image->alpha_trait != UndefinedPixelTrait ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -839,7 +839,7 @@ MagickExport Image *SeparateImage(const Image *image,
     separate_image=DestroyImage(separate_image);
   return(separate_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -894,7 +894,7 @@ MagickExport Image *SeparateImages(const Image *image,ExceptionInfo *exception)
     images=SeparateImage(image,UndefinedChannel,exception);
   return(images);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

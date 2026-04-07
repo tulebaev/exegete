@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -94,7 +94,7 @@
 #include "MagickCore/timer.h"
 #include "MagickCore/utility.h"
 #include "MagickCore/version.h"
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -932,7 +932,7 @@ MagickExport MagickBooleanType EvaluateImage(Image *image,
   random_info=DestroyRandomInfoTLS(random_info);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1154,7 +1154,7 @@ MagickExport MagickBooleanType FunctionImage(Image *image,
   image_view=DestroyCacheView(image_view);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1203,7 +1203,7 @@ MagickExport MagickBooleanType GetImageEntropy(const Image *image,
     channel_statistics);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1252,7 +1252,7 @@ MagickExport MagickBooleanType GetImageExtrema(const Image *image,
   *maxima=(size_t) floor(max+0.5);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1306,7 +1306,7 @@ MagickExport MagickBooleanType GetImageKurtosis(const Image *image,
     channel_statistics);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1361,7 +1361,7 @@ MagickExport MagickBooleanType GetImageMean(const Image *image,double *mean,
     channel_statistics);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1410,7 +1410,7 @@ MagickExport MagickBooleanType GetImageMedian(const Image *image,double *median,
     channel_statistics);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1697,7 +1697,7 @@ MagickExport ChannelMoments *GetImageMoments(const Image *image,
     channel_moments=(ChannelMoments *) RelinquishMagickMemory(channel_moments);
   return(channel_moments);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1800,7 +1800,7 @@ MagickExport ChannelPerceptualHash *GetImagePerceptualHash(const Image *image,
   colorspaces=DestroyString(colorspaces);
   return(perceptual_hash);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1915,7 +1915,7 @@ MagickExport MagickBooleanType GetImageRange(const Image *image,double *minima,
   *minima=range_info.minima;
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2376,7 +2376,7 @@ MagickExport ChannelStatistics *GetImageStatistics(const Image *image,
       channel_statistics);
   return(channel_statistics);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2579,7 +2579,7 @@ MagickExport Image *PolynomialImage(const Image *images,
     image=DestroyImage(image);
   return(image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

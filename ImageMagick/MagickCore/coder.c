@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -59,12 +59,12 @@
 #include "MagickCore/utility.h"
 #include "MagickCore/utility-private.h"
 #include "coders/coders.h"
-
+
 /*
   Define declarations.
 */
 #define AddMagickCoder(coder) Magick ## coder ## Aliases
-
+
 /*
   Typedef declarations.
 */
@@ -74,7 +74,7 @@ typedef struct _CoderMapInfo
     *magick,
     *name;
 } CoderMapInfo;
-
+
 /*
   Static declarations.
 */
@@ -89,13 +89,13 @@ static SemaphoreInfo
 
 static SplayTreeInfo
   *coder_cache = (SplayTreeInfo *) NULL;
-
+
 /*
   Forward declarations.
 */
 static MagickBooleanType
   IsCoderTreeInstantiated(ExceptionInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -185,7 +185,7 @@ static SplayTreeInfo *AcquireCoderCache(ExceptionInfo *exception)
   }
   return(cache);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -210,7 +210,7 @@ MagickPrivate MagickBooleanType CoderComponentGenesis(void)
     coder_semaphore=AcquireSemaphoreInfo();
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -239,7 +239,7 @@ MagickPrivate void CoderComponentTerminus(void)
   UnlockSemaphoreInfo(coder_semaphore);
   RelinquishSemaphoreInfo(&coder_semaphore);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -275,7 +275,7 @@ MagickExport const CoderInfo *GetCoderInfo(const char *name,
     return((const CoderInfo *) GetRootValueFromSplayTree(coder_cache));
   return((const CoderInfo *) GetValueFromSplayTree(coder_cache,name));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -362,7 +362,7 @@ MagickExport const CoderInfo **GetCoderInfoList(const char *pattern,
   *number_coders=(size_t) i;
   return(coder_map);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -448,7 +448,7 @@ MagickExport char **GetCoderList(const char *pattern,
   *number_coders=(size_t) i;
   return(coder_map);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -485,7 +485,7 @@ static MagickBooleanType IsCoderTreeInstantiated(ExceptionInfo *exception)
     }
   return(coder_cache != (SplayTreeInfo *) NULL ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

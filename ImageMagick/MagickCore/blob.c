@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -78,7 +78,7 @@
 #if defined(MAGICKCORE_BZLIB_DELEGATE)
 #include <bzip2/bzlib.h>
 #endif
-
+
 /*
   Define declarations.
 */
@@ -112,7 +112,7 @@
 #    define popen  _popen
 #  endif
 #endif
-
+
 /*
   Typedef declarations.
 */
@@ -213,13 +213,13 @@ struct _CustomStreamInfo
   size_t
     signature;
 };
-
+
 /*
   Forward declarations.
 */
 static int
   SyncBlob(const Image *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -255,7 +255,7 @@ MagickExport CustomStreamInfo *AcquireCustomStreamInfo(
   custom_stream->signature=MagickCoreSignature;
   return(custom_stream);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -298,7 +298,7 @@ MagickExport void AttachBlob(BlobInfo *blob_info,const void *blob,
   blob_info->data=(unsigned char *) blob;
   blob_info->mapped=MagickFalse;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -335,7 +335,7 @@ MagickExport void AttachCustomStream(BlobInfo *blob_info,
   blob_info->type=CustomStream;
   blob_info->custom_stream=custom_stream;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -411,7 +411,7 @@ MagickExport MagickBooleanType BlobToFile(char *filename,const void *blob,
     }
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -543,7 +543,7 @@ MagickExport Image *BlobToImage(const ImageInfo *image_info,const void *blob,
   blob_info=DestroyImageInfo(blob_info);
   return(image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -589,7 +589,7 @@ MagickExport BlobInfo *CloneBlobInfo(const BlobInfo *blob_info)
   UnlockSemaphoreInfo(clone_info->semaphore);
   return(clone_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -772,7 +772,7 @@ MagickExport MagickBooleanType CloseBlob(Image *image)
   (void) DetachBlob(blob_info);
   return(blob_info->status != 0 ? MagickFalse : MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -932,7 +932,7 @@ MagickExport Image *CustomStreamToImage(const ImageInfo *image_info,
       image=DestroyImageList(image);
   return(image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -993,7 +993,7 @@ MagickExport void DestroyBlob(Image *image)
   blob_info->signature=(~MagickCoreSignature);
   image->blob=(BlobInfo *) RelinquishMagickMemory(blob_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1028,7 +1028,7 @@ MagickExport CustomStreamInfo *DestroyCustomStreamInfo(
   custom_stream=(CustomStreamInfo *) RelinquishMagickMemory(custom_stream);
   return(custom_stream);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1084,7 +1084,7 @@ MagickExport void *DetachBlob(BlobInfo *blob_info)
   blob_info->custom_stream=(CustomStreamInfo *) NULL;
   return(data);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1137,7 +1137,7 @@ MagickExport void DisassociateBlob(Image *image)
   DestroyBlob(image);
   image->blob=clone_info;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1196,7 +1196,7 @@ MagickExport MagickBooleanType DiscardBlobBytes(Image *image,
   }
   return(i < (MagickSizeType) length ? MagickFalse : MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1232,7 +1232,7 @@ MagickExport void DuplicateBlob(Image *image,const Image *duplicate)
   DestroyBlob(image);
   image->blob=ReferenceBlob(duplicate->blob);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1312,7 +1312,7 @@ MagickExport int EOFBlob(const Image *image)
   }
   return((int) blob_info->eof);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1385,7 +1385,7 @@ MagickExport int ErrorBlob(const Image *image)
   }
   return(blob_info->error);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1602,7 +1602,7 @@ MagickExport void *FileToBlob(const char *filename,const size_t extent,
     }
   return(blob);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1763,7 +1763,7 @@ MagickExport MagickBooleanType FileToImage(Image *image,const char *filename,
   blob=(unsigned char *) RelinquishMagickMemory(blob);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1797,7 +1797,7 @@ MagickExport MagickBooleanType GetBlobError(const Image *image)
     errno=image->blob->error_number;
   return(image->blob->status == 0 ? MagickFalse : MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1826,7 +1826,7 @@ MagickExport FILE *GetBlobFileHandle(const Image *image)
   assert(image->signature == MagickCoreSignature);
   return(image->blob->file_info.file);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1862,7 +1862,7 @@ MagickExport void GetBlobInfo(BlobInfo *blob_info)
   blob_info->semaphore=AcquireSemaphoreInfo();
   blob_info->signature=MagickCoreSignature;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1893,7 +1893,7 @@ MagickExport const struct stat *GetBlobProperties(const Image *image)
     (void) LogMagickEvent(TraceEvent,GetMagickModule(),"%s",image->filename);
   return(&image->blob->properties);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1998,7 +1998,7 @@ MagickExport MagickSizeType GetBlobSize(const Image *image)
   }
   return(extent);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2027,7 +2027,7 @@ MagickExport void *GetBlobStreamData(const Image *image)
   assert(image->signature == MagickCoreSignature);
   return(image->blob->data);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2058,7 +2058,7 @@ MagickExport StreamHandler GetBlobStreamHandler(const Image *image)
     (void) LogMagickEvent(TraceEvent,GetMagickModule(),"%s",image->filename);
   return(image->blob->stream);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2199,7 +2199,7 @@ MagickExport void *ImageToBlob(const ImageInfo *image_info,
   blob_info=DestroyImageInfo(blob_info);
   return(blob);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2345,7 +2345,7 @@ MagickExport void ImageToCustomStream(const ImageInfo *image_info,Image *image,
     }
   clone_info=DestroyImageInfo(clone_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2460,7 +2460,7 @@ MagickExport MagickBooleanType ImageToFile(Image *image,char *filename,
     }
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2608,7 +2608,7 @@ MagickExport void *ImagesToBlob(const ImageInfo *image_info,Image *images,
   blob_info=DestroyImageInfo(blob_info);
   return(blob);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2755,7 +2755,7 @@ MagickExport void ImagesToCustomStream(const ImageInfo *image_info,
     }
   clone_info=DestroyImageInfo(clone_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2905,7 +2905,7 @@ MagickExport MagickBooleanType InjectImageBlob(const ImageInfo *image_info,
   buffer=(unsigned char *) RelinquishMagickMemory(buffer);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2936,7 +2936,7 @@ MagickExport MagickBooleanType IsBlobExempt(const Image *image)
     (void) LogMagickEvent(TraceEvent,GetMagickModule(),"%s",image->filename);
   return(image->blob->exempt);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3015,7 +3015,7 @@ MagickExport MagickBooleanType IsBlobSeekable(const Image *image)
   }
   return(MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3046,7 +3046,7 @@ MagickExport MagickBooleanType IsBlobTemporary(const Image *image)
     (void) LogMagickEvent(TraceEvent,GetMagickModule(),"%s",image->filename);
   return(image->blob->temporary);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3137,7 +3137,7 @@ MagickExport void *MapBlob(int file,const MapMode mode,
   return(NULL);
 #endif
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3187,7 +3187,7 @@ MagickExport void MSBOrderLong(unsigned char *buffer,const size_t length)
     buffer+=2;
   }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3231,7 +3231,7 @@ MagickExport void MSBOrderShort(unsigned char *p,const size_t length)
     *p++=(unsigned char) c;
   }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3713,7 +3713,7 @@ MagickExport MagickBooleanType OpenBlob(const ImageInfo *image_info,
     }
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3865,7 +3865,7 @@ MagickExport Image *PingBlob(const ImageInfo *image_info,const void *blob,
   ping_info=DestroyImageInfo(ping_info);
   return(image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4114,7 +4114,7 @@ MagickExport ssize_t ReadBlob(Image *image,const size_t length,void *data)
   }
   return(count);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4193,7 +4193,7 @@ MagickExport int ReadBlobByte(Image *image)
   }
   return(c);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4232,7 +4232,7 @@ MagickExport double ReadBlobDouble(Image *image)
   quantum.unsigned_value=ReadBlobLongLong(image);
   return(quantum.double_value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4271,7 +4271,7 @@ MagickExport float ReadBlobFloat(Image *image)
   quantum.unsigned_value=ReadBlobLong(image);
   return(quantum.float_value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4329,7 +4329,7 @@ MagickExport unsigned int ReadBlobLong(Image *image)
   value|=(unsigned int) (*p++);
   return(value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4395,7 +4395,7 @@ MagickExport MagickSizeType ReadBlobLongLong(Image *image)
   value|=(MagickSizeType) (*p++);
   return(value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4449,7 +4449,7 @@ MagickExport unsigned short ReadBlobShort(Image *image)
   value|=(unsigned short) (*p++);
   return(value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4499,7 +4499,7 @@ MagickExport unsigned int ReadBlobLSBLong(Image *image)
   value|=(unsigned int) (*p++) << 24;
   return(value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4537,7 +4537,7 @@ MagickExport signed int ReadBlobLSBSignedLong(Image *image)
   quantum.unsigned_value=ReadBlobLSBLong(image);
   return(quantum.signed_value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4585,7 +4585,7 @@ MagickExport unsigned short ReadBlobLSBShort(Image *image)
   value|=(unsigned short) (*p++) << 8;
   return(value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4623,7 +4623,7 @@ MagickExport signed short ReadBlobLSBSignedShort(Image *image)
   quantum.unsigned_value=ReadBlobLSBShort(image);
   return(quantum.signed_value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4673,7 +4673,7 @@ MagickExport unsigned int ReadBlobMSBLong(Image *image)
   value|=(unsigned int) (*p++);
   return(value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4727,7 +4727,7 @@ MagickExport MagickSizeType ReadBlobMSBLongLong(Image *image)
   value|=(MagickSizeType) (*p++);
   return(value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4775,7 +4775,7 @@ MagickExport unsigned short ReadBlobMSBShort(Image *image)
   value|=(unsigned short) (*p++);
   return((unsigned short) (value & 0xffff));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4813,7 +4813,7 @@ MagickExport signed int ReadBlobMSBSignedLong(Image *image)
   quantum.unsigned_value=ReadBlobMSBLong(image);
   return(quantum.signed_value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4851,7 +4851,7 @@ MagickExport signed short ReadBlobMSBSignedShort(Image *image)
   quantum.unsigned_value=ReadBlobMSBShort(image);
   return(quantum.signed_value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4889,7 +4889,7 @@ MagickExport signed int ReadBlobSignedLong(Image *image)
   quantum.unsigned_value=ReadBlobLong(image);
   return(quantum.signed_value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4927,7 +4927,7 @@ MagickExport signed short ReadBlobSignedShort(Image *image)
   quantum.unsigned_value=ReadBlobShort(image);
   return(quantum.signed_value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4995,7 +4995,7 @@ MagickExport magick_hot_spot const void *ReadBlobStream(Image *image,
     blob_info->eof=MagickTrue;
   return(data);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5103,7 +5103,7 @@ MagickExport char *ReadBlobString(Image *image,char *string)
     return((char *) NULL);
   return(string);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5138,7 +5138,7 @@ MagickExport BlobInfo *ReferenceBlob(BlobInfo *blob)
   UnlockSemaphoreInfo(blob->semaphore);
   return(blob);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5265,7 +5265,7 @@ MagickExport MagickOffsetType SeekBlob(Image *image,
   }
   return(blob_info->offset);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5299,7 +5299,7 @@ MagickExport void SetBlobExempt(Image *image,const MagickBooleanType exempt)
     (void) LogMagickEvent(TraceEvent,GetMagickModule(),"%s",image->filename);
   image->blob->exempt=exempt;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5453,7 +5453,7 @@ MagickExport MagickBooleanType SetBlobExtent(Image *image,
   }
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5485,7 +5485,7 @@ MagickExport void SetCustomStreamData(CustomStreamInfo *custom_stream,
   assert(custom_stream->signature == MagickCoreSignature);
   custom_stream->data=data;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5518,7 +5518,7 @@ MagickExport void SetCustomStreamReader(CustomStreamInfo *custom_stream,
   assert(custom_stream->signature == MagickCoreSignature);
   custom_stream->reader=reader;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5551,7 +5551,7 @@ MagickExport void SetCustomStreamSeeker(CustomStreamInfo *custom_stream,
   assert(custom_stream->signature == MagickCoreSignature);
   custom_stream->seeker=seeker;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5584,7 +5584,7 @@ MagickExport void SetCustomStreamTeller(CustomStreamInfo *custom_stream,
   assert(custom_stream->signature == MagickCoreSignature);
   custom_stream->teller=teller;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5617,7 +5617,7 @@ MagickExport void SetCustomStreamWriter(CustomStreamInfo *custom_stream,
   assert(custom_stream->signature == MagickCoreSignature);
   custom_stream->writer=writer;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5693,7 +5693,7 @@ static int SyncBlob(const Image *image)
   }
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5769,7 +5769,7 @@ MagickExport MagickOffsetType TellBlob(const Image *image)
   }
   return(offset);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5809,7 +5809,7 @@ MagickExport MagickBooleanType UnmapBlob(void *map,const size_t length)
   return(MagickFalse);
 #endif
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -6061,7 +6061,7 @@ MagickExport ssize_t WriteBlob(Image *image,const size_t length,
   }
   return(count);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -6128,7 +6128,7 @@ MagickExport ssize_t WriteBlobByte(Image *image,const unsigned char value)
   }
   return(count);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -6169,7 +6169,7 @@ MagickExport ssize_t WriteBlobFloat(Image *image,const float value)
   quantum.float_value=value;
   return(WriteBlobLong(image,quantum.unsigned_value));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -6216,7 +6216,7 @@ MagickExport ssize_t WriteBlobLong(Image *image,const unsigned int value)
   buffer[3]=(unsigned char) value;
   return(WriteBlobStream(image,4,buffer));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -6271,7 +6271,7 @@ MagickExport ssize_t WriteBlobLongLong(Image *image,const MagickSizeType value)
   buffer[7]=(unsigned char) value;
   return(WriteBlobStream(image,8,buffer));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -6314,7 +6314,7 @@ MagickExport ssize_t WriteBlobShort(Image *image,const unsigned short value)
   buffer[1]=(unsigned char) value;
   return(WriteBlobStream(image,2,buffer));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -6371,7 +6371,7 @@ MagickExport ssize_t WriteBlobSignedLong(Image *image,const signed int value)
   buffer[3]=(unsigned char) quantum.unsigned_value;
   return(WriteBlobStream(image,4,buffer));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -6410,7 +6410,7 @@ MagickExport ssize_t WriteBlobLSBLong(Image *image,const unsigned int value)
   buffer[3]=(unsigned char) (value >> 24);
   return(WriteBlobStream(image,4,buffer));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -6447,7 +6447,7 @@ MagickExport ssize_t WriteBlobLSBShort(Image *image,const unsigned short value)
   buffer[1]=(unsigned char) (value >> 8);
   return(WriteBlobStream(image,2,buffer));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -6496,7 +6496,7 @@ MagickExport ssize_t WriteBlobLSBSignedLong(Image *image,const signed int value)
   buffer[3]=(unsigned char) (quantum.unsigned_value >> 24);
   return(WriteBlobStream(image,4,buffer));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -6544,7 +6544,7 @@ MagickExport ssize_t WriteBlobLSBSignedShort(Image *image,
   buffer[1]=(unsigned char) (quantum.unsigned_value >> 8);
   return(WriteBlobStream(image,2,buffer));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -6583,7 +6583,7 @@ MagickExport ssize_t WriteBlobMSBLong(Image *image,const unsigned int value)
   buffer[3]=(unsigned char) value;
   return(WriteBlobStream(image,4,buffer));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -6631,7 +6631,7 @@ MagickExport ssize_t WriteBlobMSBSignedShort(Image *image,
   buffer[1]=(unsigned char) quantum.unsigned_value;
   return(WriteBlobStream(image,2,buffer));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -6668,7 +6668,7 @@ MagickExport ssize_t WriteBlobMSBShort(Image *image,const unsigned short value)
   buffer[1]=(unsigned char) value;
   return(WriteBlobStream(image,2,buffer));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

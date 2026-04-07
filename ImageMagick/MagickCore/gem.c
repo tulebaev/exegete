@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -56,7 +56,7 @@
 #include "MagickCore/resize.h"
 #include "MagickCore/transform.h"
 #include "MagickCore/signature-private.h"
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -89,7 +89,7 @@ MagickExport double ExpandAffine(const AffineMatrix *affine)
   assert(affine != (const AffineMatrix *) NULL);
   return(sqrt(fabs(affine->sx*affine->sy-affine->rx*affine->ry)));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -227,7 +227,7 @@ MagickPrivate double GenerateDifferentialNoise(RandomInfo *random_info,
   }
   return(noise);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

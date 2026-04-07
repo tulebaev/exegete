@@ -37,7 +37,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -53,7 +53,7 @@
 #include "MagickCore/thread_.h"
 #include "MagickCore/thread-private.h"
 #include "MagickCore/utility-private.h"
-
+
 /*
   Struct declarations.
 */
@@ -71,7 +71,7 @@ struct SemaphoreInfo
   size_t
     signature;
 };
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -106,7 +106,7 @@ MagickExport void ActivateSemaphoreInfo(SemaphoreInfo **semaphore_info)
       UnlockMagickMutex();
     }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -267,7 +267,7 @@ MagickExport SemaphoreInfo *AcquireSemaphoreInfo(void)
   semaphore_info->signature=MagickCoreSignature;
   return(semaphore_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -325,7 +325,7 @@ MagickExport void LockSemaphoreInfo(SemaphoreInfo *semaphore_info)
   semaphore_info->reference_count++;
 #endif
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -376,7 +376,7 @@ MagickExport void RelinquishSemaphoreInfo(SemaphoreInfo **semaphore_info)
   *semaphore_info=(SemaphoreInfo *) RelinquishSemaphoreMemory(*semaphore_info);
   UnlockMagickMutex();
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -400,7 +400,7 @@ MagickPrivate MagickBooleanType SemaphoreComponentGenesis(void)
   InitializeMagickMutex();
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -423,7 +423,7 @@ MagickPrivate void SemaphoreComponentTerminus(void)
 {
   DestroyMagickMutex();
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

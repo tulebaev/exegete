@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -70,13 +70,15 @@
 #include "MagickCore/utility.h"
 #if defined(MAGICKCORE_LCMS_DELEGATE)
 #include <wchar.h>
+#if defined(MAGICKCORE_HAVE_LCMS2_H)
 #include <lcms/lcms2.h>
+#endif
 #endif
 #if defined(MAGICKCORE_XML_DELEGATE)
 #  include <libxml/parser.h>
 #  include <libxml/tree.h>
 #endif
-
+
 /*
   Forward declarations
 */
@@ -86,7 +88,7 @@ static MagickBooleanType
 
 static void
   WriteTo8BimProfile(Image *,const char*,const StringInfo *);
-
+
 /*
   Typedef declarations
 */
@@ -113,7 +115,7 @@ typedef struct _CMSExceptionInfo
   ExceptionInfo
     *exception;
 } CMSExceptionInfo;
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -174,7 +176,7 @@ MagickExport MagickBooleanType CloneImageProfiles(Image *image,
     }
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -210,7 +212,7 @@ MagickExport MagickBooleanType DeleteImageProfile(Image *image,const char *name)
   WriteTo8BimProfile(image,name,(StringInfo *) NULL);
   return(DeleteNodeFromSplayTree((SplayTreeInfo *) image->profiles,name));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -238,7 +240,7 @@ MagickExport void DestroyImageProfiles(Image *image)
   if (image->profiles != (SplayTreeInfo *) NULL)
     image->profiles=DestroySplayTree((SplayTreeInfo *) image->profiles);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -279,7 +281,7 @@ MagickExport const StringInfo *GetImageProfile(const Image *image,
     image->profiles,name);
   return(profile);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -312,7 +314,7 @@ MagickExport char *GetNextImageProfile(const Image *image)
     return((char *) NULL);
   return((char *) GetNextKeyInSplayTree((SplayTreeInfo *) image->profiles));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1456,7 +1458,7 @@ MagickExport MagickBooleanType ProfileImage(Image *image,const char *name,
     }
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1498,7 +1500,7 @@ MagickExport StringInfo *RemoveImageProfile(Image *image,const char *name)
     image->profiles,name);
   return(profile);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1533,7 +1535,7 @@ MagickExport void ResetImageProfileIterator(const Image *image)
     return;
   ResetSplayTreeIterator((SplayTreeInfo *) image->profiles);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2072,7 +2074,7 @@ MagickExport MagickBooleanType SetImageProfilePrivate(Image *image,
   return(SetImageProfileInternal(image,GetStringInfoName(profile),profile,
     MagickFalse,exception));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

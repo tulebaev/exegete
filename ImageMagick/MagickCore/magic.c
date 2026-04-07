@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -59,12 +59,12 @@
 #include "MagickCore/utility.h"
 #include "MagickCore/utility-private.h"
 #include "coders/coders.h"
-
+
 /*
   Define declarations.
 */
 #define AddMagickCoder(coder) Magick ## coder ## Headers
-
+
 /*
   Typedef declarations.
 */
@@ -106,7 +106,7 @@ struct _MagicInfo
   size_t
     signature;
 };
-
+
 /*
   Static declarations.
 */
@@ -127,13 +127,13 @@ static LinkedListInfo
 static SemaphoreInfo
   *magic_cache_semaphore = (SemaphoreInfo *) NULL,
   *magic_list_semaphore = (SemaphoreInfo *) NULL;
-
+
 /*
   Forward declarations.
 */
 static MagickBooleanType
   IsMagicListInstantiated(ExceptionInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -231,7 +231,7 @@ static LinkedListInfo *AcquireMagicList(ExceptionInfo *exception)
   }
   return(list);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -422,7 +422,7 @@ MagickExport size_t GetMagicPatternExtent(ExceptionInfo *exception)
   extent=(size_t) max_offset;
   return(extent);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -518,7 +518,7 @@ MagickExport const MagicInfo **GetMagicInfoList(const char *pattern,
   *number_aliases=(size_t) i;
   return(aliases);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -615,7 +615,7 @@ MagickExport char **GetMagicList(const char *pattern,size_t *number_aliases,
   *number_aliases=(size_t) i;
   return(aliases);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -646,7 +646,7 @@ MagickExport const char *GetMagicName(const MagicInfo *magic_info)
     (void) LogMagickEvent(TraceEvent,GetMagickModule(),"...");
   return(magic_info->name);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -683,7 +683,7 @@ static MagickBooleanType IsMagicListInstantiated(ExceptionInfo *exception)
     }
   return(magic_list != (LinkedListInfo *) NULL ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -753,7 +753,7 @@ MagickExport MagickBooleanType ListMagicInfo(FILE *file,
   magic_info=(const MagicInfo **) RelinquishMagickMemory((void *) magic_info);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -778,7 +778,7 @@ MagickPrivate MagickBooleanType MagicComponentGenesis(void)
     magic_list_semaphore=AcquireSemaphoreInfo();
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

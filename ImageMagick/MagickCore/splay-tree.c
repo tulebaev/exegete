@@ -44,7 +44,7 @@
 %  implementation of these algorithms.
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -58,12 +58,12 @@
 #include "MagickCore/splay-tree.h"
 #include "MagickCore/semaphore.h"
 #include "MagickCore/string_.h"
-
+
 /*
   Define declarations.
 */
 #define MaxSplayTreeDepth  1024
-
+
 /*
   Typedef declarations.
 */
@@ -111,7 +111,7 @@ struct _SplayTreeInfo
   size_t
     signature;
 };
-
+
 /*
   Forward declarations.
 */
@@ -121,7 +121,7 @@ static int
 
 static void
   SplaySplayTree(SplayTreeInfo *,const void *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -218,7 +218,7 @@ MagickExport MagickBooleanType AddValueToSplayTree(SplayTreeInfo *splay_tree,
   UnlockSemaphoreInfo(splay_tree->semaphore);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -299,7 +299,7 @@ static void BalanceSplayTree(SplayTreeInfo *splay_tree)
   splay_tree->balance=MagickFalse;
   nodes=(NodeInfo **) RelinquishMagickMemory(nodes);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -383,7 +383,7 @@ MagickExport SplayTreeInfo *CloneSplayTree(SplayTreeInfo *splay_tree,
   UnlockSemaphoreInfo(splay_tree->semaphore);
   return(clone_tree);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -419,7 +419,7 @@ MagickExport int CompareSplayTreeString(const void *target,const void *source)
   q=(const char *) source;
   return(LocaleCompare(p,q));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -456,7 +456,7 @@ MagickExport int CompareSplayTreeStringInfo(const void *target,
   q=(const StringInfo *) source;
   return(CompareStringInfo(p,q));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -572,7 +572,7 @@ MagickExport MagickBooleanType DeleteNodeByValueFromSplayTree(
   UnlockSemaphoreInfo(splay_tree->semaphore);
   return(MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -656,7 +656,7 @@ MagickExport MagickBooleanType DeleteNodeFromSplayTree(
   UnlockSemaphoreInfo(splay_tree->semaphore);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -739,7 +739,7 @@ MagickExport SplayTreeInfo *DestroySplayTree(SplayTreeInfo *splay_tree)
   splay_tree=(SplayTreeInfo *) RelinquishMagickMemory(splay_tree);
   return(splay_tree);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -793,7 +793,7 @@ MagickExport const void *GetNextKeyInSplayTree(SplayTreeInfo *splay_tree)
   UnlockSemaphoreInfo(splay_tree->semaphore);
   return(key);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -847,7 +847,7 @@ MagickExport const void *GetNextValueInSplayTree(SplayTreeInfo *splay_tree)
   UnlockSemaphoreInfo(splay_tree->semaphore);
   return(value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -888,7 +888,7 @@ MagickExport const void *GetRootValueFromSplayTree(SplayTreeInfo *splay_tree)
   UnlockSemaphoreInfo(splay_tree->semaphore);
   return(value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -947,7 +947,7 @@ MagickExport const void *GetValueFromSplayTree(SplayTreeInfo *splay_tree,
   UnlockSemaphoreInfo(splay_tree->semaphore);
   return(value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -980,7 +980,7 @@ MagickExport size_t GetNumberOfNodesInSplayTree(
     (void) LogMagickEvent(TraceEvent,GetMagickModule(),"...");
   return(splay_tree->nodes);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1101,7 +1101,7 @@ static int IterateOverSplayTree(SplayTreeInfo *splay_tree,
   transitions=(unsigned char *) RelinquishMagickMemory(transitions);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1156,7 +1156,7 @@ MagickExport SplayTreeInfo *NewSplayTree(
   splay_tree->signature=MagickCoreSignature;
   return(splay_tree);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1266,7 +1266,7 @@ MagickExport void *RemoveNodeByValueFromSplayTree(SplayTreeInfo *splay_tree,
   UnlockSemaphoreInfo(splay_tree->semaphore);
   return(key);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1349,7 +1349,7 @@ MagickExport void *RemoveNodeFromSplayTree(SplayTreeInfo *splay_tree,
   UnlockSemaphoreInfo(splay_tree->semaphore);
   return(value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1438,7 +1438,7 @@ MagickExport void ResetSplayTree(SplayTreeInfo *splay_tree)
   splay_tree->balance=MagickFalse;
   UnlockSemaphoreInfo(splay_tree->semaphore);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1473,7 +1473,7 @@ MagickExport void ResetSplayTreeIterator(SplayTreeInfo *splay_tree)
   splay_tree->next=GetFirstSplayTreeNode(splay_tree);
   UnlockSemaphoreInfo(splay_tree->semaphore);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -56,7 +56,7 @@
 #include "MagickCore/thread-private.h"
 #include "MagickCore/utility.h"
 #include "MagickCore/utility-private.h"
-
+
 /*
   Typedef declaration.
 */
@@ -92,7 +92,7 @@ struct _MatrixInfo
   size_t
     signature;
 };
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -283,7 +283,7 @@ MagickExport MatrixInfo *AcquireMatrixInfo(const size_t columns,
     }
   return(matrix_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -344,7 +344,7 @@ MagickExport double **AcquireMagickMatrix(const size_t number_rows,
   }
   return(matrix);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -409,7 +409,7 @@ MagickExport MatrixInfo *DestroyMatrixInfo(MatrixInfo *matrix_info)
   RelinquishSemaphoreInfo(&matrix_info->semaphore);
   return((MatrixInfo *) RelinquishMagickMemory(matrix_info));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -438,7 +438,7 @@ MagickExport size_t GetMatrixColumns(const MatrixInfo *matrix_info)
   assert(matrix_info->signature == MagickCoreSignature);
   return(matrix_info->columns);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -551,7 +551,7 @@ MagickExport MagickBooleanType GetMatrixElement(const MatrixInfo *matrix_info,
     return(MagickFalse);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -580,7 +580,7 @@ MagickExport size_t GetMatrixRows(const MatrixInfo *matrix_info)
   assert(matrix_info->signature == MagickCoreSignature);
   return(matrix_info->rows);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -668,7 +668,7 @@ MagickPrivate void LeastSquaresAddTerms(double **matrix,double **vectors,
       vectors[i][j]+=results[i]*terms[j];
   }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -878,7 +878,7 @@ MagickPrivate MagickBooleanType GaussJordanElimination(double **matrix,
   columns=(ssize_t *) RelinquishMagickMemory(columns);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1013,7 +1013,7 @@ MagickExport Image *MatrixToImage(const MatrixInfo *matrix_info,
     image=DestroyImage(image);
   return(image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1071,7 +1071,7 @@ MagickExport MagickBooleanType NullMatrix(MatrixInfo *matrix_info)
   }
   return(y < (ssize_t) matrix_info->rows ? MagickFalse : MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1112,7 +1112,7 @@ MagickExport double **RelinquishMagickMatrix(double **matrix,
   matrix=(double **) RelinquishMagickMemory(matrix);
   return(matrix);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

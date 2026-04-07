@@ -37,7 +37,7 @@
 %  key / value pairs (.e.g X11 green compliance and SVG green compliance).
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -71,7 +71,7 @@
 #include "MagickCore/token.h"
 #include "MagickCore/utility.h"
 #include "MagickCore/xml-tree.h"
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -152,7 +152,7 @@ MagickExport MagickBooleanType AcquireImageColormap(Image *image,
   image->storage_class=PseudoClass;
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -244,7 +244,7 @@ MagickExport MagickBooleanType CycleColormapImage(Image *image,
   image_view=DestroyCacheView(image_view);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

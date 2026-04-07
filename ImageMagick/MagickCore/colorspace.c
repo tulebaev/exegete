@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -69,12 +69,12 @@
 #include "MagickCore/string_.h"
 #include "MagickCore/string-private.h"
 #include "MagickCore/utility.h"
-
+
 /*
   Define declarations.
 */
 #define MaximumLogarithmicColorspace  1024.0
-
+
 /*
   Typedef declarations.
 */
@@ -85,13 +85,13 @@ typedef struct _TransformPacket
     y,
     z;
 } TransformPacket;
-
+
 /*
   Forward declarations.
 */
 static MagickBooleanType
   TransformsRGBImage(Image *,ExceptionInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -281,7 +281,7 @@ MagickPrivate void ConvertGenericToRGB(const ColorspaceType colorspace,
     }
   }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -380,7 +380,7 @@ MagickExport void ConvertHSLToRGB(const double hue,const double saturation,
     }
   }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -570,7 +570,7 @@ MagickPrivate void ConvertRGBToGeneric(const ColorspaceType colorspace,
     }
   }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -642,7 +642,7 @@ MagickExport void ConvertRGBToHSL(const double red,const double green,
   else
     *saturation=c*MagickSafeReciprocal(2.0-2.0*(*lightness));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -693,7 +693,7 @@ MagickExport ColorspaceType GetImageColorspaceType(const Image *image,
     colorspace=GRAYColorspace;
   return(colorspace);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1536,7 +1536,7 @@ static MagickBooleanType sRGBTransformImage(Image *image,
     return(MagickFalse);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1616,7 +1616,7 @@ MagickExport MagickBooleanType SetImageColorspace(Image *image,
   image->type=type;
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1673,7 +1673,7 @@ MagickExport MagickBooleanType SetImageGray(Image *image,
   image->type=type;
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1724,7 +1724,7 @@ MagickExport MagickBooleanType SetImageMonochrome(Image *image,
   image->type=BilevelType;
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1786,7 +1786,7 @@ MagickExport MagickBooleanType TransformImageColorspace(Image *image,
     status=MagickFalse;
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

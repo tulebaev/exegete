@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -94,7 +94,7 @@
 #include "MagickCore/threshold.h"
 #include "MagickCore/transform.h"
 #include "MagickCore/utility.h"
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -560,7 +560,7 @@ MagickExport RectangleInfo GetImageBoundingBox(const Image *image,
     }
   return(bounds);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -862,7 +862,7 @@ MagickExport PointInfo *GetImageConvexHull(const Image *image,
   vertices_info=RelinquishVirtualMemory(vertices_info);
   return(convex_hull);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1107,7 +1107,7 @@ MagickExport size_t GetImageDepth(const Image *image,ExceptionInfo *exception)
   current_depth=(size_t *) RelinquishMagickMemory(current_depth);
   return(depth);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1429,7 +1429,7 @@ MagickExport PointInfo *GetImageMinimumBoundingBox(Image *image,
   vertices=(PointInfo *) RelinquishMagickMemory(vertices);
   return(bounding_box);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1479,7 +1479,7 @@ MagickExport size_t GetImageQuantumDepth(const Image *image,
     depth=(size_t) MagickMin((double) depth,(double) MAGICKCORE_QUANTUM_DEPTH);
   return(depth);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1534,7 +1534,7 @@ MagickExport ImageType GetImageType(const Image *image)
     return(TrueColorAlphaType);
   return(TrueColorType);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1624,7 +1624,7 @@ MagickExport ImageType IdentifyImageGray(const Image *image,
     return(UndefinedType);
   return(type);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1706,7 +1706,7 @@ MagickExport MagickBooleanType IdentifyImageMonochrome(const Image *image,
   image_view=DestroyCacheView(image_view);
   return(type == BilevelType ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1768,7 +1768,7 @@ MagickExport ImageType IdentifyImageType(const Image *image,
     return(TrueColorAlphaType);
   return(TrueColorType);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1800,7 +1800,7 @@ MagickExport MagickBooleanType IsImageGray(const Image *image)
     return(MagickTrue);
   return(MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1831,7 +1831,7 @@ MagickExport MagickBooleanType IsImageMonochrome(const Image *image)
     return(MagickTrue);
   return(MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1915,7 +1915,7 @@ MagickExport MagickBooleanType IsImageOpaque(const Image *image,
   image_view=DestroyCacheView(image_view);
   return(opaque);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2257,7 +2257,7 @@ MagickExport MagickBooleanType SetImageDepth(Image *image,
     image->depth=depth;
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

@@ -81,7 +81,7 @@
 %
 %
 */
-
+
 #include "MagickCore/studio.h"
 #include "MagickCore/cache.h"
 #include "MagickCore/color.h"
@@ -104,7 +104,7 @@
 #include "MagickCore/segment.h"
 #include "MagickCore/string_.h"
 #include "MagickCore/thread-private.h"
-
+
 /*
   Define declarations.
 */
@@ -118,7 +118,7 @@
 #define SegmentPower(ratio) pow(ratio,(double) (1.0/(weighting_exponent-1.0)));
 #endif
 #define Tau  5.2f
-
+
 /*
   Typedef declarations.
 */
@@ -175,7 +175,7 @@ typedef struct _ZeroCrossing
   short
     crossings[256];
 } ZeroCrossing;
-
+
 /*
   Constant declarations.
 */
@@ -185,7 +185,7 @@ static const int
   Red = 0,
   SafeMargin = 3,
   TreeLength = 600;
-
+
 /*
   Method prototypes.
 */
@@ -201,7 +201,7 @@ static void
   InitializeHistogram(const Image *,ssize_t **,ExceptionInfo *),
   ScaleSpace(const ssize_t *,const double,double *),
   ZeroCrossHistogram(double *,const double,short *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -672,7 +672,7 @@ static MagickBooleanType Classify(Image *image,short **extrema,
   free_squares=(double *) RelinquishMagickMemory(free_squares);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -789,7 +789,7 @@ static void ConsolidateCrossings(ZeroCrossing *zero_crossing,
         zero_crossing[i].crossings[correct]=(short) l;
     }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -843,7 +843,7 @@ static ssize_t DefineRegion(const short *extrema,ExtentPacket *extents)
   extents->right=extents->index-1;
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -893,7 +893,7 @@ static void DerivativeHistogram(const double *histogram,
     derivative[i]=(histogram[i+1]-histogram[i-1])/2.0;
   return;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1195,7 +1195,7 @@ MagickExport MagickBooleanType GetImageDynamicThreshold(const Image *image,
   }
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1258,7 +1258,7 @@ static void InitializeHistogram(const Image *image,ssize_t **histogram,
     }
   }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1449,7 +1449,7 @@ static IntervalTree *InitializeIntervalTree(const ZeroCrossing *zero_crossing,
   list=(IntervalTree **) RelinquishMagickMemory(list);
   return(root);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1690,7 +1690,7 @@ static double OptimalTau(const ssize_t *histogram,const double max_tau,
   list=(IntervalTree **) RelinquishMagickMemory(list);
   return(average_tau);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1750,7 +1750,7 @@ static void ScaleSpace(const ssize_t *histogram,const double tau,
   }
   gamma=(double *) RelinquishMagickMemory(gamma);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1863,7 +1863,7 @@ MagickExport MagickBooleanType SegmentImage(Image *image,
   }
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

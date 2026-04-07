@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -84,7 +84,7 @@
 #include "MagickCore/token.h"
 #include "MagickCore/xml-tree.h"
 #include "MagickCore/xml-tree-private.h"
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -159,7 +159,7 @@ MagickExport MagickBooleanType AutoGammaImage(Image *image,
   }
   return(status != 0 ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -190,7 +190,7 @@ MagickExport MagickBooleanType AutoLevelImage(Image *image,
 {
   return(MinMaxStretchImage(image,0.0,0.0,1.0,exception));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -251,7 +251,7 @@ MagickExport MagickBooleanType BrightnessContrastImage(Image *image,
   status=FunctionImage(image,PolynomialFunction,2,coefficients,exception);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -791,7 +791,7 @@ MagickExport MagickBooleanType CLAHEImage(Image *image,const size_t width,
     status=MagickFalse;
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -969,7 +969,7 @@ MagickExport MagickBooleanType ClutImage(Image *image,const Image *clut_image,
     (void) SetImageAlphaChannel(image,ActivateAlphaChannel,exception);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1349,7 +1349,7 @@ MagickExport MagickBooleanType ColorDecisionListImage(Image *image,
   cdl_map=(PixelInfo *) RelinquishMagickMemory(cdl_map);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1516,7 +1516,7 @@ MagickExport MagickBooleanType ContrastImage(Image *image,
   image_view=DestroyCacheView(image_view);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1828,7 +1828,7 @@ MagickExport MagickBooleanType ContrastStretchImage(Image *image,
   stretch_map=(Quantum *) RelinquishMagickMemory(stretch_map);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2024,7 +2024,7 @@ MagickExport Image *EnhanceImage(const Image *image,ExceptionInfo *exception)
     enhance_image=DestroyImage(enhance_image);
   return(enhance_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2290,7 +2290,7 @@ MagickExport MagickBooleanType EqualizeImage(Image *image,
   equalize_map=(double *) RelinquishMagickMemory(equalize_map);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2455,7 +2455,7 @@ MagickExport MagickBooleanType GammaImage(Image *image,const double gamma,
     image->gamma*=gamma;
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2663,7 +2663,7 @@ MagickExport MagickBooleanType GrayscaleImage(Image *image,
     return(SetImageColorspace(image,LinearGRAYColorspace,exception));
   return(SetImageColorspace(image,GRAYColorspace,exception));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2864,7 +2864,7 @@ MagickExport MagickBooleanType HaldClutImage(Image *image,
   image_view=DestroyCacheView(image_view);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3028,7 +3028,7 @@ MagickExport MagickBooleanType LevelImage(Image *image,const double black_point,
   (void) ClampImage(image,exception);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3178,7 +3178,7 @@ MagickExport MagickBooleanType LevelizeImage(Image *image,
   image_view=DestroyCacheView(image_view);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3324,7 +3324,7 @@ MagickExport MagickBooleanType LevelImageColors(Image *image,
     }
   return(status != 0 ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3437,7 +3437,7 @@ MagickExport MagickBooleanType LinearStretchImage(Image *image,
   (void) SetImageProperty(image,"histogram:linear-stretch",property,exception);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3920,7 +3920,7 @@ MagickExport MagickBooleanType ModulateImage(Image *image,const char *modulate,
   image_view=DestroyCacheView(image_view);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4112,7 +4112,7 @@ MagickExport MagickBooleanType NegateImage(Image *image,
   image_view=DestroyCacheView(image_view);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4150,7 +4150,7 @@ MagickExport MagickBooleanType NormalizeImage(Image *image,
   white_point=0.99*image->columns*image->rows;
   return(ContrastStretchImage(image,black_point,white_point,exception));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4417,7 +4417,7 @@ MagickExport MagickBooleanType SigmoidalContrastImage(Image *image,
   image_view=DestroyCacheView(image_view);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

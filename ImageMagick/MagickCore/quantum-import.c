@@ -40,7 +40,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -70,7 +70,7 @@
 #include "MagickCore/stream.h"
 #include "MagickCore/string_.h"
 #include "MagickCore/utility.h"
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

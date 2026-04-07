@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -72,19 +72,19 @@
 #if defined(MAGICKCORE_HAVE_MACH_O_DYLD_H)
 #include <mach-o/dyld.h>
 #endif
-
+
 /*
   Static declarations.
 */
 static const char
   Base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-
+
 /*
   Forward declaration.
 */
 static int
   IsPathDirectory(const char *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -119,7 +119,7 @@ MagickExport MagickBooleanType AcquireUniqueFilename(char *path)
   file=close_utf8(file)-1;
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -258,7 +258,7 @@ MagickExport MagickBooleanType AcquireUniqueSymbolicLink(const char *source,
   buffer=(unsigned char *) RelinquishMagickMemory(buffer);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -325,7 +325,7 @@ MagickExport void AppendImageFormat(const char *format,char *filename)
   GetPathComponent(filename,RootPath,root);
   (void) FormatLocaleString(filename,MagickPathExtent,"%s.%s",root,format);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -477,7 +477,7 @@ MagickExport unsigned char *Base64Decode(const char *source,size_t *length)
   *length=i;
   return(decode);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -566,7 +566,7 @@ MagickExport char *Base64Encode(const unsigned char *blob,
   encode[i++]='\0';
   return(encode);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -600,7 +600,7 @@ MagickPrivate void ChopPathComponents(char *path,const size_t components)
   for (i=0; i < (ssize_t) components; i++)
     GetPathComponent(path,HeadPath,path);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -696,7 +696,7 @@ MagickPrivate void ExpandFilename(char *path)
     }
   (void) CopyMagickString(path,expand_path,MagickPathExtent);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1005,7 +1005,7 @@ MagickExport MagickBooleanType ExpandFilenames(int *number_arguments,
   *arguments=vector;
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1151,7 +1151,7 @@ MagickPrivate MagickBooleanType GetExecutionPath(char *path,const size_t extent)
 #endif
   return(IsPathAccessible(path));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1186,7 +1186,7 @@ MagickPrivate ssize_t GetMagickPageSize(void)
     page_size=4096;
   return(page_size);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1227,7 +1227,7 @@ MagickExport MagickBooleanType GetPathAttributes(const char *path,
     MagickFalse;
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1443,7 +1443,7 @@ MagickExport void GetPathComponent(const char *path,PathType type,
       break;
   }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1508,7 +1508,7 @@ MagickPrivate char **GetPathComponents(const char *path,
   components[i]=(char *) NULL;
   return(components);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1553,7 +1553,7 @@ MagickExport MagickBooleanType IsPathAccessible(const char *path)
     return(MagickFalse);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1594,7 +1594,7 @@ static int IsPathDirectory(const char *path)
     return(0);
   return(1);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1746,7 +1746,7 @@ MagickPrivate char **ListFiles(const char *directory,const char *pattern,
     FileCompare);
   return(filelist);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1821,7 +1821,7 @@ MagickExport void MagickDelay(const MagickSizeType milliseconds)
   }
 #endif
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1860,7 +1860,7 @@ MagickExport size_t MultilineCensus(const char *label)
       number_lines++;
   return(number_lines);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -72,7 +72,7 @@
 #include "MagickCore/thread-private.h"
 #include "MagickCore/token.h"
 #include "MagickCore/transform.h"
-
+
 /*
   Numerous internal routines for image distortions.
 */
@@ -250,7 +250,7 @@ static double poly_basis_dy(ssize_t n, double x, double y)
      is due to the re-arrangement of terms to allow for 'bilinear'
   */
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -308,7 +308,7 @@ MagickExport Image *AffineTransformImage(const Image *image,
     MagickTrue,exception);
   return(deskew_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1505,7 +1505,7 @@ static double *GenerateCoefficients(const Image *image,
   perror("no method handler"); /* just fail assertion */
   return((double *) NULL);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1662,7 +1662,7 @@ MagickExport Image *DistortResizeImage(const Image *image,const size_t columns,
     }
   return(resize_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2918,7 +2918,7 @@ if ( d.x == 0.5 && d.y == 0.5 ) {
   coeff=(double *) RelinquishMagickMemory(coeff);
   return(distort_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2998,7 +2998,7 @@ MagickExport Image *RotateImage(const Image *image,const double degrees,
   distort_image=DestroyImage(distort_image);
   return(rotate_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

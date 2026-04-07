@@ -40,7 +40,7 @@
 %  Imaging Group, MIT Media Lab.
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -79,7 +79,7 @@
 #include "MagickCore/thread-private.h"
 #include "MagickCore/threshold.h"
 #include "MagickCore/transform.h"
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -177,7 +177,7 @@ static MagickBooleanType CropToFitImage(Image **image,
   *image=crop_image;
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -669,7 +669,7 @@ MagickExport Image *DeskewImage(const Image *image,const double threshold,
   deskew_image=DestroyImage(deskew_image);
   return(crop_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1094,7 +1094,7 @@ MagickExport Image *IntegralRotateImage(const Image *image,size_t rotations,
     rotate_image=DestroyImage(rotate_image);
   return(rotate_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1309,7 +1309,7 @@ static MagickBooleanType XShearImage(Image *image,const double degrees,
   image_view=DestroyCacheView(image_view);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1526,7 +1526,7 @@ static MagickBooleanType YShearImage(Image *image,const double degrees,
   image_view=DestroyCacheView(image_view);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1659,7 +1659,7 @@ MagickExport Image *ShearImage(const Image *image,const double x_shear,
     shear_image=DestroyImage(shear_image);
   return(shear_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -80,12 +80,12 @@
 #include "MagickCore/token.h"
 #include "MagickCore/utility.h"
 #include "MagickCore/visual-effects.h"
-
+
 /*
   Define declarations.
 */
 #define MetaPixelChannelBit(bit) ((ssize_t) 1 << ((ssize_t) MetaPixelChannels+bit))
-
+
 /*
   ImageMagick options.
 */
@@ -2335,7 +2335,7 @@ static const OptionInfo
     { "BreakWord", BreakWordBreakType, UndefinedOptionFlag, MagickFalse },
     { (char *) NULL, UndefinedWordBreakType, UndefinedOptionFlag, MagickFalse }
   };
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2395,7 +2395,7 @@ MagickExport MagickBooleanType CloneImageOptions(ImageInfo *image_info,
     }
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2445,7 +2445,7 @@ MagickExport MagickBooleanType DefineImageOption(ImageInfo *image_info,
   *p='\0';
   return(SetImageOption(image_info,key,value));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2485,7 +2485,7 @@ MagickExport MagickBooleanType DeleteImageOption(ImageInfo *image_info,
     return(MagickFalse);
   return(DeleteNodeFromSplayTree((SplayTreeInfo *) image_info->options,option));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2519,7 +2519,7 @@ MagickExport void DestroyImageOptions(ImageInfo *image_info)
   if (image_info->options != (void *) NULL)
     image_info->options=DestroySplayTree((SplayTreeInfo *) image_info->options);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2561,7 +2561,7 @@ MagickExport const char *GetImageOption(const ImageInfo *image_info,
   return((const char *) GetValueFromSplayTree((SplayTreeInfo *)
     image_info->options,option));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2750,7 +2750,7 @@ MagickExport ssize_t GetCommandOptionFlags(const CommandOption option,
   }
   return(option_types);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2785,7 +2785,7 @@ MagickExport const OptionInfo *GetCommandOptionInfo(const char *option)
       break;
   return(CommandOptions+i);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2831,7 +2831,7 @@ MagickExport char **GetCommandOptions(const CommandOption option)
   options[i]=(char *) NULL;
   return(options);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2865,7 +2865,7 @@ MagickExport char *GetNextImageOption(const ImageInfo *image_info)
     return((char *) NULL);
   return((char *) GetNextKeyInSplayTree((SplayTreeInfo *) image_info->options));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2920,7 +2920,7 @@ MagickExport MagickBooleanType IsCommandOption(const char *option)
     return(MagickFalse);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2965,7 +2965,7 @@ MagickExport const char *CommandOptionToMnemonic(const CommandOption option,
     return("Unrecognized");
   return(option_info[i].mnemonic);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3038,7 +3038,7 @@ MagickExport MagickBooleanType IsOptionMember(const char *option,
   option_list=(char **) RelinquishMagickMemory(option_list);
   return(member);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3089,7 +3089,7 @@ MagickExport MagickBooleanType ListCommandOptions(FILE *file,
   }
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3207,7 +3207,7 @@ MagickExport ssize_t ParseChannelOption(const char *channels)
   }
   return(channel);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3319,7 +3319,7 @@ MagickExport ssize_t ParseCommandOption(const CommandOption option,
   }
   return(option_types);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3364,7 +3364,7 @@ MagickExport ssize_t ParsePixelChannelOption(const char *channels)
     return(-1);
   return(channel);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3408,7 +3408,7 @@ MagickExport char *RemoveImageOption(ImageInfo *image_info,const char *option)
     image_info->options,option);
   return(value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3443,7 +3443,7 @@ MagickExport void ResetImageOptions(const ImageInfo *image_info)
     return;
   ResetSplayTree((SplayTreeInfo *) image_info->options);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3479,7 +3479,7 @@ MagickExport void ResetImageOptionIterator(const ImageInfo *image_info)
     return;
   ResetSplayTreeIterator((SplayTreeInfo *) image_info->options);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

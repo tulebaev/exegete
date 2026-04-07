@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -43,7 +43,7 @@
 #include "MagickCore/client.h"
 #include "MagickCore/log.h"
 #include "MagickCore/string_.h"
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -66,7 +66,7 @@ MagickExport const char *GetClientName(void)
 {
   return(SetClientName((const char *) NULL));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -89,7 +89,7 @@ MagickExport const char *GetClientPath(void)
 {
   return(SetClientPath((const char *) NULL));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -124,7 +124,7 @@ MagickExport const char *SetClientName(const char *name)
     }
   return(*client_name == '\0' ? "Magick" : client_name);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

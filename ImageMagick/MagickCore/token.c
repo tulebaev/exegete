@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -54,7 +54,7 @@
 #include "MagickCore/token-private.h"
 #include "MagickCore/utility.h"
 #include "MagickCore/utility-private.h"
-
+
 /*
   Typedef declarations.
 */
@@ -75,7 +75,7 @@ struct _TokenInfo
   size_t
     signature;
 };
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -103,7 +103,7 @@ MagickExport TokenInfo *AcquireTokenInfo(void)
   token_info->signature=MagickCoreSignature;
   return(token_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -137,7 +137,7 @@ MagickExport TokenInfo *DestroyTokenInfo(TokenInfo *token_info)
   token_info=(TokenInfo *) RelinquishMagickMemory(token_info);
   return(token_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -321,7 +321,7 @@ MagickExport magick_hot_spot size_t GetNextToken(
     *end=(const char *) p;
   return((size_t) (p-start+1));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -648,7 +648,7 @@ MagickExport MagickBooleanType GlobExpression(
 {
   return(GlobExpression_(expression,pattern,case_insensitive,0));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -702,7 +702,7 @@ MagickPrivate MagickBooleanType IsGlob(const char *path)
   }
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

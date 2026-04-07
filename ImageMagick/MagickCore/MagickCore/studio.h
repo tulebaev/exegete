@@ -247,9 +247,6 @@ extern int vsnprintf(char *,size_t,const char *,va_list);
 #if defined(MAGICKCORE_WINDOWS_SUPPORT)
 # include "MagickCore/nt-base.h"
 #endif
-#ifdef __VMS
-# include "MagickCore/vms.h"
-#endif
 
 #undef HAVE_CONFIG_H
 #undef gamma

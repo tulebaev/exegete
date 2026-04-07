@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -84,7 +84,7 @@
 #if defined(MAGICKCORE_LQR_DELEGATE)
 #include <lqr/lqr.h>
 #endif
-
+
 /*
   Typedef declarations.
 */
@@ -106,7 +106,7 @@ struct _ResizeFilter
   size_t
     signature;
 };
-
+
 /*
   Forward declarations.
 */
@@ -115,7 +115,7 @@ static double
   BesselOrderOne(double),
   Sinc(const double, const ResizeFilter *),
   SincFast(const double, const ResizeFilter *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -613,7 +613,7 @@ static double Welch(const double x,
     return(1.0-x*x);
   return(0.0);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1296,7 +1296,7 @@ MagickPrivate ResizeFilter *AcquireResizeFilter(const Image *image,
     }
   return(resize_filter);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1341,7 +1341,7 @@ MagickExport Image *AdaptiveResizeImage(const Image *image,
     exception);
   return(resize_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1551,7 +1551,7 @@ static double BesselOrderOne(double x)
     q=(-q);
   return(q);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1582,7 +1582,7 @@ MagickPrivate ResizeFilter *DestroyResizeFilter(ResizeFilter *resize_filter)
   resize_filter=(ResizeFilter *) RelinquishMagickMemory(resize_filter);
   return(resize_filter);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1659,7 +1659,7 @@ MagickPrivate double GetResizeFilterSupport(const ResizeFilter *resize_filter)
   assert(resize_filter->signature == MagickCoreSignature);
   return(resize_filter->support*resize_filter->blur);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1712,7 +1712,7 @@ MagickPrivate double GetResizeFilterWeight(const ResizeFilter *resize_filter,
   weight=scale*resize_filter->filter(x_blur,resize_filter);
   return(weight);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1872,7 +1872,7 @@ MagickExport Image *InterpolativeResizeImage(const Image *image,
   return(resize_image);
 }
 #if defined(MAGICKCORE_LQR_DELEGATE)
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2081,7 +2081,7 @@ MagickExport Image *LiquidRescaleImage(const Image *image,
   return((Image *) NULL);
 }
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3133,7 +3133,7 @@ MagickExport Image *MagnifyImage(const Image *image,ExceptionInfo *exception)
     magnify_image=DestroyImage(magnify_image);
   return(magnify_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3174,7 +3174,7 @@ MagickExport Image *MinifyImage(const Image *image,ExceptionInfo *exception)
     exception);
   return(minify_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3242,7 +3242,7 @@ MagickExport Image *ResampleImage(const Image *image,const double x_resolution,
     }
   return(resample_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3875,7 +3875,7 @@ MagickExport Image *ResizeImage(const Image *image,const size_t columns,
   resize_image->type=image->type;
   return(resize_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4066,7 +4066,7 @@ MagickExport Image *SampleImage(const Image *image,const size_t columns,
     sample_image=DestroyImage(sample_image);
   return(sample_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4527,7 +4527,7 @@ MagickExport Image *ScaleImage(const Image *image,const size_t columns,
     scale_image=DestroyImage(scale_image);
   return(scale_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

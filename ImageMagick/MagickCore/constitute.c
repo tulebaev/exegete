@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -82,12 +82,12 @@
 #include "MagickCore/transform.h"
 #include "MagickCore/utility.h"
 #include "MagickCore/utility-private.h"
-
+
 /*
   Define declarations.
 */
 #define MaxReadRecursionDepth  100
-
+
 /*
   Typedef declarations.
 */
@@ -112,7 +112,7 @@ typedef struct _ConstituteInfo
   ssize_t
     ticks_per_second;
 } ConstituteInfo;
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -250,7 +250,7 @@ MagickExport Image *ConstituteImage(const size_t columns,const size_t rows,
     image=DestroyImage(image);
   return(image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -323,7 +323,7 @@ MagickExport Image *PingImage(const ImageInfo *image_info,
   ping_info=DestroyImageInfo(ping_info);
   return(image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -416,7 +416,7 @@ MagickExport Image *PingImages(ImageInfo *image_info,const char *filename,
     }
   return(PingImage(image_info,exception));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -988,7 +988,7 @@ MagickExport Image *ReadImage(const ImageInfo *image_info,
     ThrowReaderException(CorruptImageError,"UnableToReadImageData");
   return(GetFirstImageInList(image));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1084,7 +1084,7 @@ MagickExport Image *ReadImages(ImageInfo *image_info,const char *filename,
   read_info=DestroyImageInfo(read_info);
   return(image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1176,7 +1176,7 @@ MagickExport Image *ReadInlineImage(const ImageInfo *image_info,
   read_info=DestroyImageInfo(read_info);
   return(image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1452,7 +1452,7 @@ MagickExport MagickBooleanType WriteImage(const ImageInfo *image_info,
     ThrowWriterException(FileOpenError,"UnableToWriteFile");
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

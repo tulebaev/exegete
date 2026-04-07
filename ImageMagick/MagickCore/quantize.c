@@ -169,7 +169,7 @@
 %  This method is based on a similar algorithm written by Paul Raveling.
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -205,7 +205,7 @@
 #include "MagickCore/string_.h"
 #include "MagickCore/string-private.h"
 #include "MagickCore/thread-private.h"
-
+
 /*
   Define declarations.
 */
@@ -219,7 +219,7 @@
 #define MaxQNodes  266817
 #define MaxTreeDepth  8
 #define QNodesInAList  1920
-
+
 /*
   Typedef declarations.
 */
@@ -328,7 +328,7 @@ typedef struct _QCubeInfo
   MagickSizeType
     span;
 } QCubeInfo;
-
+
 /*
   Method prototypes.
 */
@@ -352,7 +352,7 @@ static void
   PruneLevel(QCubeInfo *,const QNodeInfo *),
   PruneToCubeDepth(QCubeInfo *,const QNodeInfo *),
   ReduceImageColors(const Image *,QCubeInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -397,7 +397,7 @@ MagickExport QuantizeInfo *AcquireQuantizeInfo(const ImageInfo *image_info)
     }
   return(quantize_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -676,7 +676,7 @@ static MagickBooleanType AssignImageColors(Image *image,QCubeInfo *cube_info,
     (void) TransformImageColorspace(image,colorspace,exception);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1031,7 +1031,7 @@ static MagickBooleanType ClassifyImageColors(QCubeInfo *cube_info,
       (void) TransformImageColorspace((Image *) image,sRGBColorspace,exception);
   return(y < (ssize_t) image->rows ? MagickFalse : MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1074,7 +1074,7 @@ MagickExport QuantizeInfo *CloneQuantizeInfo(const QuantizeInfo *quantize_info)
   clone_info->measure_error=quantize_info->measure_error;
   return(clone_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1173,7 +1173,7 @@ static void ClosestColor(const Image *image,QCubeInfo *cube_info,
         }
     }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1217,7 +1217,7 @@ MagickExport MagickBooleanType CompressImageColormap(Image *image,
   quantize_info.tree_depth=MaxTreeDepth;
   return(QuantizeImage(&quantize_info,image,exception));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1328,7 +1328,7 @@ static void DefineImageColormap(Image *image,QCubeInfo *cube_info,
       node_info->color_number=image->colors++;
     }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1373,7 +1373,7 @@ static void DestroyQCubeInfo(QCubeInfo *cube_info)
   cube_info->quantize_info=DestroyQuantizeInfo(cube_info->quantize_info);
   cube_info=(QCubeInfo *) RelinquishMagickMemory(cube_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1407,7 +1407,7 @@ MagickExport QuantizeInfo *DestroyQuantizeInfo(QuantizeInfo *quantize_info)
   quantize_info=(QuantizeInfo *) RelinquishMagickMemory(quantize_info);
   return(quantize_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2017,7 +2017,7 @@ static MagickBooleanType DitherImage(Image *image,QCubeInfo *cube_info,
   image_view=DestroyCacheView(image_view);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2114,7 +2114,7 @@ static QCubeInfo *GetQCubeInfo(const QuantizeInfo *quantize_info,
   cube_info->diffusion=1.0;
   return(cube_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2178,7 +2178,7 @@ static QNodeInfo *GetQNodeInfo(QCubeInfo *cube_info,const size_t id,
   node_info->level=level;
   return(node_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2302,7 +2302,7 @@ MagickExport MagickBooleanType GetImageQuantizeError(Image *image,
   image->error.normalized_maximum_error=(double) QuantumScale*maximum_error;
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2337,7 +2337,7 @@ MagickExport void GetQuantizeInfo(QuantizeInfo *quantize_info)
   quantize_info->measure_error=MagickFalse;
   quantize_info->signature=MagickCoreSignature;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2807,7 +2807,7 @@ MagickExport MagickBooleanType KmeansImage(Image *image,
     return(status);
   return(SyncImage(image,exception));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3078,7 +3078,7 @@ MagickExport MagickBooleanType PosterizeImage(Image *image,const size_t levels,
     }
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3137,7 +3137,7 @@ static void PruneChild(QCubeInfo *cube_info,const QNodeInfo *node_info)
       cube_info->nodes--;
     }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3181,7 +3181,7 @@ static void PruneLevel(QCubeInfo *cube_info,const QNodeInfo *node_info)
   if (node_info->level == cube_info->depth)
     PruneChild(cube_info,node_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3226,7 +3226,7 @@ static void PruneToCubeDepth(QCubeInfo *cube_info,const QNodeInfo *node_info)
   if (node_info->level > cube_info->depth)
     PruneChild(cube_info,node_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3328,7 +3328,7 @@ MagickExport MagickBooleanType QuantizeImage(const QuantizeInfo *quantize_info,
   DestroyQCubeInfo(cube_info);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3472,7 +3472,7 @@ MagickExport MagickBooleanType QuantizeImages(const QuantizeInfo *quantize_info,
   DestroyQCubeInfo(cube_info);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3527,7 +3527,7 @@ static size_t QuantizeErrorFlatten(const QCubeInfo *cube_info,
         quantize_error);
   return(n);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3581,7 +3581,7 @@ static void Reduce(QCubeInfo *cube_info,const QNodeInfo *node_info)
         cube_info->next_threshold=node_info->quantize_error;
     }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3701,7 +3701,7 @@ static void ReduceImageColors(const Image *image,QCubeInfo *cube_info)
       break;
   }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3771,7 +3771,7 @@ MagickExport MagickBooleanType RemapImage(const QuantizeInfo *quantize_info,
   DestroyQCubeInfo(cube_info);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3855,7 +3855,7 @@ MagickExport MagickBooleanType RemapImages(const QuantizeInfo *quantize_info,
   DestroyQCubeInfo(cube_info);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4069,7 +4069,7 @@ static MagickBooleanType SetGrayscaleImage(Image *image,
     image->type=BilevelType;
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

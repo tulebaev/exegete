@@ -34,7 +34,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -42,7 +42,7 @@
 #include "MagickCore/memory_.h"
 #include "MagickCore/thread_.h"
 #include "MagickCore/thread-private.h"
-
+
 /*
   Typedef declarations.
 */
@@ -55,7 +55,7 @@ typedef struct _MagickThreadValue
     **values,
     (*destructor)(void *);
 } MagickThreadValue;
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -113,7 +113,7 @@ MagickExport MagickBooleanType CreateMagickThreadKey(MagickThreadKey *key,
   }
 #endif
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -163,7 +163,7 @@ MagickExport MagickBooleanType DeleteMagickThreadKey(MagickThreadKey key)
   return(MagickTrue);
 #endif
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -203,7 +203,7 @@ MagickExport void *GetMagickThreadValue(MagickThreadKey key)
   }
 #endif
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

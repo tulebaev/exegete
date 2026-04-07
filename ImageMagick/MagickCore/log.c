@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -67,12 +67,12 @@
 #include "MagickCore/version.h"
 #include "MagickCore/xml-tree.h"
 #include "MagickCore/xml-tree-private.h"
-
+
 /*
   Define declarations.
 */
 #define LogFilename  "log.xml"
-
+
 /*
   Typedef declarations.
 */
@@ -159,7 +159,7 @@ typedef struct _LogMapInfo
     *filename,
     *format;
 } LogMapInfo;
-
+
 /*
   Static declarations.
 */
@@ -218,7 +218,7 @@ static MagickBooleanType
 
 static SemaphoreInfo
   *log_semaphore = (SemaphoreInfo *) NULL;
-
+
 /*
   Forward declarations.
 */
@@ -238,7 +238,7 @@ static MagickBooleanType
   LoadLogCache(LinkedListInfo *,const char *,const char *,const size_t,
     ExceptionInfo *);
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -337,7 +337,7 @@ static LinkedListInfo *AcquireLogCache(const char *filename,
   }
   return(cache);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -380,7 +380,7 @@ MagickExport void CloseMagickLog(void)
     }
   UnlockSemaphoreInfo(log_semaphore);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -414,7 +414,7 @@ MagickExport LogEventType GetLogEventMask(void)
     return(NoEvents);
   return(log_info->event_mask);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -478,7 +478,7 @@ static LogInfo *GetLogInfo(const char *name,ExceptionInfo *exception)
   UnlockSemaphoreInfo(log_semaphore);
   return(log_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -574,7 +574,7 @@ MagickExport const LogInfo **GetLogInfoList(const char *pattern,
   *number_preferences=(size_t) i;
   return(preferences);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -669,7 +669,7 @@ MagickExport char **GetLogList(const char *pattern,size_t *number_preferences,
   *number_preferences=(size_t) i;
   return(preferences);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -692,7 +692,7 @@ MagickExport const char *GetLogName(void)
 {
   return(log_name);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -752,7 +752,7 @@ static MagickBooleanType IsLogCacheInstantiated(ExceptionInfo *exception)
     }
   return(log_cache != (LinkedListInfo *) NULL ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -776,7 +776,7 @@ MagickExport MagickBooleanType IsEventLogging(void)
 {
   return(event_logging);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -876,7 +876,7 @@ MagickExport MagickBooleanType ListLogInfo(FILE *file,ExceptionInfo *exception)
   log_info=(const LogInfo **) RelinquishMagickMemory((void *) log_info);
   return(MagickTrue);
 }
-
+
 #if !MAGICKCORE_ZERO_CONFIGURATION_SUPPORT
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1120,7 +1120,7 @@ static MagickBooleanType LoadLogCache(LinkedListInfo *cache,const char *xml,
   return(status != 0 ? MagickTrue : MagickFalse);
 }
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1151,7 +1151,7 @@ MagickPrivate MagickBooleanType LogComponentGenesis(void)
   exception=DestroyExceptionInfo(exception);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1206,7 +1206,7 @@ MagickPrivate void LogComponentTerminus(void)
   UnlockSemaphoreInfo(log_semaphore);
   RelinquishSemaphoreInfo(&log_semaphore);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1716,7 +1716,7 @@ MagickExport MagickBooleanType LogMagickEvent(const LogEventType type,
   va_end(operands);
   return(status);
 }
-
+
 #if !MAGICKCORE_ZERO_CONFIGURATION_SUPPORT
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1776,7 +1776,7 @@ static LogHandlerType ParseLogHandlers(const char *handlers)
   return(handler_mask);
 }
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1832,7 +1832,7 @@ MagickExport LogEventType SetLogEventMask(const char *events)
   UnlockSemaphoreInfo(log_semaphore);
   return(event_mask);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1874,7 +1874,7 @@ MagickExport void SetLogFormat(const char *format)
   log_info->format=ConstantString(format);
   UnlockSemaphoreInfo(log_semaphore);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1918,7 +1918,7 @@ MagickExport void SetLogMethod(MagickLogMethod method)
   log_info->method=method;
   UnlockSemaphoreInfo(log_semaphore);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

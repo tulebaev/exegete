@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -79,7 +79,7 @@
 #include "MagickCore/transform.h"
 #include "MagickCore/utility.h"
 #include "MagickCore/version.h"
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -269,7 +269,7 @@ MagickExport Image *CompareImages(Image *image,const Image *reconstruct_image,
     difference_image=DestroyImage(difference_image);
   return(difference_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2311,7 +2311,7 @@ MagickExport MagickBooleanType GetImageDistortion(Image *image,
     *distortion);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2490,7 +2490,7 @@ MagickExport double *GetImageDistortions(Image *image,
     distortion[CompositePixelChannel]);
   return(distortion);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2587,7 +2587,7 @@ MagickExport MagickBooleanType IsImagesEqual(const Image *image,
   image_view=DestroyCacheView(image_view);
   return(y < (ssize_t) rows ? MagickFalse : MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2654,7 +2654,7 @@ MagickExport MagickBooleanType SetImageColorMetric(Image *image,
     MagickTrue : MagickFalse;
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

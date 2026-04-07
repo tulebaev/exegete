@@ -34,7 +34,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -60,13 +60,13 @@
 #include "MagickCore/statistic.h"
 #include "MagickCore/string_.h"
 #include "MagickCore/timer-private.h"
-
+
 #if defined(MAGICKCORE_CIPHER_SUPPORT)
 /*
   Define declarations.
 */
 #define AESBlocksize 16
-
+
 /*
   Typedef declarations.
 */
@@ -89,7 +89,7 @@ typedef struct _AESInfo
   size_t
     signature;
 } AESInfo;
-
+
 /*
   Global declarations.
 */
@@ -160,7 +160,7 @@ static unsigned char
      40, 223, 140, 161, 137,  13, 191, 230,  66, 104,  65, 153,  45,  15,
     176,  84, 187, 22
   };
-
+
 /*
   Forward declarations.
 */
@@ -170,7 +170,7 @@ static AESInfo
 static void
   EncipherAESBlock(AESInfo *,const unsigned char *,unsigned char *),
   SetAESKey(AESInfo *,const StringInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -210,7 +210,7 @@ static AESInfo *AcquireAESInfo(void)
   aes_info->signature=MagickCoreSignature;
   return(aes_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -251,7 +251,7 @@ static AESInfo *DestroyAESInfo(AESInfo *aes_info)
   aes_info=(AESInfo *) RelinquishMagickMemory(aes_info);
   return(aes_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -491,7 +491,7 @@ static void EncipherAESBlock(AESInfo *aes_info,const unsigned char *plaintext,
   (void) ResetMagickMemory(key,0,sizeof(key));
   (void) ResetMagickMemory(text,0,sizeof(text));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -716,7 +716,7 @@ MagickExport MagickBooleanType PasskeyDecipherImage(Image *image,
   (void) ResetMagickMemory(output_block,0,sizeof(output_block));
   return(y == (ssize_t) image->rows ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -933,7 +933,7 @@ MagickExport MagickBooleanType PasskeyEncipherImage(Image *image,
   (void) ResetMagickMemory(output_block,0,sizeof(output_block));
   return(y == (ssize_t) image->rows ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1078,7 +1078,7 @@ static void SetAESKey(AESInfo *aes_info,const StringInfo *key)
   beta=0;
 }
 #else
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1136,7 +1136,7 @@ MagickExport MagickBooleanType PasskeyDecipherImage(Image *image,
   (void) passkey;
   ThrowBinaryException(ImageError,"CipherSupportNotEnabled",image->filename);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

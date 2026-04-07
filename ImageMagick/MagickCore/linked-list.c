@@ -38,7 +38,7 @@
 %  on the Java implementation of these algorithms.
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -53,7 +53,7 @@
 #include "MagickCore/semaphore.h"
 #include "MagickCore/signature-private.h"
 #include "MagickCore/string_.h"
-
+
 /*
   Typedef declarations.
 */
@@ -74,7 +74,7 @@ struct _LinkedListInfo
   size_t
     signature;
 };
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -127,7 +127,7 @@ MagickExport MagickBooleanType AppendValueToLinkedList(
   UnlockSemaphoreInfo(list_info->semaphore);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -234,7 +234,7 @@ MagickExport LinkedListInfo *DestroyLinkedList(LinkedListInfo *list_info,
   list_info=(LinkedListInfo *) RelinquishMagickMemory(list_info);
   return(list_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -264,7 +264,7 @@ MagickPrivate ElementInfo *GetHeadElementInLinkedList(
   assert(list_info->signature == MagickCoreSignature);
   return(list_info->head);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -342,7 +342,7 @@ MagickExport void *GetNextValueInLinkedList(LinkedListInfo *list_info)
   UnlockSemaphoreInfo(list_info->semaphore);
   return(value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -534,7 +534,7 @@ MagickExport MagickBooleanType InsertValueInLinkedList(
   UnlockSemaphoreInfo(list_info->semaphore);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -659,7 +659,7 @@ MagickExport MagickBooleanType IsLinkedListEmpty(
   assert(list_info->signature == MagickCoreSignature);
   return(list_info->elements == 0 ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -708,7 +708,7 @@ MagickExport MagickBooleanType LinkedListToArray(LinkedListInfo *list_info,
   UnlockSemaphoreInfo(list_info->semaphore);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -748,7 +748,7 @@ MagickExport LinkedListInfo *NewLinkedList(const size_t capacity)
   list_info->signature=MagickCoreSignature;
   return(list_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -820,7 +820,7 @@ MagickExport void *RemoveElementByValueFromLinkedList(LinkedListInfo *list_info,
   UnlockSemaphoreInfo(list_info->semaphore);
   return((void *) value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -953,7 +953,7 @@ MagickExport void *RemoveLastElementFromLinkedList(LinkedListInfo *list_info)
   UnlockSemaphoreInfo(list_info->semaphore);
   return(value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -986,7 +986,7 @@ MagickExport void ResetLinkedListIterator(LinkedListInfo *list_info)
   list_info->next=list_info->head;
   UnlockSemaphoreInfo(list_info->semaphore);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

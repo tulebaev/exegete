@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -59,12 +59,12 @@
 #include "MagickCore/string_.h"
 #include "MagickCore/string-private.h"
 #include "MagickCore/utility-private.h"
-
+
 /*
   Define declarations.
 */
 #define CharsPerLine  0x14
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -115,7 +115,7 @@ MagickExport char *AcquireString(const char *source)
   destination[length]='\0';
   return(destination);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -166,7 +166,7 @@ MagickExport StringInfo *AcquireStringInfo(const size_t length)
     sizeof(*string_info->datum));
   return(string_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -216,7 +216,7 @@ MagickExport StringInfo *BlobToStringInfo(const void *blob,const size_t length)
     sizeof(*string_info->datum));
   return(string_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -278,7 +278,7 @@ MagickExport char *CloneString(char **destination,const char *source)
   (*destination)[length]='\0';
   return(*destination);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -315,7 +315,7 @@ MagickExport StringInfo *CloneStringInfo(const StringInfo *string_info)
     (void) memcpy(clone_info->datum,string_info->datum,string_info->length+1);
   return(clone_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -361,7 +361,7 @@ MagickExport int CompareStringInfo(const StringInfo *target,
     return(0);
   return(target->length < source->length ? -1 : 1);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -428,7 +428,7 @@ MagickExport size_t ConcatenateMagickString(char *magick_restrict destination,
   *q='\0';
   return(count+(size_t) (p-source));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -488,7 +488,7 @@ MagickExport MagickBooleanType ConcatenateString(
   (*destination)[length]='\0';
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -543,7 +543,7 @@ MagickExport void ConcatenateStringInfo(StringInfo *string_info,
     source->length);
   string_info->length=length;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -649,7 +649,7 @@ MagickExport StringInfo *ConfigureFileToStringInfo(const char *filename)
   string_info->datum=(unsigned char *) string;
   return(string_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -697,7 +697,7 @@ MagickExport char *ConstantString(const char *source)
   destination[length]='\0';
   return(destination);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -763,7 +763,7 @@ MagickExport size_t CopyMagickString(char *magick_restrict destination,
     }
   return((size_t) (p-source));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -790,7 +790,7 @@ MagickExport char *DestroyString(char *string)
 {
   return((char *) RelinquishMagickMemory(string));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -828,7 +828,7 @@ MagickExport StringInfo *DestroyStringInfo(StringInfo *string_info)
   string_info=(StringInfo *) RelinquishMagickMemory(string_info);
   return(string_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -862,7 +862,7 @@ MagickExport char **DestroyStringList(char **list)
   list=(char **) RelinquishMagickMemory(list);
   return(list);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -935,7 +935,7 @@ MagickExport char *EscapeString(const char *source,const char escape)
   *q='\0';
   return(destination);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -994,7 +994,7 @@ MagickExport char *FileToString(const char *filename,const size_t extent,
     }
   return((char *) FileToBlob(p,extent,&length,exception));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1043,7 +1043,7 @@ MagickExport StringInfo *FileToStringInfo(const char *filename,
     }
   return(string_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1133,7 +1133,7 @@ MagickExport ssize_t FormatMagickSize(const MagickSizeType size,
       extent,units[i],suffix);
   return(count);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1171,7 +1171,7 @@ MagickExport char *GetEnvironmentValue(const char *name)
   return(ConstantString(environment));
 #endif
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1200,7 +1200,7 @@ MagickExport unsigned char *GetStringInfoDatum(const StringInfo *string_info)
   assert(string_info->signature == MagickCoreSignature);
   return(string_info->datum);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1229,7 +1229,7 @@ MagickExport size_t GetStringInfoLength(const StringInfo *string_info)
   assert(string_info->signature == MagickCoreSignature);
   return(string_info->length);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1258,7 +1258,7 @@ MagickExport const char *GetStringInfoName(const StringInfo *string_info)
   assert(string_info->signature == MagickCoreSignature);
   return(string_info->name);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1287,7 +1287,7 @@ MagickExport const char *GetStringInfoPath(const StringInfo *string_info)
   assert(string_info->signature == MagickCoreSignature);
   return(string_info->path);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1381,7 +1381,7 @@ MagickExport double InterpretSiPrefixValue(const char *magick_restrict string,
     *sentinel=q;
   return(value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1422,7 +1422,7 @@ MagickExport MagickBooleanType IsStringTrue(const char *value)
     return(MagickTrue);
   return(MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1463,7 +1463,7 @@ MagickExport MagickBooleanType IsStringFalse(const char *value)
     return(MagickTrue);
   return(MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1552,7 +1552,7 @@ MagickExport void PrintStringInfo(FILE *file,const char *id,
     (void) fputc('\n',file);
   }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1581,7 +1581,7 @@ MagickExport void ResetStringInfo(StringInfo *string_info)
   assert(string_info->signature == MagickCoreSignature);
   (void) memset(string_info->datum,0,string_info->length);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1630,7 +1630,7 @@ MagickExport char *SanitizeString(const char *source)
     *p='_';
   return(sanitize_source);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1668,7 +1668,7 @@ MagickExport void SetStringInfo(StringInfo *string_info,
   (void) memcpy(string_info->datum,source->datum,MagickMin(string_info->length,
     source->length));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1703,7 +1703,7 @@ MagickExport void SetStringInfoDatum(StringInfo *string_info,
   if (string_info->length != 0)
     (void) memcpy(string_info->datum,source,string_info->length);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1747,7 +1747,7 @@ MagickExport void SetStringInfoLength(StringInfo *string_info,
   if (string_info->datum == (unsigned char *) NULL)
     ThrowFatalException(ResourceLimitFatalError,"MemoryAllocationFailed");
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1779,7 +1779,7 @@ MagickExport void SetStringInfoName(StringInfo *string_info,const char *name)
   assert(name != (const char *) NULL);
   string_info->name=ConstantString(name);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1811,7 +1811,7 @@ MagickExport void SetStringInfoPath(StringInfo *string_info,const char *path)
   assert(path != (const char *) NULL);
   string_info->path=ConstantString(path);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1851,7 +1851,7 @@ MagickExport StringInfo *SplitStringInfo(StringInfo *string_info,
   SetStringInfoLength(string_info,string_info->length-offset);
   return(split_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1889,7 +1889,7 @@ MagickExport char *StringInfoToDigest(const StringInfo *signature)
   signature_info=DestroySignatureInfo(signature_info);
   return(digest);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1966,7 +1966,7 @@ MagickExport char *StringInfoToHexString(const StringInfo *string_info)
   *q='\0';
   return(string);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2008,7 +2008,7 @@ MagickExport char *StringInfoToString(const StringInfo *string_info)
   string[length]='\0';
   return(string);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2122,7 +2122,7 @@ MagickExport char **StringToArgv(const char *text,int *argc)
   argv[i]=(char *) NULL;
   return(argv);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2222,7 +2222,7 @@ MagickExport double *StringToArrayOfDoubles(const char *string,ssize_t *count,
   }
   return(array);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2295,7 +2295,7 @@ MagickExport char *StringToken(const char *delimiters,char **string)
     } while (d != '\0');
   }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2324,7 +2324,7 @@ MagickExport char **StringToList(const char *text)
 {
   return(StringToStrings(text,(size_t *) NULL));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2477,7 +2477,7 @@ MagickExport char **StringToStrings(const char *text,size_t *count)
   textlist[i]=(char *) NULL;
   return(textlist);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2510,7 +2510,7 @@ MagickExport StringInfo *StringToStringInfo(const char *string)
   SetStringInfoDatum(string_info,(const unsigned char *) string);
   return(string_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2573,7 +2573,7 @@ MagickExport size_t StripMagickString(char *message)
       *p=' ';
   return((size_t) (q-p+1));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

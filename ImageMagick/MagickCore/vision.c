@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 #include "MagickCore/studio.h"
 #include "MagickCore/artifact.h"
 #include "MagickCore/blob.h"
@@ -77,7 +77,7 @@
 #include "MagickCore/thread-private.h"
 #include "MagickCore/token.h"
 #include "MagickCore/vision.h"
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1662,7 +1662,7 @@ MagickExport Image *ConnectedComponentsImage(const Image *image,
     *objects=object;
   return(component_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

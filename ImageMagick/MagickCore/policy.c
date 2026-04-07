@@ -33,7 +33,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -69,12 +69,12 @@
 #  include <libxml/parser.h>
 #  include <libxml/tree.h>
 #endif
-
+
 /*
   Define declarations.
 */
 #define PolicyFilename  "policy.xml"
-
+
 /*
   Typedef declarations.
 */
@@ -119,7 +119,7 @@ typedef struct _PolicyMapInfo
     *pattern,
     *value;
 } PolicyMapInfo;
-
+
 /*
   Static declarations.
 */
@@ -135,7 +135,7 @@ static LinkedListInfo
 
 static SemaphoreInfo
   *policy_semaphore = (SemaphoreInfo *) NULL;
-
+
 /*
   Forward declarations.
 */
@@ -143,7 +143,7 @@ static MagickBooleanType
   IsPolicyCacheInstantiated(ExceptionInfo *),
   LoadPolicyCache(LinkedListInfo *,const char *,const char *,const size_t,
     ExceptionInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -255,7 +255,7 @@ static LinkedListInfo *AcquirePolicyCache(const char *filename,
   }
   return(cache);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -355,7 +355,7 @@ static PolicyInfo *GetPolicyInfo(const char *name,ExceptionInfo *exception)
   UnlockSemaphoreInfo(policy_semaphore);
   return(policy);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -427,7 +427,7 @@ MagickExport const PolicyInfo **GetPolicyInfoList(const char *pattern,
   *number_policies=(size_t) i;
   return(policies);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -523,7 +523,7 @@ MagickExport char **GetPolicyList(const char *pattern,size_t *number_policies,
   *number_policies=(size_t) i;
   return(policies);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -570,7 +570,7 @@ MagickExport char *GetPolicyValue(const char *name)
     return((char *) NULL);
   return(AcquirePolicyString(value,1));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -608,7 +608,7 @@ static MagickBooleanType IsPolicyCacheInstantiated(ExceptionInfo *exception)
     }
   return(policy_cache != (LinkedListInfo *) NULL ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -704,7 +704,7 @@ MagickExport MagickBooleanType IsRightsAuthorized(const PolicyDomain domain,
     real_pattern=DestroyString(real_pattern);
   return(authorized);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -797,7 +797,7 @@ MagickExport MagickBooleanType ListPolicyInfo(FILE *file,
   (void) fflush(file);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1030,7 +1030,7 @@ static MagickBooleanType LoadPolicyCache(LinkedListInfo *cache,
   token=(char *) RelinquishMagickMemory(token);
   return(status != 0 ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1055,7 +1055,7 @@ MagickPrivate MagickBooleanType PolicyComponentGenesis(void)
     policy_semaphore=AcquireSemaphoreInfo();
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1106,7 +1106,7 @@ MagickPrivate void PolicyComponentTerminus(void)
   UnlockSemaphoreInfo(policy_semaphore);
   RelinquishSemaphoreInfo(&policy_semaphore);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1205,7 +1205,7 @@ MagickExport MagickBooleanType SetMagickSecurityPolicy(const char *policy,
   user_policies=DestroyLinkedList(user_policies,DestroyPolicyElement);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

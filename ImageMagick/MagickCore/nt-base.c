@@ -66,7 +66,7 @@
 #include <ntsecapi.h>
 #include <wincrypt.h>
 #endif
-
+
 /*
   Define declarations.
 */
@@ -98,7 +98,7 @@ typedef struct _NTGhostInfo
   MagickBooleanType
     has_instance;
 } NTGhostInfo;
-
+
 /*
   Static declarations.
 */
@@ -113,7 +113,7 @@ static void
 
 static SemaphoreInfo
   *ghost_semaphore = (SemaphoreInfo *) NULL;
-
+
 struct
 {
   const HKEY
@@ -228,7 +228,7 @@ static unsigned char *NTGetRegistryValue(HKEY root,const char *key,DWORD flags,
   RegCloseKey(registry_key);
   return(value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -355,7 +355,7 @@ BOOL WINAPI DllMain(HINSTANCE handle,DWORD reason,LPVOID lpvReserved)
   return(TRUE);
 }
 #endif
-
+
 #if !defined(__MINGW32__)
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -430,7 +430,7 @@ MagickPrivate int gettimeofday (struct timeval *time_value,
   return(0);
 }
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -470,7 +470,7 @@ MagickExport int NTAccessWide(const char *path, int mode)
   path_wide=(wchar_t *) RelinquishMagickMemory(path_wide);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -520,7 +520,7 @@ MagickPrivate char **NTArgvToUTF8(const int argc,wchar_t **argv)
   }
   return(utf8);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -579,7 +579,7 @@ MagickPrivate int NTCloseLibrary(void *handle)
 {
   return(FreeLibrary((HINSTANCE) handle) ? 0 : 1);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -648,7 +648,7 @@ MagickExport wchar_t* NTCreateWidePath(const char *utf8)
     wide=(wchar_t *) RelinquishMagickMemory(wide);
   return(wide);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -752,7 +752,7 @@ MagickPrivate double NTErf(double x)
   y=1.0-(((((a5*t+a4)*t)+a3)*t+a2)*t+a1)*t*exp(-x*x);
   return(sign*y);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -815,7 +815,7 @@ MagickPrivate void NTErrorHandler(const ExceptionType severity,
   MagickCoreTerminus();
   exit(0);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -874,7 +874,7 @@ MagickPrivate MagickBooleanType NTGatherRandomData(const size_t length,
 #endif
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -925,7 +925,7 @@ extern MagickPrivate char *NTGetEnvironmentValue(const char *name)
   wide=(LPWSTR) RelinquishMagickMemory(wide);
   return(environment);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -961,7 +961,7 @@ MagickPrivate MagickBooleanType NTGetExecutionPath(char *path,
     NULL);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1007,7 +1007,7 @@ static char *NTGetLastErrorMessage(DWORD last_error)
     }
   return(reason);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1043,7 +1043,7 @@ MagickPrivate const char *NTGetLibraryError(void)
   error=DestroyString(error);
   return(last_error);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1079,7 +1079,7 @@ void *NTGetLibrarySymbol(void *handle,const char *name)
     return((void *) NULL);
   return((void *) proc_address);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1124,7 +1124,7 @@ MagickPrivate MagickBooleanType NTGetModulePath(const char *module,char *path)
     GetPathComponent(module_path,HeadPath,path);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1439,7 +1439,7 @@ MagickPrivate const GhostInfo *NTGhostscriptDLLVectors(void)
     return(&ghost_info);
   return((GhostInfo *) NULL);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1509,7 +1509,7 @@ MagickPrivate void NTGhostscriptEXE(char *path,int length)
     }
   (void) CopyMagickString(path,program,length);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1577,7 +1577,7 @@ MagickPrivate MagickBooleanType NTGhostscriptFonts(char *path,int length)
   *path='\0';
   return(MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1611,7 +1611,7 @@ MagickPrivate void NTGhostscriptUnLoadDLL(void)
   UnlockSemaphoreInfo(ghost_semaphore);
   RelinquishSemaphoreInfo(&ghost_semaphore);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1681,7 +1681,7 @@ MagickExport MagickBooleanType NTLongPathsEnabled()
     }
   return(long_paths_enabled == 1 ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1762,7 +1762,7 @@ MagickPrivate void *NTMapMemory(char *address,size_t length,int protection,
     return((void *) ((char *) MAP_FAILED));
   return((void *) ((char *) map));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1815,7 +1815,7 @@ MagickPrivate DIR *NTOpenDirectory(const char *path)
     }
   return(entry);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1925,7 +1925,7 @@ MagickPrivate void *NTOpenLibrary(const char *filename)
   SetErrorMode(mode);
   return(handle);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1998,7 +1998,7 @@ MagickExport FILE *NTOpenFileWide(const char* path, const char* mode)
   path_wide=(wchar_t *) RelinquishMagickMemory(path_wide);
   return(file);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2052,7 +2052,7 @@ MagickExport FILE *NTOpenPipeWide(const char *command,const char *type)
   command_wide=(wchar_t *) RelinquishMagickMemory(command_wide);
   return(file);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2096,7 +2096,7 @@ MagickExport int NTOpenWide(const char* path,int flags,mode_t mode)
   path_wide=(wchar_t *) RelinquishMagickMemory(path_wide);
   return(status == 0 ? file_handle : -1);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2145,7 +2145,7 @@ MagickPrivate struct dirent *NTReadDirectory(DIR *entry)
   entry->file_info.d_namlen=(int) strlen(entry->file_info.d_name);
   return(&entry->file_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2233,7 +2233,7 @@ MagickExport char *NTRealPathWide(const char *path)
   wide_real_path=(wchar_t *) RelinquishMagickMemory(wide_real_path);
   return(real_path);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2282,7 +2282,7 @@ MagickPrivate unsigned char *NTRegistryKeyLookup(const char *subkey)
     value=NTGetRegistryValue(HKEY_CURRENT_USER,package_key,0,subkey);
   return(value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2320,7 +2320,7 @@ MagickExport int NTRemoveWide(const char *path)
   path_wide=(wchar_t *) RelinquishMagickMemory(path_wide);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2368,7 +2368,7 @@ MagickExport int NTRenameWide(const char* source, const char* destination)
   source_wide=(wchar_t *) RelinquishMagickMemory(source_wide);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2415,7 +2415,7 @@ MagickPrivate MagickBooleanType NTReportEvent(const char *event,
   DeregisterEventSource(handle);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2503,7 +2503,7 @@ MagickPrivate unsigned char *NTResourceToBlob(const char *id)
   FreeResource(global);
   return(blob);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2574,7 +2574,7 @@ MagickExport int NTSetFileTimestamp(const char *path, struct stat *attributes)
   path_wide=(WCHAR *) RelinquishMagickMemory(path_wide);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2614,7 +2614,7 @@ MagickExport int NTStatWide(const char *path,struct stat *attributes)
   path_wide=(WCHAR *) RelinquishMagickMemory(path_wide);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2798,7 +2798,7 @@ MagickPrivate int NTSystemCommand(const char *command,char *output)
   CleanupOutputHandles;
   return((int) child_status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2855,7 +2855,7 @@ MagickPrivate ssize_t NTSystemConfiguration(int name)
   }
   return(-1);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2904,7 +2904,7 @@ MagickPrivate int NTTruncateFile(int file,off_t length)
     return(-1);
   return(0);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2936,7 +2936,7 @@ MagickPrivate int NTUnmapMemory(void *map,size_t length)
     return(-1);
   return(0);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2983,7 +2983,7 @@ MagickPrivate void NTWarningHandler(const ExceptionType severity,
   (void) MessageBox(NULL,buffer,"ImageMagick Warning",MB_OK | MB_TASKMODAL |
     MB_SETFOREGROUND | MB_ICONINFORMATION);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3052,7 +3052,7 @@ MagickPrivate void NTWindowsGenesis(void)
   }
 #endif
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

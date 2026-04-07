@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -54,7 +54,7 @@
 #include "MagickCore/string-private.h"
 #include "MagickCore/timer-private.h"
 #include "MagickCore/utility.h"
-
+
 /*
   Typedef declarations.
 */
@@ -69,7 +69,7 @@ typedef struct _RegistryInfo
   size_t
     signature;
 } RegistryInfo;
-
+
 /*
   Static declarations.
 */
@@ -78,7 +78,7 @@ static SplayTreeInfo
 
 static SemaphoreInfo
   *registry_semaphore = (SemaphoreInfo *) NULL;
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -127,7 +127,7 @@ MagickExport MagickBooleanType DefineImageRegistry(const RegistryType type,
   *p='\0';
   return(SetImageRegistry(type,key,value,exception));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -159,7 +159,7 @@ MagickExport MagickBooleanType DeleteImageRegistry(const char *key)
     return(MagickFalse);
   return(DeleteNodeFromSplayTree(registry,key));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -250,7 +250,7 @@ MagickExport void *GetImageRegistry(const RegistryType type,const char *key,
   }
   return(value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -277,7 +277,7 @@ MagickExport char *GetNextImageRegistry(void)
     return((char *) NULL);
   return((char *) GetNextKeyInSplayTree(registry));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -302,7 +302,7 @@ MagickPrivate MagickBooleanType RegistryComponentGenesis(void)
     registry_semaphore=AcquireSemaphoreInfo();
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -333,7 +333,7 @@ MagickPrivate void RegistryComponentTerminus(void)
   UnlockSemaphoreInfo(registry_semaphore);
   RelinquishSemaphoreInfo(&registry_semaphore);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -366,7 +366,7 @@ MagickExport void *RemoveImageRegistry(const char *key)
     return((void *) NULL);
   return(RemoveNodeFromSplayTree(registry,key));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -395,7 +395,7 @@ MagickExport void ResetImageRegistryIterator(void)
     return;
   ResetSplayTreeIterator(registry);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

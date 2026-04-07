@@ -33,7 +33,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -65,7 +65,7 @@
 #include "MagickCore/string_.h"
 #include "MagickCore/thread-private.h"
 #include "MagickCore/transform.h"
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -129,7 +129,7 @@ static void ClearBounds(Image *image,RectangleInfo *bounds,
       break;
   }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -198,7 +198,7 @@ static MagickBooleanType IsBoundsCleared(const Image *image1,
   }
   return(y < (ssize_t) bounds->height ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -369,7 +369,7 @@ MagickExport Image *CoalesceImages(const Image *image,ExceptionInfo *exception)
   dispose_image=DestroyImage(dispose_image);
   return(GetFirstImageInList(coalesce_image));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -512,7 +512,7 @@ MagickExport Image *DisposeImages(const Image *images,ExceptionInfo *exception)
   dispose_image=DestroyImage(dispose_image);
   return(GetFirstImageInList(dispose_images));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -579,7 +579,7 @@ static MagickBooleanType ComparePixels(const LayerMethod method,
   return(MagickFalse);
 }
 
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -730,7 +730,7 @@ static RectangleInfo CompareImagesBounds(const Image *alpha_image,
   bounds.height=(size_t) (y-bounds.y+1);
   return(bounds);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -890,7 +890,7 @@ MagickExport Image *CompareImagesLayers(const Image *image,
     }
   return(GetFirstImageInList(layers));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1397,7 +1397,7 @@ static Image *OptimizeLayerFrames(const Image *image,const LayerMethod method,
     }
   return(GetFirstImageInList(optimized_image));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1431,7 +1431,7 @@ MagickExport Image *OptimizeImageLayers(const Image *image,
 {
   return(OptimizeLayerFrames(image,OptimizeImageLayer,exception));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1464,7 +1464,7 @@ MagickExport Image *OptimizePlusImageLayers(const Image *image,
 {
   return OptimizeLayerFrames(image,OptimizePlusLayer,exception);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1592,7 +1592,7 @@ MagickExport void OptimizeImageTransparency(const Image *image,
   dispose_image=DestroyImage(dispose_image);
   return;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1668,7 +1668,7 @@ MagickExport void RemoveDuplicateLayers(Image **images,ExceptionInfo *exception)
   }
   *images=GetFirstImageInList(*images);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1742,7 +1742,7 @@ MagickExport void RemoveZeroDelayLayers(Image **images,
   }
   *images=GetFirstImageInList(*images);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1890,7 +1890,7 @@ MagickExport void CompositeLayers(Image *destination,
       destination=GetNextImageInList(destination);
     }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

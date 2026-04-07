@@ -34,7 +34,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -71,7 +71,7 @@
 #include "MagickCore/string_.h"
 #include "MagickCore/transform.h"
 #include "MagickCore/utility.h"
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -107,7 +107,7 @@ MagickExport PixelChannelMap *AcquirePixelChannelMap(void)
     channel_map[i].channel=(PixelChannel) i;
   return(channel_map);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -142,7 +142,7 @@ MagickExport PixelChannelMap *ClonePixelChannelMap(PixelChannelMap *channel_map)
   (void) memcpy(clone_map,channel_map,MaxPixelChannels*sizeof(*channel_map));
   return(clone_map);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -177,7 +177,7 @@ MagickExport PixelInfo *ClonePixelInfo(const PixelInfo *pixel)
   *pixel_info=(*pixel);
   return(pixel_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -233,7 +233,7 @@ MagickExport void ConformPixelInfo(Image *image,const PixelInfo *source,
       ((image->alpha_trait & BlendPixelTrait) == 0))
     (void) SetImageAlpha(image,OpaqueAlpha,exception);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -322,7 +322,7 @@ MagickExport MagickRealType DecodePixelGamma(const MagickRealType pixel)
   return((MagickRealType) ((double) QuantumRange*DecodeGamma((double)
     (QuantumScale*pixel+0.055)/1.055)));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -353,7 +353,7 @@ MagickExport PixelChannelMap *DestroyPixelChannelMap(
   channel_map=(PixelChannelMap *) RelinquishMagickMemory(channel_map);
   return((PixelChannelMap *) RelinquishMagickMemory(channel_map));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -449,7 +449,7 @@ MagickExport MagickRealType EncodePixelGamma(const MagickRealType pixel)
   return((MagickRealType) QuantumRange*(1.055*EncodeGamma((double) QuantumScale*
     pixel)-0.055));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2140,7 +2140,7 @@ MagickExport MagickBooleanType ExportImagePixels(const Image *image,
   quantum_map=(QuantumType *) RelinquishMagickMemory(quantum_map);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2181,7 +2181,7 @@ MagickExport void GetPixelInfo(const Image *image,PixelInfo *pixel)
   pixel->depth=image->depth;
   pixel->fuzz=image->fuzz;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2315,7 +2315,7 @@ MagickExport MagickRealType GetPixelInfoIntensity(
   }
   return(intensity);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2449,7 +2449,7 @@ MagickExport MagickRealType GetPixelIntensity(
   }
   return(intensity);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4334,7 +4334,7 @@ MagickExport MagickBooleanType ImportImagePixels(Image *image,const ssize_t x,
   quantum_map=(QuantumType *) RelinquishMagickMemory(quantum_map);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4823,7 +4823,7 @@ MagickExport MagickBooleanType InterpolatePixelChannel(
   }
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5370,7 +5370,7 @@ MagickExport MagickBooleanType InterpolatePixelChannels(
   }
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5885,7 +5885,7 @@ MagickExport MagickBooleanType InterpolatePixelInfo(const Image *image,
   }
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5952,7 +5952,7 @@ MagickExport MagickBooleanType IsFuzzyEquivalencePixel(const Image *image,
   }
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -6074,7 +6074,7 @@ MagickExport MagickBooleanType IsFuzzyEquivalencePixelInfo(const PixelInfo *p,
     return(MagickFalse);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -6170,7 +6170,7 @@ MagickPrivate MagickBooleanType ResetPixelChannelMap(Image *image,
   (void) SetPixelChannelMask(image,image->channel_mask);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -6361,7 +6361,7 @@ MagickExport ChannelType SetPixelChannelMask(Image *image,
     LogPixelChannels(image);
   return(mask);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -6404,7 +6404,7 @@ MagickExport MagickBooleanType SetPixelMetaChannels(Image *image,
     return(MagickFalse);
   return(SyncImagePixelCache(image,exception));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

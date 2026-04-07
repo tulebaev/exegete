@@ -1,5 +1,5 @@
 SRCS = \
-accelerate.c animate.c annotate.c artifact.c attribute.c\
+animate.c annotate.c artifact.c attribute.c\
 blob.c cache-view.c cache.c channel.c cipher.c client.c\
 coder.c color.c colormap.c colorspace.c compare.c composite.c\
 compress.c configure.c constitute.c decorate.c delegate.c\
@@ -16,7 +16,8 @@ resample.c resize.c resource.c segment.c semaphore.c\
 shear.c signature.c splay-tree.c static.c statistic.c\
 stream.c string.c thread.c threshold.c timer.c token.c\
 transform.c type.c utility.c version.c vision.c\
-visual-effects.c widget.c xml-tree.c
+visual-effects.c xml-tree.c
+# accelerate.c widget.c
 
 OBJS = $(SRCS:.c=.obj)
 

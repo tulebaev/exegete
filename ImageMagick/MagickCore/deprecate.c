@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -99,9 +99,9 @@
 #include "MagickCore/threshold.h"
 #include "MagickCore/transform.h"
 #include "MagickCore/utility.h"
-
+
 #if !defined(MAGICKCORE_EXCLUDE_DEPRECATED)
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -133,7 +133,7 @@ MagickExport MagickBooleanType GetMagickSeekableStream(
   return(((magick_info->flags & CoderSeekableStreamFlag) == 0) ? MagickFalse :
     MagickTrue);
 }
-
+
 #if defined(MAGICKCORE_WINGDI32_DELEGATE)
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -291,7 +291,7 @@ MagickExport void *CropImageToHBITMAP(Image *image,
   return((void *) bitmapH);
 }
 #endif
-
+
 #if defined(MAGICKCORE_WINGDI32_DELEGATE)
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -402,7 +402,7 @@ MagickExport void *ImageToHBITMAP(Image *image,ExceptionInfo *exception)
   return((void *) bitmapH);
 }
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

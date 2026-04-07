@@ -45,8 +45,8 @@
 /*
   Include declarations.
 */
-#include "MagickCore.h"
 #include "MagickCore/studio.h"
+#include "MagickCore/MagickCore.h"
 #include "MagickCore/exception-private.h"
 #include "MagickCore/memory-private.h"
 #include "MagickCore/monitor-private.h"

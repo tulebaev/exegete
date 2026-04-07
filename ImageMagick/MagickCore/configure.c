@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -59,12 +59,12 @@
 #include "MagickCore/version.h"
 #include "MagickCore/xml-tree.h"
 #include "MagickCore/xml-tree-private.h"
-
+
 /*
   Define declarations.
 */
 #define ConfigureFilename  "configure.xml"
-
+
 /*
   Typedef declarations.
 */
@@ -74,7 +74,7 @@ typedef struct _ConfigureMapInfo
     *name,
     *value;
 } ConfigureMapInfo;
-
+
 /*
   Static declarations.
 */
@@ -84,7 +84,7 @@ static LinkedListInfo
 
 static SemaphoreInfo
   *configure_semaphore = (SemaphoreInfo *) NULL;
-
+
 /*
   Forward declarations.
 */
@@ -96,7 +96,7 @@ static MagickBooleanType
   LoadConfigureCache(LinkedListInfo *,const char *,const char *,const size_t,
     ExceptionInfo *);
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -210,7 +210,7 @@ static LinkedListInfo *AcquireConfigureCache(const char *filename,
     MagickFalse);
   return(cache);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -235,7 +235,7 @@ MagickPrivate MagickBooleanType ConfigureComponentGenesis(void)
     configure_semaphore=AcquireSemaphoreInfo();
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -285,7 +285,7 @@ MagickPrivate void ConfigureComponentTerminus(void)
   UnlockSemaphoreInfo(configure_semaphore);
   RelinquishSemaphoreInfo(&configure_semaphore);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -320,7 +320,7 @@ MagickExport LinkedListInfo *DestroyConfigureOptions(LinkedListInfo *options)
   assert(options != (LinkedListInfo *) NULL);
   return(DestroyLinkedList(options,DestroyOptions));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -389,7 +389,7 @@ MagickExport const ConfigureInfo *GetConfigureInfo(const char *name,
   UnlockSemaphoreInfo(configure_semaphore);
   return(option);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -488,7 +488,7 @@ MagickExport const ConfigureInfo **GetConfigureInfoList(const char *pattern,
   *number_options=(size_t) i;
   return(options);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -584,7 +584,7 @@ MagickExport char **GetConfigureList(const char *pattern,
   *number_options=(size_t) i;
   return(options);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -631,7 +631,7 @@ MagickExport char *GetConfigureOption(const char *option)
     return((char *) NULL);
   return(ConstantString(value));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -724,7 +724,7 @@ MagickExport LinkedListInfo *GetConfigureOptions(const char *filename,
   ResetLinkedListIterator(options);
   return(options);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -969,7 +969,7 @@ MagickExport LinkedListInfo *GetConfigurePaths(const char *filename,
       "no configuration paths found","`%s'",filename);
   return(paths);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1000,7 +1000,7 @@ MagickExport const char *GetConfigureValue(const ConfigureInfo *configure_info)
   assert(configure_info->signature == MagickCoreSignature);
   return(configure_info->value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1037,7 +1037,7 @@ static MagickBooleanType IsConfigureCacheInstantiated(ExceptionInfo *exception)
     }
   return(configure_cache != (LinkedListInfo *) NULL ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1122,7 +1122,7 @@ MagickExport MagickBooleanType ListConfigureInfo(FILE *file,
     configure_info);
   return(MagickTrue);
 }
-
+
 #if !MAGICKCORE_ZERO_CONFIGURATION_SUPPORT
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -47,13 +47,13 @@
 #include "MagickCore/monitor.h"
 #include "MagickCore/monitor-private.h"
 #include "MagickCore/statistic-private.h"
-
+
 /*
   Static declarations.
 */
 static SemaphoreInfo
   *monitor_semaphore = (SemaphoreInfo *) NULL;
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -78,7 +78,7 @@ MagickPrivate MagickBooleanType MonitorComponentGenesis(void)
     monitor_semaphore=AcquireSemaphoreInfo();
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -105,7 +105,7 @@ MagickPrivate void MonitorComponentTerminus(void)
   UnlockSemaphoreInfo(monitor_semaphore);
   RelinquishSemaphoreInfo(&monitor_semaphore);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -162,7 +162,7 @@ MagickExport MagickBooleanType SetImageProgress(const Image *image,
   UnlockSemaphoreInfo(monitor_semaphore);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -211,7 +211,7 @@ MagickExport MagickProgressMonitor SetImageProgressMonitor(Image *image,
   image->client_data=client_data;
   return(previous_monitor);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

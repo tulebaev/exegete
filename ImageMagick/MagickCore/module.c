@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -73,7 +73,7 @@ typedef lt_dlhandle ModuleHandle;
 #else
 typedef void *ModuleHandle;
 #endif
-
+
 /*
   Define declarations.
 */
@@ -89,7 +89,7 @@ typedef void *ModuleHandle;
 #    define ModuleGlobExpression "IM_MOD_RL_*.dll"
 #  endif
 #endif
-
+
 /*
   Global declarations.
 */
@@ -98,7 +98,7 @@ static SemaphoreInfo
 
 static SplayTreeInfo
   *module_list = (SplayTreeInfo *) NULL;
-
+
 /*
   Forward declarations.
 */
@@ -114,7 +114,7 @@ static void
   TagToCoderModuleName(const char *,char *),
   TagToFilterModuleName(const char *,char *),
   TagToModuleName(const char *,const char *,char *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -155,7 +155,7 @@ MagickExport ModuleInfo *AcquireModuleInfo(const char *path,const char *tag)
   module_info->signature=MagickCoreSignature;
   return(module_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -187,7 +187,7 @@ MagickExport void DestroyModuleList(void)
 #endif
   UnlockSemaphoreInfo(module_semaphore);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -239,7 +239,7 @@ MagickExport ModuleInfo *GetModuleInfo(const char *tag,ExceptionInfo *exception)
   UnlockSemaphoreInfo(module_semaphore);
   return(module_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -335,7 +335,7 @@ MagickExport const ModuleInfo **GetModuleInfoList(const char *pattern,
   *number_modules=(size_t) i;
   return(modules);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -505,7 +505,7 @@ MagickExport char **GetModuleList(const char *pattern,
   *number_modules=(size_t) i;
   return(modules);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -839,7 +839,7 @@ static MagickBooleanType GetMagickModulePath(const char *filename,
 #endif
   return(MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -917,7 +917,7 @@ static MagickBooleanType IsModuleTreeInstantiated(void)
     }
   return(module_list != (SplayTreeInfo *) NULL ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1056,7 +1056,7 @@ MagickExport MagickBooleanType InvokeDynamicImageFilter(const char *tag,
       "UnableToCloseModule","'%s': %s",name,lt_dlerror());
   return(exception->severity < ErrorException ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1154,7 +1154,7 @@ MagickExport MagickBooleanType ListModuleInfo(FILE *file,
   modules=(char **) RelinquishMagickMemory(modules);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1183,7 +1183,7 @@ MagickPrivate MagickBooleanType ModuleComponentGenesis(void)
   status=IsModuleTreeInstantiated();
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1209,7 +1209,7 @@ MagickPrivate void ModuleComponentTerminus(void)
   DestroyModuleList();
   RelinquishSemaphoreInfo(&module_semaphore);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1351,7 +1351,7 @@ MagickPrivate MagickBooleanType OpenModule(const char *module,
     }
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1407,7 +1407,7 @@ MagickPrivate MagickBooleanType OpenModules(ExceptionInfo *exception)
   modules=(char **) RelinquishMagickMemory(modules);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1454,7 +1454,7 @@ static const ModuleInfo *RegisterModule(const ModuleInfo *module_info,
       "MemoryAllocationFailed","`%s'",module_info->tag);
   return(module_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1504,7 +1504,7 @@ static void TagToCoderModuleName(const char *tag,char *name)
 #endif
 #endif
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1548,7 +1548,7 @@ static void TagToFilterModuleName(const char *tag,char *name)
   (void) FormatLocaleString(name,MagickPathExtent,"%s.la",tag);
 #endif
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1602,7 +1602,7 @@ static void TagToModuleName(const char *tag,const char *format,char *module)
   }
 #endif
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

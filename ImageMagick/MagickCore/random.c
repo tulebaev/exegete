@@ -37,7 +37,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -76,7 +76,7 @@
 #define RandomFiletype  "random"
 #define RandomProtocolMajorVersion  1
 #define RandomProtocolMinorVersion  0
-
+
 /*
   Typedef declarations.
 */
@@ -114,7 +114,7 @@ struct _RandomInfo
   size_t
     signature;
 };
-
+
 /*
   External declarations.
 */
@@ -127,7 +127,7 @@ struct _RandomInfo
 extern char
   **environ;
 #endif
-
+
 /*
   Global declarations.
 */
@@ -139,13 +139,13 @@ static unsigned long
 
 static MagickBooleanType
   gather_true_random = MagickFalse;
-
+
 /*
   Forward declarations.
 */
 static StringInfo
   *GenerateEntropicChaos(RandomInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -251,7 +251,7 @@ MagickExport RandomInfo *AcquireRandomInfo(void)
     }
   return(random_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -296,7 +296,7 @@ MagickExport RandomInfo *DestroyRandomInfo(RandomInfo *random_info)
   random_info=(RandomInfo *) RelinquishMagickMemory(random_info);
   return(random_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -575,7 +575,7 @@ static StringInfo *GenerateEntropicChaos(RandomInfo *random_info)
   UnlockSemaphoreInfo(random_info->semaphore);
   return(entropy);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -617,7 +617,7 @@ MagickExport double GetPseudoRandomValue(
   random_info->seed[3]=RandomROTL(random_info->seed[3],45);
   return((double) ((value >> 11)*random_info->normalize));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -645,7 +645,7 @@ MagickPrivate double GetRandomInfoNormalize(const RandomInfo *random_info)
   assert(random_info != (const RandomInfo *) NULL);
   return(random_info->normalize);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -673,7 +673,7 @@ MagickPrivate unsigned long *GetRandomInfoSeed(RandomInfo *random_info)
   assert(random_info != (RandomInfo *) NULL);
   return((unsigned long *) random_info->seed);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -709,7 +709,7 @@ MagickExport StringInfo *GetRandomKey(RandomInfo *random_info,
   SetRandomKey(random_info,length,GetStringInfoDatum(key));
   return(key);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -735,7 +735,7 @@ MagickExport unsigned long GetRandomSecretKey(const RandomInfo *random_info)
 {
   return(random_info->secret_key);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -769,7 +769,7 @@ MagickExport double GetRandomValue(RandomInfo *random_info)
   } while (key == range);
   return((double) key/range);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -794,7 +794,7 @@ MagickPrivate MagickBooleanType RandomComponentGenesis(void)
     random_semaphore=AcquireSemaphoreInfo();
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -819,7 +819,7 @@ MagickPrivate void RandomComponentTerminus(void)
     ActivateSemaphoreInfo(&random_semaphore);
   RelinquishSemaphoreInfo(&random_semaphore);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -920,7 +920,7 @@ MagickExport void SetRandomKey(RandomInfo *random_info,const size_t length,
     }
   UnlockSemaphoreInfo(random_info->semaphore);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -947,7 +947,7 @@ MagickExport void SetRandomSecretKey(const unsigned long key)
 {
   secret_key=key;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

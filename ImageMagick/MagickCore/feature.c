@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -96,7 +96,7 @@
 #include "MagickCore/utility.h"
 #include "MagickCore/utility-private.h"
 #include "MagickCore/version.h"
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -573,7 +573,7 @@ MagickExport Image *CannyEdgeImage(const Image *image,const double radius,
   canny_cache=DestroyMatrixInfo(canny_cache);
   return(edge_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1714,7 +1714,7 @@ MagickExport ChannelFeatures *GetImageFeatures(const Image *image,
   cooccurrence=(ChannelStatistics **) RelinquishMagickMemory(cooccurrence);
   return(channel_features);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2115,7 +2115,7 @@ MagickExport Image *HoughLineImage(const Image *image,const size_t width,
   (void) RelinquishUniqueFileResource(path);
   return(GetFirstImageInList(lines_image));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

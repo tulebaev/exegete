@@ -38,7 +38,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -86,7 +86,7 @@
 #define creal(z)  (z[0])
 #endif
 #endif
-
+
 /*
   Typedef declarations.
 */
@@ -103,7 +103,7 @@ typedef struct _FourierInfo
     width,
     height;
 } FourierInfo;
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -378,7 +378,7 @@ MagickExport Image *ComplexImages(const Image *images,const ComplexOperator op,
     complex_images=DestroyImageList(complex_images);
   return(complex_images);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1050,7 +1050,7 @@ MagickExport Image *ForwardFourierTransformImage(const Image *image,
 #endif
   return(fourier_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

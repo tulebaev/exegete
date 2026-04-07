@@ -32,7 +32,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -49,12 +49,12 @@
 #include "MagickCore/string_.h"
 #include "MagickCore/string-private.h"
 #include "MagickCore/token.h"
-
+
 /*
   Define declarations.
 */
 #define MagickPagesize(name,geometry) { name, sizeof(name)-1, geometry }
-
+
 /*
   Structure declarations.
 */
@@ -156,7 +156,7 @@ static const PageInfo
     MagickPagesize("tabloid", "792x1224"),
     MagickPagesize("", "")
   };
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -444,7 +444,7 @@ MagickExport MagickStatusType GetGeometry(const char *geometry,ssize_t *x,
 #endif
   return(flags);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -512,7 +512,7 @@ MagickExport char *GetPageGeometry(const char *page_geometry)
   }
   return(AcquireString(page));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -601,7 +601,7 @@ MagickExport void GravityAdjustGeometry(const size_t width,
   }
   return;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -638,7 +638,7 @@ MagickExport MagickBooleanType IsGeometry(const char *geometry)
   flags=ParseGeometry(geometry,&geometry_info);
   return(flags != NoValue ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -693,7 +693,7 @@ MagickExport MagickBooleanType IsSceneGeometry(const char *geometry,
     return(MagickFalse);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -739,7 +739,7 @@ MagickExport MagickBooleanType ListPagesizes(FILE *file,
       MaxMagickSpaces-(int) Pagesizes[i].extent,spacer,Pagesizes[i].geometry);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -779,7 +779,7 @@ MagickExport MagickStatusType ParseAbsoluteGeometry(const char *geometry,
     &region_info->width,&region_info->height);
   return(flags);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -879,7 +879,7 @@ MagickExport MagickStatusType ParseAffineGeometry(const char *geometry,
       "InvalidArgument","'%s' : 'Indeterminate Matrix'",geometry);
   return(flags);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1272,7 +1272,7 @@ MagickExport MagickStatusType ParseGeometry(const char *geometry,
 #endif
   return(flags);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1426,7 +1426,7 @@ MagickExport MagickStatusType ParseGravityGeometry(const Image *image,
   region_info->height=height;
   return(flags);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1646,7 +1646,7 @@ MagickExport MagickStatusType ParseMetaGeometry(const char *geometry,ssize_t *x,
     }
   return(flags);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1715,7 +1715,7 @@ MagickExport MagickStatusType ParsePageGeometry(const Image *image,
     }
   return(flags);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1763,7 +1763,7 @@ MagickExport MagickStatusType ParseRegionGeometry(const Image *image,
       "InvalidGeometry","`%s'",geometry);
   return(flags);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1799,7 +1799,7 @@ MagickExport void SetGeometry(const Image *image,RectangleInfo *geometry)
   geometry->width=image->columns;
   geometry->height=image->rows;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

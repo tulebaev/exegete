@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -71,7 +71,7 @@
 #include "MagickCore/thread-private.h"
 #include "MagickCore/transform.h"
 #include "MagickCore/transform-private.h"
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -160,7 +160,7 @@ MagickExport Image *AutoOrientImage(const Image *image,
     orient_image->orientation=TopLeftOrientation;
   return(orient_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -391,7 +391,7 @@ MagickExport Image *ChopImage(const Image *image,const RectangleInfo *chop_info,
     chop_image=DestroyImage(chop_image);
   return(chop_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -508,7 +508,7 @@ MagickExport Image *ConsolidateCMYKImages(const Image *images,
   }
   return(cmyk_images);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -746,7 +746,7 @@ MagickExport Image *CropImage(const Image *image,const RectangleInfo *geometry,
     crop_image=DestroyImage(crop_image);
   return(crop_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -957,7 +957,7 @@ MagickExport Image *CropImageToTiles(const Image *image,
     }
   return(CloneImage(image,0,0,MagickTrue,exception));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1095,7 +1095,7 @@ MagickExport Image *ExcerptImage(const Image *image,
     excerpt_image=DestroyImage(excerpt_image);
   return(excerpt_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1162,7 +1162,7 @@ MagickExport Image *ExtentImage(const Image *image,
     Update8BIMClipPath(extent_image,image->columns,image->rows,geometry);
   return(extent_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1297,7 +1297,7 @@ MagickExport Image *FlipImage(const Image *image,ExceptionInfo *exception)
     flip_image=DestroyImage(flip_image);
   return(flip_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1433,7 +1433,7 @@ MagickExport Image *FlopImage(const Image *image,ExceptionInfo *exception)
     flop_image=DestroyImage(flop_image);
   return(flop_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1600,7 +1600,7 @@ MagickExport Image *RollImage(const Image *image,const ssize_t x_offset,
     roll_image=DestroyImage(roll_image);
   return(roll_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1665,7 +1665,7 @@ MagickExport Image *ShaveImage(const Image *image,
   shave_image->page.y-=(ssize_t) shave_info->height;
   return(shave_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1995,7 +1995,7 @@ MagickExport Image *SpliceImage(const Image *image,
     splice_image=DestroyImage(splice_image);
   return(splice_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2097,7 +2097,7 @@ MagickPrivate MagickBooleanType TransformImage(Image **image,
   *image=transform_image;
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2235,7 +2235,7 @@ MagickExport Image *TransposeImage(const Image *image,ExceptionInfo *exception)
     transpose_image=DestroyImage(transpose_image);
   return(transpose_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2381,7 +2381,7 @@ MagickExport Image *TransverseImage(const Image *image,ExceptionInfo *exception)
     transverse_image=DestroyImage(transverse_image);
   return(transverse_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

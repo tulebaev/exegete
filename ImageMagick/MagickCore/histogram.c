@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -61,13 +61,13 @@
 #include "MagickCore/splay-tree.h"
 #include "MagickCore/statistic.h"
 #include "MagickCore/string_.h"
-
+
 /*
   Define declarations.
 */
 #define MaxTreeDepth  8
 #define HNodesInAList  1536
-
+
 /*
   Typedef declarations.
 */
@@ -119,7 +119,7 @@ typedef struct _HCubeInfo
   HNodes
     *node_queue;
 } HCubeInfo;
-
+
 /*
   Forward declarations.
 */
@@ -131,7 +131,7 @@ static HNodeInfo
 
 static void
   DestroyColorCube(const Image *,HNodeInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -332,7 +332,7 @@ static HCubeInfo *ClassifyImageColors(const Image *image,
   image_view=DestroyCacheView(image_view);
   return(cube_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -393,7 +393,7 @@ static void DefineImageHistogram(const Image *image,HNodeInfo *node_info,
       }
     }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -436,7 +436,7 @@ static HCubeInfo *DestroyHCubeInfo(const Image *image,HCubeInfo *cube_info)
   } while (cube_info->node_queue != (HNodes *) NULL);
   return((HCubeInfo *) RelinquishMagickMemory(cube_info));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -481,7 +481,7 @@ static void DestroyColorCube(const Image *image,HNodeInfo *node_info)
   if (node_info->list != (PixelInfo *) NULL)
     node_info->list=(PixelInfo *) RelinquishMagickMemory(node_info->list);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -524,7 +524,7 @@ static HCubeInfo *GetHCubeInfo(void)
     return((HCubeInfo *) NULL);
   return(cube_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -584,7 +584,7 @@ MagickExport PixelInfo *GetImageHistogram(const Image *image,
     }
   return(histogram);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -637,7 +637,7 @@ static HNodeInfo *GetHNodeInfo(HCubeInfo *cube_info,const size_t level)
   node_info->level=level;
   return(node_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -803,7 +803,7 @@ MagickExport MagickBooleanType IdentifyPaletteImage(const Image *image,
     (void) LogMagickEvent(TraceEvent,GetMagickModule(),"%s",image->filename);
   return(CheckImageColors(image,256,exception));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -841,7 +841,7 @@ MagickExport MagickBooleanType IsHistogramImage(const Image *image,
     (void) LogMagickEvent(TraceEvent,GetMagickModule(),"%s",image->filename);
   return(CheckImageColors(image,MaximumUniqueColors,exception));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -875,7 +875,7 @@ MagickExport MagickBooleanType IsPaletteImage(const Image *image)
     return(MagickFalse);
   return((image->colors <= 256) ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -973,7 +973,7 @@ MagickExport MagickBooleanType MinMaxStretchImage(Image *image,
   }
   return(status != 0 ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1123,7 +1123,7 @@ MagickExport size_t GetNumberColors(const Image *image,FILE *file,
     return(0);
   return(number_colors);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

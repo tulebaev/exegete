@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -81,14 +81,14 @@
 #if defined(MAGICKCORE_ZLIB_DELEGATE)
 #  include <zlib/zlib.h>
 #endif
-
+
 /*
   Define declarations.
 */
 #define CacheTick(offset,extent)  QuantumTick((MagickOffsetType) offset,extent)
 #define IsFileDescriptorLimitExceeded() (GetMagickResource(FileResource) > \
   GetMagickResourceLimit(FileResource) ? MagickTrue : MagickFalse)
-
+
 /*
   Typedef declarations.
 */
@@ -98,7 +98,7 @@ typedef struct _MagickModulo
     quotient,
     remainder;
 } MagickModulo;
-
+
 /*
   Forward declarations.
 */
@@ -153,7 +153,7 @@ static void
 #if defined(__cplusplus) || defined(c_plusplus)
 }
 #endif
-
+
 /*
   Global declarations.
 */
@@ -162,7 +162,7 @@ static SemaphoreInfo
 
 static ssize_t
   cache_anonymous_memory = (-1);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -233,7 +233,7 @@ MagickPrivate Cache AcquirePixelCache(const size_t number_threads)
   cache_info->signature=MagickCoreSignature;
   return((Cache ) cache_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -282,7 +282,7 @@ MagickPrivate NexusInfo **AcquirePixelCacheNexus(const size_t number_threads)
   }
   return(nexus_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -331,7 +331,7 @@ MagickExport void *AcquirePixelCachePixels(const Image *image,size_t *length,
   *length=(size_t) cache_info->length;
   return(cache_info->pixels);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -356,7 +356,7 @@ MagickPrivate MagickBooleanType CacheComponentGenesis(void)
     cache_semaphore=AcquireSemaphoreInfo();
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -382,7 +382,7 @@ MagickPrivate void CacheComponentTerminus(void)
   /* no op-- nothing to destroy */
   RelinquishSemaphoreInfo(&cache_semaphore);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -477,7 +477,7 @@ static MagickBooleanType ClipPixelCacheNexus(Image *image,
   }
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -518,7 +518,7 @@ MagickPrivate Cache ClonePixelCache(const Cache cache)
   clone_info->virtual_pixel_method=cache_info->virtual_pixel_method;
   return((Cache ) clone_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -561,7 +561,7 @@ MagickPrivate void ClonePixelCacheMethods(Cache clone,const Cache cache)
   assert(cache_info->signature == MagickCoreSignature);
   source_info->methods=cache_info->methods;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -878,7 +878,7 @@ static MagickBooleanType ClonePixelCacheRepository(
     }
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -910,7 +910,7 @@ static void DestroyImagePixelCache(Image *image)
   if (image->cache != (void *) NULL)
     image->cache=DestroyPixelCache(image->cache);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -952,7 +952,7 @@ MagickExport void DestroyImagePixels(Image *image)
     }
   image->cache=DestroyPixelCache(image->cache);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1099,7 +1099,7 @@ MagickPrivate Cache DestroyPixelCache(Cache cache)
   cache=(Cache) NULL;
   return(cache);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1208,7 +1208,7 @@ MagickExport void *GetAuthenticMetacontent(const Image *image)
   assert(id < (int) cache_info->number_threads);
   return(cache_info->nexus_info[id]->metacontent);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1314,7 +1314,7 @@ MagickPrivate cl_mem GetAuthenticOpenCLBuffer(const Image *image,
   return(cache_info->opencl->buffer);
 }
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1380,7 +1380,7 @@ MagickPrivate Quantum *GetAuthenticPixelCacheNexus(Image *image,const ssize_t x,
       return((Quantum *) NULL);
   return(pixels);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1420,7 +1420,7 @@ static Quantum *GetAuthenticPixelsFromCache(const Image *image)
   assert(id < (int) cache_info->number_threads);
   return(cache_info->nexus_info[id]->pixels);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1464,7 +1464,7 @@ MagickExport Quantum *GetAuthenticPixelQueue(const Image *image)
   assert(id < (int) cache_info->number_threads);
   return(cache_info->nexus_info[id]->pixels);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1540,7 +1540,7 @@ MagickExport Quantum *GetAuthenticPixels(Image *image,const ssize_t x,
     cache_info->nexus_info[id],exception);
   return(pixels);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1597,7 +1597,7 @@ static Quantum *GetAuthenticPixelsCache(Image *image,const ssize_t x,
     cache_info->nexus_info[id],exception);
   return(pixels);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1639,7 +1639,7 @@ MagickExport MagickSizeType GetImageExtent(const Image *image)
   assert(id < (int) cache_info->number_threads);
   return(GetPixelCacheNexusExtent(cache_info,cache_info->nexus_info[id]));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1837,7 +1837,7 @@ static Cache GetImagePixelCache(Image *image,const MagickBooleanType clone,
     return((Cache) NULL);
   return(image->cache);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1873,7 +1873,7 @@ MagickExport CacheType GetImagePixelCacheType(const Image *image)
   assert(cache_info->signature == MagickCoreSignature);
   return(cache_info->type);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1952,7 +1952,7 @@ MagickExport MagickBooleanType GetOneAuthenticPixel(Image *image,
   q=GetAuthenticPixelsCache(image,x,y,1UL,1UL,exception);
   return(CopyPixel(image,q,pixel));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2007,7 +2007,7 @@ static MagickBooleanType GetOneAuthenticPixelFromCache(Image *image,
     exception);
   return(CopyPixel(image,q,pixel));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2066,7 +2066,7 @@ MagickExport MagickBooleanType GetOneVirtualPixel(const Image *image,
     1UL,1UL,cache_info->nexus_info[id],exception);
   return(CopyPixel(image,p,pixel));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2125,7 +2125,7 @@ static MagickBooleanType GetOneVirtualPixelFromCache(const Image *image,
     cache_info->nexus_info[id],exception);
   return(CopyPixel(image,p,pixel));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2187,7 +2187,7 @@ MagickExport MagickBooleanType GetOneVirtualPixelInfo(const Image *image,
   GetPixelInfoPixel(image,p,pixel);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2223,7 +2223,7 @@ MagickPrivate ColorspaceType GetPixelCacheColorspace(const Cache cache)
       cache_info->filename);
   return(cache_info->colorspace);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2259,7 +2259,7 @@ MagickExport const char *GetPixelCacheFilename(const Image *image)
   assert(cache_info->signature == MagickCoreSignature);
   return(cache_info->cache_filename);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2301,7 +2301,7 @@ MagickPrivate void GetPixelCacheMethods(CacheMethods *cache_methods)
   cache_methods->sync_authentic_pixels_handler=SyncAuthenticPixelsCache;
   cache_methods->destroy_pixel_handler=DestroyImagePixelCache;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2344,7 +2344,7 @@ MagickPrivate MagickSizeType GetPixelCacheNexusExtent(const Cache cache,
     return((MagickSizeType) cache_info->columns*cache_info->rows);
   return(extent);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2390,7 +2390,7 @@ MagickExport void *GetPixelCachePixels(Image *image,MagickSizeType *length,
     return((void *) NULL);
   return((void *) cache_info->pixels);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2428,7 +2428,7 @@ MagickPrivate ClassType GetPixelCacheStorageClass(const Cache cache)
       cache_info->filename);
   return(cache_info->storage_class);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2473,7 +2473,7 @@ MagickPrivate void GetPixelCacheTileSize(const Image *image,size_t *width,
     *width=8192UL/(MagickMax(cache_info->number_channels,1)*sizeof(Quantum));
   *height=(*width);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2510,7 +2510,7 @@ MagickPrivate VirtualPixelMethod GetPixelCacheVirtualMethod(const Image *image)
   assert(cache_info->signature == MagickCoreSignature);
   return(cache_info->virtual_pixel_method);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2555,7 +2555,7 @@ static const void *GetVirtualMetacontentFromCache(const Image *image)
     cache_info->nexus_info[id]);
   return(metacontent);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2595,7 +2595,7 @@ MagickPrivate const void *GetVirtualMetacontentFromNexus(const Cache cache,
     return((void *) NULL);
   return(nexus_info->metacontent);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2648,7 +2648,7 @@ MagickExport const void *GetVirtualMetacontent(const Image *image)
     cache_info->nexus_info[id]);
   return(metacontent);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3169,7 +3169,7 @@ MagickPrivate const Quantum *GetVirtualPixelCacheNexus(const Image *image,
     return((const Quantum *) NULL);
   return(pixels);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3227,7 +3227,7 @@ static const Quantum *GetVirtualPixelCache(const Image *image,
     cache_info->nexus_info[id],exception);
   return(p);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3269,7 +3269,7 @@ MagickExport const Quantum *GetVirtualPixelQueue(const Image *image)
   assert(id < (int) cache_info->number_threads);
   return(GetVirtualPixelsNexus(cache_info,cache_info->nexus_info[id]));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3345,7 +3345,7 @@ MagickExport const Quantum *GetVirtualPixels(const Image *image,
     columns,rows,cache_info->nexus_info[id],exception);
   return(p);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3385,7 +3385,7 @@ static const Quantum *GetVirtualPixelsCache(const Image *image)
   assert(id < (int) cache_info->number_threads);
   return(GetVirtualPixelsNexus(image->cache,cache_info->nexus_info[id]));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3425,7 +3425,7 @@ MagickPrivate const Quantum *GetVirtualPixelsNexus(const Cache cache,
     return((Quantum *) NULL);
   return((const Quantum *) nexus_info->pixels);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3528,7 +3528,7 @@ static MagickBooleanType MaskPixelCacheNexus(Image *image,NexusInfo *nexus_info,
   }
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4111,7 +4111,7 @@ static MagickBooleanType OpenPixelCache(Image *image,const MapMode mode,
     }
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4232,7 +4232,7 @@ MagickExport MagickBooleanType PersistPixelCache(Image *image,
   clone_info=(CacheInfo *) DestroyPixelCache(clone_info);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4324,7 +4324,7 @@ MagickPrivate Quantum *QueueAuthenticPixelCacheNexus(Image *image,
     nexus_info,exception);
   return(pixels);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4381,7 +4381,7 @@ static Quantum *QueueAuthenticPixelsCache(Image *image,const ssize_t x,
     cache_info->nexus_info[id],exception);
   return(pixels);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4468,7 +4468,7 @@ MagickExport Quantum *QueueAuthenticPixels(Image *image,const ssize_t x,
     cache_info->nexus_info[id],exception);
   return(pixels);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4677,7 +4677,7 @@ static MagickBooleanType ReadPixelCacheMetacontent(
       nexus_info->region.x,(double) nexus_info->region.y);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4855,7 +4855,7 @@ static MagickBooleanType ReadPixelCachePixels(
       nexus_info->region.x,(double) nexus_info->region.y);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4892,7 +4892,7 @@ MagickPrivate Cache ReferencePixelCache(Cache cache)
   UnlockSemaphoreInfo(cache_info->semaphore);
   return(cache_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4927,7 +4927,7 @@ MagickPrivate void ResetPixelCacheChannels(Image *image)
   assert(cache_info->signature == MagickCoreSignature);
   cache_info->number_channels=GetPixelChannels(image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4950,7 +4950,7 @@ MagickPrivate void ResetCacheAnonymousMemory(void)
 {
   cache_anonymous_memory=0;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5005,7 +5005,7 @@ MagickExport MagickBooleanType ReshapePixelCache(Image *image,
   cache_info->rows=rows;
   return(SyncImagePixelCache(image,exception));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5094,7 +5094,7 @@ MagickPrivate void SetPixelCacheMethods(Cache cache,CacheMethods *cache_methods)
     cache_info->methods.get_one_authentic_pixel_from_handler=
       cache_methods->get_one_authentic_pixel_from_handler;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5288,7 +5288,7 @@ static Quantum *SetPixelCacheNexusPixels(
   PrefetchPixelCacheNexusPixels(nexus_info,mode);
   return(nexus_info->pixels);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5463,7 +5463,7 @@ MagickPrivate void SyncAuthenticOpenCLBuffer(const Image *image)
   CopyOpenCLBuffer(cache_info);
 }
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5537,7 +5537,7 @@ MagickPrivate MagickBooleanType SyncAuthenticPixelCacheNexus(Image *image,
     image->taint=MagickTrue;
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5587,7 +5587,7 @@ static MagickBooleanType SyncAuthenticPixelsCache(Image *image,
     exception);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5643,7 +5643,7 @@ MagickExport MagickBooleanType SyncAuthenticPixels(Image *image,
     exception);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5682,7 +5682,7 @@ MagickPrivate MagickBooleanType SyncImagePixelCache(Image *image,
   cache_info=(CacheInfo *) GetImagePixelCache(image,MagickTrue,exception);
   return(cache_info == (CacheInfo *) NULL ? MagickFalse : MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5858,7 +5858,7 @@ static MagickBooleanType WritePixelCacheMetacontent(CacheInfo *cache_info,
       nexus_info->region.x,(double) nexus_info->region.y);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

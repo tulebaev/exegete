@@ -76,7 +76,7 @@
 %  heap.
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -94,7 +94,7 @@
 #include "MagickCore/string_.h"
 #include "MagickCore/string-private.h"
 #include "MagickCore/utility-private.h"
-
+
 /*
   Define declarations.
 */
@@ -113,7 +113,7 @@
 #define SegmentSize  (2*1024*1024)
 #define SizeMask  (~0x01)
 #define SizeOfBlock(block)  (*BlockHeader(block) & SizeMask)
-
+
 /*
   Typedef declarations.
 */
@@ -193,7 +193,7 @@ typedef struct _MemoryPool
     *segments[MaxSegments],
     segment_pool[MaxSegments];
 } MemoryPool;
-
+
 /*
   Global declarations.
 */
@@ -220,14 +220,14 @@ static SemaphoreInfo
 
 static volatile DataSegmentInfo
   *free_segments = (DataSegmentInfo *) NULL;
-
+
 /*
   Forward declarations.
 */
 static MagickBooleanType
   ExpandHeap(size_t);
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -354,7 +354,7 @@ MagickExport void *AcquireAlignedMemory(const size_t count,const size_t quantum)
     return(memory_methods.acquire_aligned_memory_handler(size,CACHE_LINE_SIZE));
   return(AcquireAlignedMemory_Actual(size));
 }
-
+
 #if defined(MAGICKCORE_ANONYMOUS_MEMORY_SUPPORT)
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -503,7 +503,7 @@ static void *AcquireBlock(size_t size)
   return(block);
 }
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -572,7 +572,7 @@ MagickExport void *AcquireMagickMemory(const size_t size)
 #endif
   return(memory);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -614,7 +614,7 @@ MagickExport void *AcquireCriticalMemory(const size_t size)
     ThrowFatalException(ResourceLimitFatalError,"MemoryAllocationFailed");
   return(memory);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -653,7 +653,7 @@ MagickExport void *AcquireQuantumMemory(const size_t count,const size_t quantum)
     }
   return(AcquireMagickMemory(size));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -782,7 +782,7 @@ MagickExport MemoryInfo *AcquireVirtualMemory(const size_t count,
     memory_info=RelinquishVirtualMemory(memory_info);
   return(memory_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -841,7 +841,7 @@ MagickExport void *CopyMagickMemory(void *magick_restrict destination,
     }
   return(memmove(destination,source,size));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -882,7 +882,7 @@ MagickExport void DestroyMagickMemory(void)
   RelinquishSemaphoreInfo(&memory_semaphore);
 #endif
 }
-
+
 #if defined(MAGICKCORE_ANONYMOUS_MEMORY_SUPPORT)
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -958,7 +958,7 @@ static MagickBooleanType ExpandHeap(size_t size)
   return(MagickTrue);
 }
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1000,7 +1000,7 @@ MagickExport void GetMagickMemoryMethods(
   *resize_memory_handler=memory_methods.resize_memory_handler;
   *destroy_memory_handler=memory_methods.destroy_memory_handler;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1055,7 +1055,7 @@ MagickExport size_t GetMaxMemoryRequest(void)
     } 
   return(max_memory_request);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1100,7 +1100,7 @@ MagickExport size_t GetMaxProfileSize(void)
     max_profile_size=GetMaxProfileSizeFromPolicy();
   return(max_profile_size);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1129,7 +1129,7 @@ MagickExport void *GetVirtualMemoryBlob(const MemoryInfo *memory_info)
   assert(memory_info->signature == MagickCoreSignature);
   return(memory_info->blob);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1171,7 +1171,7 @@ MagickExport void *RelinquishAlignedMemory(void *memory)
 #endif
   return(NULL);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1239,7 +1239,7 @@ MagickExport void *RelinquishMagickMemory(void *memory)
 #endif
   return((void *) NULL);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1295,7 +1295,7 @@ MagickExport MemoryInfo *RelinquishVirtualMemory(MemoryInfo *memory_info)
   memory_info=(MemoryInfo *) RelinquishAlignedMemory(memory_info);
   return(memory_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1338,7 +1338,7 @@ MagickExport void *ResetMagickMemory(void *memory,int c,const size_t size)
   	*p++=(unsigned char) c;
   return(memory);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1361,7 +1361,7 @@ MagickPrivate void ResetVirtualAnonymousMemory(void)
 {
   virtual_anonymous_memory=0;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1439,7 +1439,7 @@ MagickExport void *ResizeMagickMemory(void *memory,const size_t size)
 #endif
   return(block);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1484,7 +1484,7 @@ MagickExport void *ResizeQuantumMemory(void *memory,const size_t count,
     }
   return(ResizeMagickMemory(memory,size));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1520,7 +1520,7 @@ MagickExport void SetMagickAlignedMemoryMethods(
   memory_methods.relinquish_aligned_memory_handler=
       relinquish_aligned_memory_handler;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1566,7 +1566,7 @@ MagickExport void SetMagickMemoryMethods(
   if (destroy_memory_handler != (DestroyMemoryHandler) NULL)
     memory_methods.destroy_memory_handler=destroy_memory_handler;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1593,7 +1593,7 @@ MagickPrivate void SetMaxMemoryRequest(const MagickSizeType limit)
 {
   max_memory_request=(size_t) MagickMin(limit,GetMaxMemoryRequestFromPolicy());
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1620,7 +1620,7 @@ MagickPrivate void SetMaxProfileSize(const MagickSizeType limit)
 {
   max_profile_size=(size_t) MagickMin(limit,GetMaxProfileSizeFromPolicy());
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

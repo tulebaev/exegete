@@ -36,7 +36,7 @@
 %  key / value pairs (.e.g X11 green compliance and SVG green compliance).
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -72,12 +72,12 @@
 #include "MagickCore/utility-private.h"
 #include "MagickCore/xml-tree.h"
 #include "MagickCore/xml-tree-private.h"
-
+
 /*
   Define declarations.
 */
 #define ColorFilename  "colors.xml"
-
+
 /*
   Typedef declarations.
 */
@@ -97,7 +97,7 @@ typedef struct _ColormapInfo
   const ssize_t
     compliance;
 } ColormapInfo;
-
+
 /*
   Static declarations.
 */
@@ -783,7 +783,7 @@ static const ColormapInfo
     { "yellow4", 139, 139, 0, 1, X11Compliance },
     { "YellowGreen", 154, 205, 50, 1, SVGCompliance | X11Compliance | XPMCompliance }
   };
-
+
 /*
   Static declarations.
 */
@@ -792,7 +792,7 @@ static LinkedListInfo
 
 static SemaphoreInfo
   *color_semaphore = (SemaphoreInfo *) NULL;
-
+
 /*
   Forward declarations.
 */
@@ -804,7 +804,7 @@ static MagickBooleanType
   LoadColorCache(LinkedListInfo *,const char *,const char *,const size_t,
     ExceptionInfo *);
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -906,7 +906,7 @@ static LinkedListInfo *AcquireColorCache(const char *filename,
   }
   return(cache);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -931,7 +931,7 @@ MagickPrivate MagickBooleanType ColorComponentGenesis(void)
     color_semaphore=AcquireSemaphoreInfo();
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -978,7 +978,7 @@ MagickPrivate void ColorComponentTerminus(void)
   UnlockSemaphoreInfo(color_semaphore);
   RelinquishSemaphoreInfo(&color_semaphore);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1070,7 +1070,7 @@ MagickExport const ColorInfo *GetColorCompliance(const char *name,
   UnlockSemaphoreInfo(color_semaphore);
   return(color);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1105,7 +1105,7 @@ MagickExport const ColorInfo *GetColorInfo(const char *name,
 {
   return(GetColorCompliance(name,AllCompliance,exception));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1259,7 +1259,7 @@ MagickExport void ConcatenateColorComponent(const PixelInfo *pixel,
           GetMagickPrecision(),scale*QuantumScale*color);
   (void) ConcatenateMagickString(tuple,component,MagickPathExtent);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1360,7 +1360,7 @@ MagickExport const ColorInfo **GetColorInfoList(const char *pattern,
   *number_colors=(size_t) i;
   return(colors);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1455,7 +1455,7 @@ MagickExport char **GetColorList(const char *pattern,
   *number_colors=(size_t) i;
   return(colors);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1615,7 +1615,7 @@ MagickExport void GetColorTuple(const PixelInfo *pixel,
   LocaleLower(tuple);
   return;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1652,7 +1652,7 @@ static MagickBooleanType IsColorCacheInstantiated(ExceptionInfo *exception)
     }
   return(color_cache != (LinkedListInfo *) NULL ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1699,7 +1699,7 @@ MagickPrivate MagickBooleanType IsEquivalentAlpha(const Image *image,
     return(MagickFalse);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1825,7 +1825,7 @@ MagickExport MagickBooleanType IsEquivalentImage(const Image *image,
     return(status);
   return(y < (ssize_t) image->rows ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1869,7 +1869,7 @@ MagickPrivate MagickBooleanType IsEquivalentIntensity(const Image *image,
     return(MagickFalse);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1955,7 +1955,7 @@ MagickExport MagickBooleanType ListColorInfo(FILE *file,
   (void) fflush(file);
   return(MagickTrue);
 }
-
+
 #if !MAGICKCORE_ZERO_CONFIGURATION_SUPPORT
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2173,7 +2173,7 @@ static MagickBooleanType LoadColorCache(LinkedListInfo *cache,const char *xml,
   return(status != 0 ? MagickTrue : MagickFalse);
 }
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2667,7 +2667,7 @@ MagickExport MagickBooleanType QueryColorCompliance(const char *name,
   color->black=0.0;
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

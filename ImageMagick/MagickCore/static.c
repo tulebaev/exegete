@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -49,13 +49,13 @@
 #include "MagickCore/static.h"
 #include "MagickCore/string_.h"
 #include "coders/coders.h"
-
+
 /*
   Define declarations.
 */
 #define AddMagickCoder(coder)  { #coder, MagickFalse, \
   Register ## coder ## Image, Unregister ## coder ## Image },
-
+
 /*
   ImageMagick module stub.
 */
@@ -67,7 +67,7 @@ ModuleExport size_t RegisterUndefinedImage(void)
 ModuleExport void UnregisterUndefinedImage(void)
 {
 }
-
+
 /*
   ImageMagick modules.
 */
@@ -90,7 +90,7 @@ static struct
 #endif
   { (const char *) NULL, MagickFalse, RegisterUndefinedImage, UnregisterUndefinedImage }
 };
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -188,7 +188,7 @@ MagickExport MagickBooleanType InvokeStaticImageFilter(const char *tag,
   return(MagickTrue);
 }
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -261,7 +261,7 @@ MagickExport MagickBooleanType RegisterStaticModule(const char *module,
       }
   return(MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -305,7 +305,7 @@ MagickExport void RegisterStaticModules(void)
       }
   }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -349,7 +349,7 @@ MagickExport MagickBooleanType UnregisterStaticModule(const char *module)
       }
   return(MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

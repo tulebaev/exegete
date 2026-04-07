@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -71,7 +71,7 @@
 #include "MagickCore/token.h"
 #include "MagickCore/utility.h"
 #include "MagickCore/xml-tree.h"
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -136,7 +136,7 @@ MagickExport MagickBooleanType CloneImageArtifacts(Image *image,
     }
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -186,7 +186,7 @@ MagickExport MagickBooleanType DefineImageArtifact(Image *image,
   *p='\0';
   return(SetImageArtifact(image,key,value));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -222,7 +222,7 @@ MagickExport MagickBooleanType DeleteImageArtifact(Image *image,
     return(MagickFalse);
   return(DeleteNodeFromSplayTree((SplayTreeInfo *) image->artifacts,artifact));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -256,7 +256,7 @@ MagickExport void DestroyImageArtifacts(Image *image)
     image->artifacts=(void *) DestroySplayTree((SplayTreeInfo *)
       image->artifacts);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -313,7 +313,7 @@ MagickExport const char *GetImageArtifact(const Image *image,
       image->image_info->options,artifact);
   return(p);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -347,7 +347,7 @@ MagickExport const char *GetNextImageArtifact(const Image *image)
   return((const char *) GetNextKeyInSplayTree(
    (SplayTreeInfo *) image->artifacts));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -391,7 +391,7 @@ MagickExport char *RemoveImageArtifact(Image *image,const char *artifact)
     artifact);
   return(value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -429,7 +429,7 @@ MagickExport void ResetImageArtifactIterator(const Image *image)
     return;
   ResetSplayTreeIterator((SplayTreeInfo *) image->artifacts);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

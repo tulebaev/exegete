@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -99,12 +99,12 @@
 #if defined(MAGICKCORE_WINDOWS_SUPPORT)
 # include "MagickCore/nt-feature.h"
 #endif
-
+
 /*
   Define declarations.
 */
 #define MagickTypeFilename  "type.xml"
-
+
 /*
   Declare type map.
 */
@@ -115,7 +115,7 @@ static const char
     "  <type stealth=\"True\" name=\"fixed\" family=\"helvetica\"/>"
     "  <type stealth=\"True\" name=\"helvetica\" family=\"helvetica\"/>"
     "</typemap>";
-
+
 /*
   Static declarations.
 */
@@ -124,7 +124,7 @@ static SemaphoreInfo
 
 static SplayTreeInfo
   *type_cache = (SplayTreeInfo *) NULL;
-
+
 /*
   Forward declarations.
 */
@@ -132,7 +132,7 @@ static MagickBooleanType
   IsTypeTreeInstantiated(ExceptionInfo *),
   LoadTypeCache(SplayTreeInfo *,const char *,const char *,const size_t,
     ExceptionInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -247,7 +247,7 @@ static SplayTreeInfo *AcquireTypeCache(const char *filename,
     (void) LoadTypeCache(cache,TypeMap,"built-in",0,exception);
   return(cache);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -283,7 +283,7 @@ MagickExport const TypeInfo *GetTypeInfo(const char *name,
     return((const TypeInfo *) GetRootValueFromSplayTree(type_cache));
   return((const TypeInfo *) GetValueFromSplayTree(type_cache,name));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -496,7 +496,7 @@ MagickExport const TypeInfo *GetTypeInfoByFamily(const char *family,
       exception);
   return(type_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -592,7 +592,7 @@ MagickExport const TypeInfo **GetTypeInfoList(const char *pattern,
   *number_fonts=(size_t) i;
   return(fonts);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -686,7 +686,7 @@ MagickExport char **GetTypeList(const char *pattern,size_t *number_fonts,
   *number_fonts=(size_t) i;
   return(fonts);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -909,7 +909,7 @@ static MagickBooleanType IsTypeTreeInstantiated(ExceptionInfo *exception)
     }
   return(type_cache != (SplayTreeInfo *) NULL ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -999,7 +999,7 @@ MagickExport MagickBooleanType ListTypeInfo(FILE *file,ExceptionInfo *exception)
   type_info=(const TypeInfo **) RelinquishMagickMemory((void *) type_info);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1332,7 +1332,7 @@ static MagickBooleanType LoadTypeCache(SplayTreeInfo *cache,const char *xml,
   token=(char *) RelinquishMagickMemory(token);
   return(status != 0 ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1357,7 +1357,7 @@ MagickPrivate MagickBooleanType TypeComponentGenesis(void)
     type_semaphore=AcquireSemaphoreInfo();
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

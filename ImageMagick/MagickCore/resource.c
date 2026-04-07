@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -66,14 +66,14 @@
 #include "MagickCore/token.h"
 #include "MagickCore/utility.h"
 #include "MagickCore/utility-private.h"
-
+
 /*
   Define declarations.
 */
 #define MagickPathTemplate "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"  /* min 6 X's */
 #define NumberOfResourceTypes  \
   (sizeof(resource_semaphore)/sizeof(*resource_semaphore))
-
+
 /*
   Typedef declarations.
 */
@@ -105,7 +105,7 @@ typedef struct _ResourceInfo
     throttle_limit,
     time_limit;
 } ResourceInfo;
-
+
 /*
   Global declarations.
 */
@@ -157,7 +157,7 @@ static SemaphoreInfo
 
 static SplayTreeInfo
   *temporary_resources = (SplayTreeInfo *) NULL;
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -388,7 +388,7 @@ MagickExport MagickBooleanType AcquireMagickResource(const ResourceType type,
     }
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -428,7 +428,7 @@ MagickExport void AsynchronousResourceComponentTerminus(void)
     path=(const char *) GetNextKeyInSplayTree(temporary_resources);
   }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -647,7 +647,7 @@ MagickExport int AcquireUniqueFileResource(char *path)
     (const void *) NULL);
   return(file);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -766,7 +766,7 @@ MagickExport MagickSizeType GetMagickResource(const ResourceType type)
   }
   return(resource);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -847,7 +847,7 @@ MagickExport MagickSizeType GetMagickResourceLimit(const ResourceType type)
   UnlockSemaphoreInfo(resource_semaphore[type]);
   return(resource);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -992,7 +992,7 @@ MagickExport MagickBooleanType ListMagickResourceInfo(FILE *file,
   UnlockSemaphoreInfo(resource_semaphore[FileResource]);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1129,7 +1129,7 @@ MagickExport void RelinquishMagickResource(const ResourceType type,
           resource_request,resource_current,resource_limit);
     }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1184,7 +1184,7 @@ MagickExport MagickBooleanType RelinquishUniqueFileResource(const char *path)
     }
   return(status == 0 ? MagickFalse : MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1353,7 +1353,7 @@ MagickPrivate MagickBooleanType ResourceComponentGenesis(void)
     }
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1389,7 +1389,7 @@ MagickPrivate void ResourceComponentTerminus(void)
   for (i=0; i < (ssize_t) NumberOfResourceTypes; i++)
     RelinquishSemaphoreInfo(&resource_semaphore[i]);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

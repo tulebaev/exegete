@@ -33,7 +33,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -57,7 +57,7 @@
 #include "MagickCore/utility-private.h"
 #include "MagickCore/xml-tree.h"
 #include "MagickCore/xml-tree-private.h"
-
+
 /*
   Define declarations.
 */
@@ -68,7 +68,7 @@
 #    define strcasecmp  _stricmp
 #  endif
 #endif
-
+
 /*
   Typedef declaration.
 */
@@ -111,7 +111,7 @@ struct _MimeInfo
   size_t
     signature;
 };
-
+
 /*
   Static declarations.
 */
@@ -120,7 +120,7 @@ static LinkedListInfo
 
 static SemaphoreInfo
   *mime_semaphore = (SemaphoreInfo *) NULL;
-
+
 /*
   Forward declarations.
 */
@@ -132,7 +132,7 @@ static MagickBooleanType
  LoadMimeCache(LinkedListInfo *,const char *,const char *,const size_t,
     ExceptionInfo *);
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -190,7 +190,7 @@ MagickExport LinkedListInfo *AcquireMimeCache(const char *filename,
 #endif
   return(cache);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -392,7 +392,7 @@ MagickExport const MimeInfo *GetMimeInfo(const char *filename,
     return((const MimeInfo *) NULL);
   return((const MimeInfo *) element_info->value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -491,7 +491,7 @@ MagickExport const MimeInfo **GetMimeInfoList(const char *pattern,
   *number_aliases=(size_t) i;
   return(aliases);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -588,7 +588,7 @@ MagickExport char **GetMimeList(const char *pattern,
   *number_aliases=(size_t) i;
   return(aliases);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -619,7 +619,7 @@ MagickExport const char *GetMimeDescription(const MimeInfo *mime_info)
     (void) LogMagickEvent(TraceEvent,GetMagickModule(),"...");
   return(mime_info->description);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -650,7 +650,7 @@ MagickExport const char *GetMimeType(const MimeInfo *mime_info)
     (void) LogMagickEvent(TraceEvent,GetMagickModule(),"...");
   return(mime_info->type);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -687,7 +687,7 @@ static MagickBooleanType IsMimeCacheInstantiated(ExceptionInfo *exception)
     }
   return(mime_cache != (LinkedListInfo *) NULL ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -771,7 +771,7 @@ MagickExport MagickBooleanType ListMimeInfo(FILE *file,ExceptionInfo *exception)
   mime_info=(const MimeInfo **) RelinquishMagickMemory((void *) mime_info);
   return(MagickTrue);
 }
-
+
 #if !MAGICKCORE_ZERO_CONFIGURATION_SUPPORT
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -984,7 +984,7 @@ static MagickBooleanType LoadMimeCache(LinkedListInfo *cache,const char *xml,
   return(status != 0 ? MagickTrue : MagickFalse);
 }
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1033,7 +1033,7 @@ MagickExport char *MagickToMime(const char *magick)
   LocaleLower(media+8);
   return(ConstantString(media));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1058,7 +1058,7 @@ MagickPrivate MagickBooleanType MimeComponentGenesis(void)
     mime_semaphore=AcquireSemaphoreInfo();
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

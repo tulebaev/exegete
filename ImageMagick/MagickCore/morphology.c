@@ -45,7 +45,7 @@
 % generation of many different types of kernel arrays from user supplied
 % arguments. Prehaps even the generation of a kernel from a small image.
 */
-
+
 /*
   Include declarations.
 */
@@ -84,7 +84,7 @@
 #include "MagickCore/token.h"
 #include "MagickCore/utility.h"
 #include "MagickCore/utility-private.h"
-
+
 /*
   Other global definitions used by module.
 */
@@ -112,7 +112,7 @@ static void
   ExpandMirrorKernelInfo(KernelInfo *),
   ExpandRotateKernelInfo(KernelInfo *, const double),
   RotateKernelInfo(KernelInfo *, double);
-
+
 
 /* Quick function to find last kernel in a kernel list */
 static inline KernelInfo *LastKernelInfo(KernelInfo *kernel)
@@ -552,7 +552,7 @@ MagickExport KernelInfo *AcquireKernelInfo(const char *kernel_string,
     kernel_cache=DestroyString(kernel_cache);
   return(kernel);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2197,7 +2197,7 @@ MagickExport KernelInfo *AcquireKernelBuiltIn(const KernelInfoType type,
   }
   return(kernel);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2253,7 +2253,7 @@ MagickExport KernelInfo *CloneKernelInfo(const KernelInfo *kernel)
 
   return(new_kernel);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2286,7 +2286,7 @@ MagickExport KernelInfo *DestroyKernelInfo(KernelInfo *kernel)
   kernel=(KernelInfo *) RelinquishMagickMemory(kernel);
   return(kernel);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2367,7 +2367,7 @@ static void ExpandMirrorKernelInfo(KernelInfo *kernel)
 
   return;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2453,7 +2453,7 @@ RestoreMSCWarning
     clone_info=DestroyKernelInfo(clone_info);  /* kernel repeated - junk */
   return;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2510,7 +2510,7 @@ static void CalcKernelMetaData(KernelInfo *kernel)
 
   return;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4084,7 +4084,7 @@ exit_cleanup:
   return(rslt_image);
 }
 
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4232,7 +4232,7 @@ MagickExport Image *MorphologyImage(const Image *image,
     curr_kernel=DestroyKernelInfo(curr_kernel);
   return(morphology_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4435,7 +4435,7 @@ static void RotateKernelInfo(KernelInfo *kernel, double angle)
 
   return;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4638,7 +4638,7 @@ MagickExport void ScaleKernelInfo(KernelInfo *kernel,
 
   return;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4708,7 +4708,7 @@ MagickPrivate void ShowKernelInfo(const KernelInfo *kernel)
     }
   }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4755,7 +4755,7 @@ MagickExport void UnityAddKernelInfo(KernelInfo *kernel,
 
   return;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

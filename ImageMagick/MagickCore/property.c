@@ -86,9 +86,11 @@
 #include "MagickCore/xml-tree.h"
 #include "MagickCore/xml-tree-private.h"
 #if defined(MAGICKCORE_LCMS_DELEGATE)
+#if defined(MAGICKCORE_HAVE_LCMS2_H)
 #include <lcms/lcms2.h>
 #endif
-
+#endif
+
 /*
   Define declarations.
 */
@@ -97,7 +99,7 @@
 #define cmsUInt32Number  DWORD
 #endif
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -206,7 +208,7 @@ MagickExport MagickBooleanType CloneImageProperties(Image *image,
     }
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -258,7 +260,7 @@ MagickExport MagickBooleanType DefineImageProperty(Image *image,
   *p='\0';
   return(SetImageProperty(image,key,value,exception));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -294,7 +296,7 @@ MagickExport MagickBooleanType DeleteImageProperty(Image *image,
     return(MagickFalse);
   return(DeleteNodeFromSplayTree((SplayTreeInfo *) image->properties,property));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -328,7 +330,7 @@ MagickExport void DestroyImageProperties(Image *image)
     image->properties=(void *) DestroySplayTree((SplayTreeInfo *)
       image->properties);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -385,7 +387,7 @@ MagickExport MagickBooleanType FormatImageProperty(Image *image,
   exception=DestroyExceptionInfo(exception);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2363,7 +2365,7 @@ MagickExport const char *GetImageProperty(const Image *image,
     }
   return((const char *) NULL);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3575,7 +3577,7 @@ MagickExport const char *GetMagickProperty(ImageInfo *image_info,
   return((char *) NULL);
 }
 #undef WarnNoImageReturn
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3609,7 +3611,7 @@ MagickExport const char *GetNextImageProperty(const Image *image)
     return((const char *) NULL);
   return((const char *) GetNextKeyInSplayTree((SplayTreeInfo *) image->properties));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4272,7 +4274,7 @@ PropertyLookupFailure:
     property_info=DestroyImageInfo(property_info);
   return(interpret_text);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4316,7 +4318,7 @@ MagickExport char *RemoveImageProperty(Image *image,const char *property)
     property);
   return(value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4351,7 +4353,7 @@ MagickExport void ResetImagePropertyIterator(const Image *image)
     return;
   ResetSplayTreeIterator((SplayTreeInfo *) image->properties);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

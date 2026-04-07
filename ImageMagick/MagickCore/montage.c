@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -73,7 +73,7 @@
 #include "MagickCore/utility-private.h"
 #include "MagickCore/version.h"
 #include "MagickCore/visual-effects.h"
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -137,7 +137,7 @@ MagickExport MontageInfo *CloneMontageInfo(const ImageInfo *image_info,
   clone_info->debug=IsEventLogging();
   return(clone_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -185,7 +185,7 @@ MagickExport MontageInfo *DestroyMontageInfo(MontageInfo *montage_info)
   montage_info=(MontageInfo *) RelinquishMagickMemory(montage_info);
   return(montage_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -236,7 +236,7 @@ MagickExport void GetMontageInfo(const ImageInfo *image_info,
   montage_info->debug=IsEventLogging();
   montage_info->signature=MagickCoreSignature;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

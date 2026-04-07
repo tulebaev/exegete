@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -62,7 +62,7 @@
 #include "MagickCore/utility-private.h"
 #include "MagickCore/xml-tree.h"
 #include "MagickCore/xml-tree-private.h"
-
+
 /*
   Define declarations.
 */
@@ -77,7 +77,7 @@
 #endif
 
 #define LocaleFilename  "locale.xml"
-
+
 /*
   Static declarations.
 */
@@ -103,7 +103,7 @@ static SplayTreeInfo
 static volatile locale_t
   c_locale = (locale_t) NULL;
 #endif
-
+
 /*
   Forward declarations.
 */
@@ -111,7 +111,7 @@ static MagickBooleanType
   IsLocaleTreeInstantiated(ExceptionInfo *),
   LoadLocaleCache(SplayTreeInfo *,const char *,const char *,const char *,
     const size_t,ExceptionInfo *);
-
+
 #if defined(MAGICKCORE_LOCALE_SUPPORT)
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -144,7 +144,7 @@ static locale_t AcquireCLocale(void)
   return(c_locale);
 }
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -237,7 +237,7 @@ static SplayTreeInfo *AcquireLocaleSplayTree(const char *filename,
       exception);
   return(cache);
 }
-
+
 #if defined(MAGICKCORE_LOCALE_SUPPORT)
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -269,7 +269,7 @@ static void DestroyCLocale(void)
   c_locale=(locale_t) NULL;
 }
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -306,7 +306,7 @@ MagickExport LinkedListInfo *DestroyLocaleOptions(LinkedListInfo *messages)
     (void) LogMagickEvent(TraceEvent,GetMagickModule(),"...");
   return(DestroyLinkedList(messages,DestroyOptions));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -393,7 +393,7 @@ MagickExport ssize_t FormatLocaleFile(FILE *file,
   va_end(operands);
   return(n);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -495,7 +495,7 @@ MagickExport ssize_t FormatLocaleString(char *magick_restrict string,
   va_end(operands);
   return(n);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -543,7 +543,7 @@ MagickExport const LocaleInfo *GetLocaleInfo_(const char *tag,
   UnlockSemaphoreInfo(locale_semaphore);
   return(locale_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -641,7 +641,7 @@ MagickExport const LocaleInfo **GetLocaleInfoList(const char *pattern,
   *number_messages=(size_t) i;
   return(messages);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -733,7 +733,7 @@ MagickExport char **GetLocaleList(const char *pattern,size_t *number_messages,
   *number_messages=(size_t) i;
   return(messages);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -778,7 +778,7 @@ MagickExport const char *GetLocaleMessage(const char *tag)
     return(locale_info->message);
   return(tag);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -868,7 +868,7 @@ MagickExport LinkedListInfo *GetLocaleOptions(const char *filename,
   ResetLinkedListIterator(messages);
   return(messages);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -899,7 +899,7 @@ MagickExport const char *GetLocaleValue(const LocaleInfo *locale_info)
   assert(locale_info->signature == MagickCoreSignature);
   return(locale_info->message);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -959,7 +959,7 @@ static MagickBooleanType IsLocaleTreeInstantiated(ExceptionInfo *exception)
     }
   return(locale_cache != (SplayTreeInfo *) NULL ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1023,7 +1023,7 @@ MagickExport double InterpretLocaleValue(const char *magick_restrict string,
     *sentinel=q;
   return(value);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1095,7 +1095,7 @@ MagickExport MagickBooleanType ListLocaleInfo(FILE *file,
     RelinquishMagickMemory((void *) locale_info);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1398,7 +1398,7 @@ static MagickBooleanType LoadLocaleCache(SplayTreeInfo *cache,const char *xml,
   (void) SetFatalErrorHandler(fatal_handler);
   return(status != 0 ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1449,7 +1449,7 @@ MagickExport int LocaleCompare(const char *p,const char *q)
     return(LocaleToLowercase((int) *r)-LocaleToLowercase((int) *s));
   }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1482,7 +1482,7 @@ MagickExport void LocaleLower(char *string)
   for (q=string; *q != '\0'; q++)
     *q=(char) LocaleToLowercase((int) *q);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1509,7 +1509,7 @@ MagickExport int LocaleLowercase(const int c)
 {
   return(LocaleToLowercase(c));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1572,7 +1572,7 @@ MagickExport int LocaleNCompare(const char *p,const char *q,const size_t length)
     return(LocaleToLowercase((int) *s)-LocaleToLowercase((int) *t));
   }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1605,7 +1605,7 @@ MagickExport void LocaleUpper(char *string)
   for (q=string; *q != '\0'; q++)
     *q=(char) LocaleToUppercase((int) *q);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1632,7 +1632,7 @@ MagickExport int LocaleUppercase(const int c)
 {
   return(LocaleToUppercase(c));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1660,7 +1660,7 @@ MagickPrivate MagickBooleanType LocaleComponentGenesis(void)
 #endif
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

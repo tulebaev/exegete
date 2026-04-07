@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -151,7 +151,7 @@ struct _ResampleFilter
   size_t
     signature;
 };
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -234,7 +234,7 @@ MagickExport ResampleFilter *AcquireResampleFilter(const Image *image,
     GetImageVirtualPixelMethod(image));
   return(resample_filter);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -277,7 +277,7 @@ MagickExport ResampleFilter *DestroyResampleFilter(
   resample_filter=(ResampleFilter *) RelinquishMagickMemory(resample_filter);
   return(resample_filter);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -682,7 +682,7 @@ MagickExport MagickBooleanType ResamplePixelColor(
     pixel->black = (double) ClampToQuantum(divisor_c*pixel->black);
   return(MagickTrue);
 }
-
+
 #if EWA && EWA_CLAMP
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -978,7 +978,7 @@ static inline void ClampUpAxes(const double dux,
   *minor_unit_x = -u21;
   *minor_unit_y = u11;
 }
-
+
 #endif
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1217,7 +1217,7 @@ MagickExport void ScaleResampleFilter(ResampleFilter *resample_filter,
     resample_filter->C = C*scale;
   }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1381,7 +1381,7 @@ MagickExport void SetResampleFilter(ResampleFilter *resample_filter,
 #endif /* FILTER_LUT */
   return;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1420,7 +1420,7 @@ MagickExport MagickBooleanType SetResampleFilterInterpolateMethod(
   resample_filter->interpolate=method;
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

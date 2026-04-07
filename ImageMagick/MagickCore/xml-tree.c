@@ -43,7 +43,7 @@
 %  retrieving nodes and attributes from an XML string.
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -64,13 +64,13 @@
 #include "MagickCore/xml-tree-private.h"
 #include "MagickCore/utility.h"
 #include "MagickCore/utility-private.h"
-
+
 /*
   Define declarations.
 */
 #define NumberPredefinedEntities  10
 #define XMLWhitespace "\t\r\n "
-
+
 /*
   Typedef declarations.
 */
@@ -129,13 +129,13 @@ struct _XMLTreeRoot
   size_t
     signature;
 };
-
+
 /*
   Global declarations.
 */
 static char
   *sentinel[] = { (char *) NULL };
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -183,7 +183,7 @@ MagickExport XMLTreeInfo *AddChildToXMLTree(XMLTreeInfo *xml_info,
   child->signature=MagickCoreSignature;
   return(InsertTagIntoXMLTree(xml_info,child,offset));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -265,7 +265,7 @@ MagickPrivate XMLTreeInfo *AddPathToXMLTree(XMLTreeInfo *xml_info,
   components=(char **) RelinquishMagickMemory(components);
   return(node);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -335,7 +335,7 @@ MagickPrivate char *CanonicalXMLContent(const char *content,
   utf8=(unsigned char *) RelinquishMagickMemory(utf8);
   return(canonical_content);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -506,7 +506,7 @@ MagickExport XMLTreeInfo *DestroyXMLTree(XMLTreeInfo *xml_info)
 {
   return(DestroyXMLTree_(xml_info,0));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -652,7 +652,7 @@ MagickPrivate char *FileToXML(const char *filename,const size_t extent)
     xml=(char *) RelinquishMagickMemory(xml);
   return(xml);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -684,7 +684,7 @@ MagickExport XMLTreeInfo *GetNextXMLTreeTag(XMLTreeInfo *xml_info)
     (void) LogMagickEvent(TraceEvent,GetMagickModule(),"...");
   return(xml_info->next);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -750,7 +750,7 @@ MagickExport const char *GetXMLTreeAttribute(XMLTreeInfo *xml_info,
     return((const char *) NULL);
   return(root->attributes[i][j+1]);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -801,7 +801,7 @@ MagickPrivate MagickBooleanType GetXMLTreeAttributes(
   }
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -841,7 +841,7 @@ MagickExport XMLTreeInfo *GetXMLTreeChild(XMLTreeInfo *xml_info,const char *tag)
       child=child->sibling;
   return(child);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -874,7 +874,7 @@ MagickExport const char *GetXMLTreeContent(XMLTreeInfo *xml_info)
     (void) LogMagickEvent(TraceEvent,GetMagickModule(),"...");
   return(xml_info->content);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -906,7 +906,7 @@ MagickPrivate XMLTreeInfo *GetXMLTreeOrdered(XMLTreeInfo *xml_info)
     (void) LogMagickEvent(TraceEvent,GetMagickModule(),"...");
   return(xml_info->ordered);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -981,7 +981,7 @@ MagickPrivate XMLTreeInfo *GetXMLTreePath(XMLTreeInfo *xml_info,
   components=(char **) RelinquishMagickMemory(components);
   return(node);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1031,7 +1031,7 @@ MagickPrivate const char **GetXMLTreeProcessingInstructions(
     return((const char **) sentinel);
   return((const char **) (root->processing_instructions[i]+1));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1063,7 +1063,7 @@ MagickExport XMLTreeInfo *GetXMLTreeSibling(XMLTreeInfo *xml_info)
     (void) LogMagickEvent(TraceEvent,GetMagickModule(),"...");
   return(xml_info->sibling);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1095,7 +1095,7 @@ MagickExport const char *GetXMLTreeTag(XMLTreeInfo *xml_info)
     (void) LogMagickEvent(TraceEvent,GetMagickModule(),"...");
   return(xml_info->tag);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1190,7 +1190,7 @@ MagickPrivate XMLTreeInfo *InsertTagIntoXMLTree(XMLTreeInfo *xml_info,
     }
   return(child);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2259,7 +2259,7 @@ MagickExport XMLTreeInfo *NewXMLTree(const char *xml,ExceptionInfo *exception)
     "ParseError","unclosed tag: '%s'",root->node->tag);
   return(&root->root);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2310,7 +2310,7 @@ MagickExport XMLTreeInfo *NewXMLTreeTag(const char *tag)
   root->signature=MagickCoreSignature;
   return(&root->root);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2379,7 +2379,7 @@ MagickPrivate XMLTreeInfo *PruneTagFromXMLTree(XMLTreeInfo *xml_info)
   xml_info->next=(XMLTreeInfo *) NULL;
   return(xml_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2471,7 +2471,7 @@ MagickPrivate XMLTreeInfo *SetXMLTreeAttribute(XMLTreeInfo *xml_info,
     (i/2)+1,(size_t) (((j+2)/2)-(i/2))*sizeof(**xml_info->attributes));
   return(xml_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2511,7 +2511,7 @@ MagickExport XMLTreeInfo *SetXMLTreeContent(XMLTreeInfo *xml_info,
   xml_info->content=(char *) ConstantString(content);
   return(xml_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

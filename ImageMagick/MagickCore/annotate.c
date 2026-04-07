@@ -38,7 +38,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -81,10 +81,8 @@
 #include "MagickCore/type.h"
 #include "MagickCore/utility.h"
 #include "MagickCore/utility-private.h"
-#if defined(MAGICKCORE_X11_DELEGATE)
-#  include "MagickCore/xwindow.h"
-#  include "MagickCore/xwindow-private.h"
-#endif
+#include "MagickCore/xwindow-private.h"
+
 #if defined(MAGICKCORE_FREETYPE_DELEGATE)
 #if defined(__MINGW32__)
 #  undef interface
@@ -117,7 +115,7 @@
 #endif
 #endif
 #if defined(MAGICKCORE_RAQM_DELEGATE)
-#include <raqm.h>
+#include <raqm/raqm.h>
 #endif
 typedef struct _GraphemeInfo
 {
@@ -131,13 +129,13 @@ typedef struct _GraphemeInfo
   size_t
     cluster;
 } GraphemeInfo;
-
+
 /*
   Annotate semaphores.
 */
 static SemaphoreInfo
   *annotate_semaphore = (SemaphoreInfo *) NULL;
-
+
 /*
   Forward declarations.
 */
@@ -150,7 +148,7 @@ static MagickBooleanType
     TypeMetric *,ExceptionInfo *),
   RenderX11(Image *,const DrawInfo *,const PointInfo *,TypeMetric *,
     ExceptionInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -175,7 +173,7 @@ MagickPrivate MagickBooleanType AnnotateComponentGenesis(void)
     annotate_semaphore=AcquireSemaphoreInfo();
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -200,7 +198,7 @@ MagickPrivate void AnnotateComponentTerminus(void)
     ActivateSemaphoreInfo(&annotate_semaphore);
   RelinquishSemaphoreInfo(&annotate_semaphore);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -563,7 +561,7 @@ MagickExport MagickBooleanType AnnotateImage(Image *image,
   text=DestroyString(text);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -719,7 +717,7 @@ MagickExport ssize_t FormatMagickCaption(Image *image,DrawInfo *draw_info,
       n++;
   return(n);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -870,7 +868,7 @@ MagickExport MagickBooleanType GetMultilineTypeMetrics(Image *image,
   textlist=(char **) RelinquishMagickMemory(textlist);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -956,7 +954,7 @@ MagickExport MagickBooleanType GetTypeMetrics(Image *image,
   annotate_info=DestroyDrawInfo(annotate_info);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1116,7 +1114,7 @@ static MagickBooleanType RenderType(Image *image,const DrawInfo *draw_info,
   annotate_info=DestroyDrawInfo(annotate_info);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2124,7 +2122,7 @@ static MagickBooleanType RenderFreetype(Image *image,const DrawInfo *draw_info,
   return(RenderPostscript(image,draw_info,offset,metrics,exception));
 }
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2444,7 +2442,7 @@ static MagickBooleanType RenderPostscript(Image *image,
   annotate_image=DestroyImage(annotate_image);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

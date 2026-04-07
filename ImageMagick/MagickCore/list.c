@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -51,7 +51,7 @@
 #include "MagickCore/memory_.h"
 #include "MagickCore/string_.h"
 #include "MagickCore/string-private.h"
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -100,7 +100,7 @@ MagickExport void AppendImageToList(Image **images,const Image *append)
   p->next=q;
   q->previous=p;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -165,7 +165,7 @@ MagickExport Image *CloneImageList(const Image *images,ExceptionInfo *exception)
   }
   return(image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -299,7 +299,7 @@ MagickExport Image *CloneImages(const Image *images,const char *scenes,
   }
   return(GetFirstImageInList(clone_images));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -332,7 +332,7 @@ MagickExport void DeleteImageFromList(Image **images)
   if (image != (Image *) NULL)
     (void) DestroyImage(image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -460,7 +460,7 @@ MagickExport void DeleteImages(Image **images,const char *scenes,
   (void) RelinquishMagickMemory(delete_list);
   *images=GetFirstImageInList(*images);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -494,7 +494,7 @@ MagickExport Image *DestroyImageList(Image *images)
     DeleteImageFromList(&images);
   return((Image *) NULL);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -559,7 +559,7 @@ MagickExport Image *DuplicateImages(Image *images,
   }
   return(duplicate_images);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -593,7 +593,7 @@ MagickExport Image *GetFirstImageInList(const Image *images)
   for (p=images; p->previous != (Image *) NULL; p=p->previous) ;
   return((Image *) p);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -655,7 +655,7 @@ MagickExport Image *GetImageFromList(const Image *images,const ssize_t index)
     }
   return((Image *) p);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -693,7 +693,7 @@ MagickExport ssize_t GetImageIndexInList(const Image *images)
   }
   return(i);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -735,7 +735,7 @@ MagickExport size_t GetImageListLength(const Image *images)
   }
   return(i);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -769,7 +769,7 @@ MagickExport Image *GetLastImageInList(const Image *images)
   for (p=images; p->next != (Image *) NULL; p=p->next) ;
   return((Image *) p);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -801,7 +801,7 @@ MagickExport Image *GetNextImageInList(const Image *images)
     (void) LogMagickEvent(TraceEvent,GetMagickModule(),"%s",images->filename);
   return(images->next);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -831,7 +831,7 @@ MagickExport Image *GetPreviousImageInList(const Image *images)
   assert(images->signature == MagickCoreSignature);
   return(images->previous);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -896,7 +896,7 @@ MagickExport Image **ImageListToArray(const Image *images,
   group[i]=(Image *) NULL;
   return(group);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -940,7 +940,7 @@ MagickExport void InsertImageInList(Image **images,Image *insert)
   AppendImageToList(images,insert);
   AppendImageToList(images,split);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -963,7 +963,7 @@ MagickExport Image *NewImageList(void)
 {
   return((Image *) NULL);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -997,7 +997,7 @@ MagickExport void PrependImageToList(Image **images,Image *prepend)
     }
   AppendImageToList(&prepend,*images);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1056,7 +1056,7 @@ MagickExport Image *RemoveImageFromList(Image **images)
     }
   return(p);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1107,7 +1107,7 @@ MagickExport Image *RemoveFirstImageFromList(Image **images)
     }
   return(image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1158,7 +1158,7 @@ MagickExport Image *RemoveLastImageFromList(Image **images)
     }
   return(image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1217,7 +1217,7 @@ MagickExport void ReplaceImageInList(Image **images,Image *replace)
   (void) DestroyImage(*images);
   (*images)=replace;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1278,7 +1278,7 @@ MagickExport void ReplaceImageInListReturnLast(Image **images,Image *replace)
   (void) DestroyImage(*images);
   (*images)=replace;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1326,7 +1326,7 @@ MagickExport void ReverseImageList(Image **images)
     p->previous=next;
   }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1382,7 +1382,7 @@ MagickExport Image *SpliceImageIntoList(Image **images,
   AppendImageToList(images,split);
   return(image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1415,7 +1415,7 @@ MagickExport Image *SplitImageList(Image *images)
   images->previous=(Image *) NULL;
   return(images);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1460,7 +1460,7 @@ MagickExport void SyncImageList(Image *images)
   for (p=images->next; p != (Image *) NULL; p=p->next)
     p->scene=p->previous->scene+1;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

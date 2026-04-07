@@ -36,7 +36,7 @@
 %  Contributed by Bill Radcliffe and Bob Friesenhahn.
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -54,14 +54,14 @@
 #include "MagickCore/string-private.h"
 #include "MagickCore/timer.h"
 #include "MagickCore/timer-private.h"
-
+
 /*
   Define declarations.
 */
 #if !defined(CLOCKS_PER_SEC)
 #define CLOCKS_PER_SEC  100
 #endif
-
+
 /*
   Forward declarations.
 */
@@ -70,7 +70,7 @@ static double
 
 static void
   StopTimer(TimerInfo *);
-
+
 /*
   Static declarations.
 */
@@ -82,7 +82,7 @@ static time_t
 
 static MagickBooleanType
   epoch_initialized = MagickFalse;
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -113,7 +113,7 @@ MagickExport TimerInfo *AcquireTimerInfo(void)
   GetTimerInfo(timer_info);
   return(timer_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -152,7 +152,7 @@ MagickExport MagickBooleanType ContinueTimer(TimerInfo *time_info)
   time_info->state=RunningTimerState;
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -183,7 +183,7 @@ MagickExport TimerInfo *DestroyTimerInfo(TimerInfo *timer_info)
   timer_info=(TimerInfo *) RelinquishMagickMemory(timer_info);
   return(timer_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -237,7 +237,7 @@ static double ElapsedTime(void)
 #endif
 #endif
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -299,7 +299,7 @@ MagickExport ssize_t FormatMagickTime(const time_t time,const size_t length,
     timestamp[date_precision]='\0';
   return(count);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -334,7 +334,7 @@ MagickExport double GetElapsedTime(TimerInfo *time_info)
     StopTimer(time_info);
   return(time_info->elapsed.total);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -382,7 +382,7 @@ MagickExport time_t GetMagickTime(void)
     return(magick_epoch);
   return(time((time_t *) NULL));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -416,7 +416,7 @@ MagickExport void GetTimerInfo(TimerInfo *time_info)
   time_info->signature=MagickCoreSignature;
   StartTimer(time_info,MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -451,7 +451,7 @@ MagickExport double GetUserTime(TimerInfo *time_info)
     StopTimer(time_info);
   return(time_info->user.total);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -478,7 +478,7 @@ MagickExport MagickBooleanType IsSourceDataEpochSet(void)
   InitializeEpoch();
   return(magick_epoch != 0 ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -509,7 +509,7 @@ MagickExport void ResetTimer(TimerInfo *time_info)
   time_info->elapsed.stop=0.0;
   time_info->user.stop=0.0;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -536,7 +536,7 @@ MagickPrivate void SetMagickDatePrecision(const unsigned long precision)
 {
   date_precision=(ssize_t) precision;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -582,7 +582,7 @@ MagickExport void StartTimer(TimerInfo *time_info,const MagickBooleanType reset)
     }
   time_info->state=RunningTimerState;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -620,7 +620,7 @@ static void StopTimer(TimerInfo *time_info)
     }
   time_info->state=StoppedTimerState;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

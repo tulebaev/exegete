@@ -47,7 +47,7 @@
 % store or retrieve pixels.
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -100,7 +100,7 @@
 #define MAGICKCORE_HAVE_WINSOCK2 1
 #endif
 #endif
-
+
 /*
   Define declarations.
 */
@@ -111,7 +111,7 @@
 #ifndef MSG_NOSIGNAL
 #  define MSG_NOSIGNAL 0
 #endif
-
+
 /*
   Static declarations.
 */
@@ -122,7 +122,7 @@ static SemaphoreInfo
 static WSADATA
   *wsaData = (WSADATA*) NULL;
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -399,7 +399,7 @@ MagickPrivate DistributeCacheInfo *AcquireDistributeCacheInfo(
   hostname=DestroyString(hostname);
   return(server_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -437,7 +437,7 @@ MagickPrivate DistributeCacheInfo *DestroyDistributeCacheInfo(
   server_info=(DistributeCacheInfo *) RelinquishMagickMemory(server_info);
   return(server_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1051,7 +1051,7 @@ MagickExport void DistributePixelCacheServer(const int port,
   }
 }
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1111,7 +1111,7 @@ MagickPrivate int GetDistributeCacheFile(const DistributeCacheInfo *server_info)
   assert(server_info->signature == MagickCoreSignature);
   return(server_info->file);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1143,7 +1143,7 @@ MagickPrivate const char *GetDistributeCacheHostname(
   assert(server_info->signature == MagickCoreSignature);
   return(server_info->hostname);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1173,7 +1173,7 @@ MagickPrivate int GetDistributeCachePort(const DistributeCacheInfo *server_info)
   assert(server_info->signature == MagickCoreSignature);
   return(server_info->port);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1254,7 +1254,7 @@ MagickPrivate MagickBooleanType OpenDistributePixelCache(
     return(MagickFalse);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1327,7 +1327,7 @@ MagickPrivate MagickOffsetType ReadDistributePixelCacheMetacontent(
     return(-1);
   return(dpc_read(server_info->file,length,metacontent));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1400,7 +1400,7 @@ MagickPrivate MagickOffsetType ReadDistributePixelCachePixels(
     return(-1);
   return(dpc_read(server_info->file,length,pixels));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1456,7 +1456,7 @@ MagickPrivate MagickBooleanType RelinquishDistributePixelCache(
     return(MagickFalse);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1529,7 +1529,7 @@ MagickPrivate MagickOffsetType WriteDistributePixelCacheMetacontent(
     return(-1);
   return(dpc_send(server_info->file,length,metacontent));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

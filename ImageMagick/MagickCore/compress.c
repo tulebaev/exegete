@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -62,7 +62,7 @@
 #if defined(MAGICKCORE_ZLIB_DELEGATE)
 #include <zlib/zlib.h>
 #endif
-
+
 /*
   Typedef declarations.
 */
@@ -87,7 +87,7 @@ typedef struct HuffmanTable
     length,
     count;
 } HuffmanTable;
-
+
 /*
   Huffman coding declarations.
 */
@@ -200,7 +200,7 @@ static const HuffmanTable
     { TWId, 0x4b, 8, 60 }, { TWId, 0x32, 8, 61 }, { TWId, 0x33, 8, 62 },
     { TWId, 0x34, 8, 63 }, { TWId, 0x00, 0, 0 }
   };
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -334,7 +334,7 @@ MagickExport void Ascii85Encode(Image *image,const unsigned char code)
   for (n=0; n < 4; n++)
     image->ascii85->buffer[n]=(*p++);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -636,7 +636,7 @@ MagickExport MagickBooleanType HuffmanDecodeImage(Image *image,
   scanline=(unsigned char *) RelinquishMagickMemory(scanline);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -877,7 +877,7 @@ RestoreMSCWarning \
   scanline=(unsigned char *) RelinquishMagickMemory(scanline);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1043,7 +1043,7 @@ MagickExport MagickBooleanType LZWEncodeImage(Image *image,const size_t length,
   table=(TableType *) RelinquishMagickMemory(table);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1179,7 +1179,7 @@ MagickExport MagickBooleanType PackbitsEncodeImage(Image *image,
   packbits=(unsigned char *) RelinquishMagickMemory(packbits);
   return(MagickTrue);
 }
-
+
 #if defined(MAGICKCORE_ZLIB_DELEGATE)
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

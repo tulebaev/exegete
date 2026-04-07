@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -59,7 +59,7 @@
 */
 #define SignatureBlocksize  64
 #define SignatureDigestsize  32
-
+
 /*
   Typedef declarations.
 */
@@ -90,13 +90,13 @@ struct _SignatureInfo
   size_t
     signature;
 };
-
+
 /*
   Forward declarations.
 */
 static void
   TransformSignature(SignatureInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -144,7 +144,7 @@ MagickPrivate SignatureInfo *AcquireSignatureInfo(void)
   InitializeSignature(signature_info);
   return(signature_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -185,7 +185,7 @@ MagickPrivate SignatureInfo *DestroySignatureInfo(SignatureInfo *signature_info)
   signature_info=(SignatureInfo *) RelinquishMagickMemory(signature_info);
   return(signature_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -272,7 +272,7 @@ MagickPrivate void FinalizeSignature(SignatureInfo *signature_info)
     p++;
   }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -304,7 +304,7 @@ MagickPrivate unsigned int GetSignatureBlocksize(
     (void) LogMagickEvent(TraceEvent,GetMagickModule(),"...");
   return(signature_info->blocksize);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -336,7 +336,7 @@ MagickPrivate const StringInfo *GetSignatureDigest(
     (void) LogMagickEvent(TraceEvent,GetMagickModule(),"...");
   return(signature_info->digest);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -368,7 +368,7 @@ MagickPrivate unsigned int GetSignatureDigestsize(
     (void) LogMagickEvent(TraceEvent,GetMagickModule(),"...");
   return(signature_info->digestsize);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -409,7 +409,7 @@ MagickPrivate void InitializeSignature(SignatureInfo *signature_info)
   signature_info->high_order=0;
   signature_info->extent=0;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -445,7 +445,7 @@ MagickPrivate void SetSignatureDigest(SignatureInfo *signature_info,
   assert(signature_info->signature == MagickCoreSignature);
   SetStringInfo(signature_info->digest,digest);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -571,7 +571,7 @@ MagickExport MagickBooleanType SignatureImage(Image *image,
   signature_info=DestroySignatureInfo(signature_info);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -744,7 +744,7 @@ RestoreMSCWarning
   T2=0;
   (void) ResetMagickMemory(W,0,sizeof(W));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

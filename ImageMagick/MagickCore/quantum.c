@@ -34,7 +34,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -71,18 +71,18 @@
 #include "MagickCore/string-private.h"
 #include "MagickCore/thread-private.h"
 #include "MagickCore/utility.h"
-
+
 /*
   Define declarations.
 */
 #define QuantumSignature  0xab
-
+
 /*
   Forward declarations.
 */
 static void
   DestroyQuantumPixels(QuantumInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -127,7 +127,7 @@ MagickExport QuantumInfo *AcquireQuantumInfo(const ImageInfo *image_info,
     quantum_info=DestroyQuantumInfo(quantum_info);
   return(quantum_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -186,7 +186,7 @@ static MagickBooleanType AcquireQuantumPixels(QuantumInfo *quantum_info,
   }
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -222,7 +222,7 @@ MagickExport QuantumInfo *DestroyQuantumInfo(QuantumInfo *quantum_info)
   quantum_info=(QuantumInfo *) RelinquishMagickMemory(quantum_info);
   return(quantum_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -276,7 +276,7 @@ static void DestroyQuantumPixels(QuantumInfo *quantum_info)
   quantum_info->pixels=(MemoryInfo **) RelinquishMagickMemory(
     quantum_info->pixels);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -337,7 +337,7 @@ MagickExport size_t GetQuantumExtent(const Image *image,
   return((size_t) ((channels*image->columns*quantum_info->depth+7)/8)+
     (quantum_info->pad*image->columns));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -366,7 +366,7 @@ MagickExport EndianType GetQuantumEndian(const QuantumInfo *quantum_info)
   assert(quantum_info->signature == MagickCoreSignature);
   return(quantum_info->endian);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -395,7 +395,7 @@ MagickExport QuantumFormatType GetQuantumFormat(const QuantumInfo *quantum_info)
   assert(quantum_info->signature == MagickCoreSignature);
   return(quantum_info->format);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -467,7 +467,7 @@ MagickExport void GetQuantumInfo(const ImageInfo *image_info,
   quantum_info->endian=image_info->endian;
   ResetQuantumState(quantum_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -500,7 +500,7 @@ MagickExport unsigned char *GetQuantumPixels(const QuantumInfo *quantum_info)
   assert(quantum_info->signature == MagickCoreSignature);
   return((unsigned char *) GetVirtualMemoryBlob(quantum_info->pixels[id]));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -560,7 +560,7 @@ MagickExport QuantumType GetQuantumType(Image *image,ExceptionInfo *exception)
     quantum_type=MultispectralQuantum;
   return(quantum_type);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -605,7 +605,7 @@ MagickPrivate void ResetQuantumState(QuantumInfo *quantum_info)
   quantum_info->state.bits=0U;
   quantum_info->state.mask=mask;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -638,7 +638,7 @@ MagickExport void SetQuantumAlphaType(QuantumInfo *quantum_info,
   assert(quantum_info->signature == MagickCoreSignature);
   quantum_info->alpha_type=type;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -713,7 +713,7 @@ MagickExport MagickBooleanType SetQuantumDepth(const Image *image,
     }
   return(AcquireQuantumPixels(quantum_info,extent));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -753,7 +753,7 @@ MagickExport MagickBooleanType SetQuantumEndian(const Image *image,
   quantum_info->endian=endian;
   return(SetQuantumDepth(image,quantum_info,quantum_info->depth));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -793,7 +793,7 @@ MagickExport MagickBooleanType SetQuantumFormat(const Image *image,
   quantum_info->format=format;
   return(SetQuantumDepth(image,quantum_info,quantum_info->depth));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -861,7 +861,7 @@ MagickExport void SetQuantumImageType(Image *image,
     }
   }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -902,7 +902,7 @@ MagickExport MagickBooleanType SetQuantumMetaChannel(const Image *image,
   quantum_info->meta_channel=meta_channel+1;
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -935,7 +935,7 @@ MagickExport void SetQuantumPack(QuantumInfo *quantum_info,
   assert(quantum_info->signature == MagickCoreSignature);
   quantum_info->pack=pack;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -977,7 +977,7 @@ MagickExport MagickBooleanType SetQuantumPad(const Image *image,
   quantum_info->pad=pad;
   return(SetQuantumDepth(image,quantum_info,quantum_info->depth));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1010,7 +1010,7 @@ MagickExport void SetQuantumMinIsWhite(QuantumInfo *quantum_info,
   assert(quantum_info->signature == MagickCoreSignature);
   quantum_info->min_is_white=min_is_white;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1042,7 +1042,7 @@ MagickExport void SetQuantumQuantum(QuantumInfo *quantum_info,
   assert(quantum_info->signature == MagickCoreSignature);
   quantum_info->quantum=quantum;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

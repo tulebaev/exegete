@@ -41,7 +41,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -77,7 +77,7 @@
 #include "MagickCore/utility-private.h"
 #include "MagickCore/xml-tree.h"
 #include "MagickCore/xml-tree-private.h"
-
+
 /*
   Define declarations.
 */
@@ -95,7 +95,7 @@
 #else
   #define DELEGATE_ESC "&apos;"
 #endif
-
+
 /*
   Declare delegate map.
 */
@@ -177,7 +177,7 @@ static LinkedListInfo
 
 static SemaphoreInfo
   *delegate_semaphore = (SemaphoreInfo *) NULL;
-
+
 /*
   Forward declarations.
 */
@@ -185,7 +185,7 @@ static MagickBooleanType
   IsDelegateCacheInstantiated(ExceptionInfo *),
   LoadDelegateCache(LinkedListInfo *,const char *,const char *,const size_t,
     ExceptionInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -244,7 +244,7 @@ static LinkedListInfo *AcquireDelegateCache(const char *filename,
     (void) LoadDelegateCache(cache,DelegateMap,"built-in",0,exception);
   return(cache);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -269,7 +269,7 @@ MagickPrivate MagickBooleanType DelegateComponentGenesis(void)
     delegate_semaphore=AcquireSemaphoreInfo();
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -319,7 +319,7 @@ MagickPrivate void DelegateComponentTerminus(void)
   UnlockSemaphoreInfo(delegate_semaphore);
   RelinquishSemaphoreInfo(&delegate_semaphore);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -524,7 +524,7 @@ MagickExport int ExternalDelegateCommand(const MagickBooleanType asynchronous,
   arguments=(char **) RelinquishMagickMemory(arguments);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1158,7 +1158,7 @@ MagickExport char *GetDelegateCommand(const ImageInfo *image_info,Image *image,
   commands=(char **) RelinquishMagickMemory(commands);
   return(command);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1189,7 +1189,7 @@ MagickExport const char *GetDelegateCommands(const DelegateInfo *delegate_info)
   assert(delegate_info->signature == MagickCoreSignature);
   return(delegate_info->commands);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1279,7 +1279,7 @@ MagickExport const DelegateInfo *GetDelegateInfo(const char *decode,
   UnlockSemaphoreInfo(delegate_semaphore);
   return(delegate_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1390,7 +1390,7 @@ MagickExport const DelegateInfo **GetDelegateInfoList(const char *pattern,
   *number_delegates=(size_t) i;
   return(delegates);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1490,7 +1490,7 @@ MagickExport char **GetDelegateList(const char *pattern,
   *number_delegates=(size_t) i;
   return(delegates);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1521,7 +1521,7 @@ MagickExport ssize_t GetDelegateMode(const DelegateInfo *delegate_info)
   assert(delegate_info->signature == MagickCoreSignature);
   return(delegate_info->mode);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1555,7 +1555,7 @@ MagickExport MagickBooleanType GetDelegateThreadSupport(
     (void) LogMagickEvent(TraceEvent,GetMagickModule(),"...");
   return(delegate_info->thread_support);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1592,7 +1592,7 @@ static MagickBooleanType IsDelegateCacheInstantiated(ExceptionInfo *exception)
     }
   return(delegate_cache != (LinkedListInfo *) NULL ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1936,7 +1936,7 @@ MagickExport MagickBooleanType InvokeDelegate(ImageInfo *image_info,
     (void) RelinquishUniqueFileResource(image->filename);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2028,7 +2028,7 @@ MagickExport MagickBooleanType ListDelegateInfo(FILE *file,
     RelinquishMagickMemory((void *) delegate_info);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

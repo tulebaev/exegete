@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 #include "MagickCore/studio.h"
 #include "MagickCore/configure.h"
 #include "MagickCore/exception.h"
@@ -49,12 +49,12 @@
 #include "MagickCore/utility-private.h"
 #include "MagickCore/version.h"
 #include "MagickCore/version-private.h"
-
+
 /*
   Define declarations.
 */
 #define MagickURLFilename  "index.html"
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -77,7 +77,7 @@ MagickExport const char *GetMagickCopyright(void)
 {
   return(MagickCopyright);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -228,7 +228,7 @@ MagickExport const char *GetMagickDelegates(void)
     return(delegates);
   return(delegates+1);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -306,7 +306,7 @@ MagickExport const char *GetMagickFeatures(void)
 #endif
   ;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -359,7 +359,7 @@ MagickExport char *GetMagickHomeURL(void)
   paths=DestroyLinkedList(paths,RelinquishMagickMemory);
   return(ConstantString(MagickHomeURL));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -382,7 +382,7 @@ MagickExport const char *GetMagickLicense(void)
 {
   return(MagickAuthoritativeLicense);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -407,7 +407,7 @@ MagickExport const char *GetMagickPackageName(void)
 {
   return(MagickPackageName);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -436,7 +436,7 @@ MagickExport const char *GetMagickQuantumDepth(size_t *depth)
     *depth=(size_t) MAGICKCORE_QUANTUM_DEPTH;
   return(MagickQuantumDepth);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -465,7 +465,7 @@ MagickExport const char *GetMagickQuantumRange(size_t *range)
     *range=(size_t) QuantumRange;
   return(MagickQuantumRange);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -490,7 +490,7 @@ MagickExport const char *GetMagickReleaseDate(void)
 {
   return(MagickReleaseDate);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -596,7 +596,7 @@ MagickExport unsigned int GetMagickSignature(const StringInfo *nonce)
   version=DestroyStringInfo(version);
   return(signature);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -626,7 +626,7 @@ MagickExport const char *GetMagickVersion(size_t *version)
     *version=MagickLibVersion;
   return(MagickVersion);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
