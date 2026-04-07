@@ -1,8 +1,8 @@
-IMAGE_MAGICK_DIR = .
-IMAGE_MAGICK_LIBS = CORE_RL_Magick++_.lib
+IMAGE_MAGICK_DIR = .\ImageMagick
+IMAGE_MAGICK_LIBS = Magick++.lib
 
 all:
-	cl exegete.cpp /EHsc /I$(IMAGE_MAGICK_DIR)\include $(IMAGE_MAGICK_LIBS) /link/LIBPATH:$(IMAGE_MAGICK_DIR)\lib
+	cl exegete.cpp /EHsc /I$(IMAGE_MAGICK_DIR) $(IMAGE_MAGICK_LIBS) /link/LIBPATH:$(IMAGE_MAGICK_DIR)
 
 clean:
 	del *.obj

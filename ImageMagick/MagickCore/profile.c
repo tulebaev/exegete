@@ -70,11 +70,7 @@
 #include "MagickCore/utility.h"
 #if defined(MAGICKCORE_LCMS_DELEGATE)
 #include <wchar.h>
-#if defined(MAGICKCORE_HAVE_LCMS_LCMS2_H)
 #include <lcms/lcms2.h>
-#else
-#include "lcms2.h"
-#endif
 #endif
 #if defined(MAGICKCORE_XML_DELEGATE)
 #  include <libxml/parser.h>

@@ -162,7 +162,9 @@ extern "C" {
 #include "MagickCore/vision.h"
 #include "MagickCore/visual-effects.h"
 #include "MagickCore/xml-tree.h"
-#include "MagickCore/xwindow.h"
+#if defined(MAGICKCORE_X11_DELEGATE)
+#  include "MagickCore/xwindow.h"
+#endif
 
 #if defined(__cplusplus) || defined(c_plusplus)
 }

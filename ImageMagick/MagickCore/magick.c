@@ -92,8 +92,7 @@
 #include "MagickCore/token.h"
 #include "MagickCore/utility.h"
 #include "MagickCore/utility-private.h"
-#include "MagickCore/xwindow-private.h"
-
+
 /*
   Define declarations.
 */
@@ -106,12 +105,12 @@
 #if !defined(SIGMAX)
 #define SIGMAX  64
 #endif
-
+
 /*
   Typedef declarations.
 */
 typedef void SignalHandler(int);
-
+
 /*
   Global declarations.
 */
@@ -131,13 +130,13 @@ static volatile MagickBooleanType
 
 static int
   magick_precision = 0;
-
+
 /*
   Forward declarations.
 */
 static MagickBooleanType
   IsMagickTreeInstantiated(ExceptionInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -191,7 +190,7 @@ MagickExport MagickInfo *AcquireMagickInfo(const char *magick_module,
   magick_info->signature=MagickCoreSignature;
   return(magick_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -221,7 +220,7 @@ MagickExport DecodeImageHandler *GetImageDecoder(const MagickInfo *magick_info)
   assert(magick_info->signature == MagickCoreSignature);
   return(magick_info->decoder);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -251,7 +250,7 @@ MagickExport EncodeImageHandler *GetImageEncoder(const MagickInfo *magick_info)
   assert(magick_info->signature == MagickCoreSignature);
   return(magick_info->encoder);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -319,7 +318,7 @@ MagickExport MagickBooleanType GetImageMagick(const unsigned char *magick,
   UnlockSemaphoreInfo(magick_semaphore);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -349,7 +348,7 @@ MagickExport MagickBooleanType GetMagickAdjoin(const MagickInfo *magick_info)
   return(((magick_info->flags & CoderAdjoinFlag) == 0) ? MagickFalse :
     MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -380,7 +379,7 @@ MagickExport MagickBooleanType GetMagickBlobSupport(
   return(((magick_info->flags & CoderBlobSupportFlag) == 0) ? MagickFalse :
     MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -414,7 +413,7 @@ MagickExport MagickBooleanType GetMagickDecoderSeekableStream(
     return(MagickFalse);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -447,7 +446,7 @@ MagickExport MagickBooleanType GetMagickDecoderThreadSupport(
   return(((magick_info->flags & CoderDecoderThreadSupportFlag) == 0) ?
     MagickFalse : MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -476,7 +475,7 @@ MagickExport const char *GetMagickDescription(const MagickInfo *magick_info)
   assert(magick_info->signature == MagickCoreSignature);
   return(magick_info->description);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -510,7 +509,7 @@ MagickExport MagickBooleanType GetMagickEncoderSeekableStream(
     return(MagickFalse);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -543,7 +542,7 @@ MagickExport MagickBooleanType GetMagickEncoderThreadSupport(
   return(((magick_info->flags & CoderEncoderThreadSupportFlag) == 0) ?
     MagickFalse : MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -575,7 +574,7 @@ MagickExport MagickBooleanType GetMagickEndianSupport(
   return(((magick_info->flags & CoderEndianSupportFlag) == 0) ? MagickFalse :
     MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -643,7 +642,7 @@ MagickExport const MagickInfo *GetMagickInfo(const char *name,
     magick_info=(const MagickInfo *) GetValueFromSplayTree(magick_list,name);
   return(magick_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -738,7 +737,7 @@ MagickExport const MagickInfo **GetMagickInfoList(const char *pattern,
   *number_formats=(size_t) i;
   return(formats);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -829,7 +828,7 @@ MagickExport char **GetMagickList(const char *pattern,
   *number_formats=(size_t) i;
   return(formats);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -858,7 +857,7 @@ MagickExport const char *GetMagickMimeType(const MagickInfo *magick_info)
   assert(magick_info->signature == MagickCoreSignature);
   return(magick_info->mime_type);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -887,7 +886,7 @@ MagickExport const char *GetMagickModuleName(const MagickInfo *magick_info)
   assert(magick_info->signature == MagickCoreSignature);
   return(magick_info->magick_module);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -916,7 +915,7 @@ MagickExport const char *GetMagickName(const MagickInfo *magick_info)
   assert(magick_info->signature == MagickCoreSignature);
   return(magick_info->name);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -942,7 +941,7 @@ MagickExport int GetMagickPrecision(void)
     (void) LogMagickEvent(TraceEvent,GetMagickModule(),"...");
   return(SetMagickPrecision(0));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -973,7 +972,7 @@ MagickExport MagickBooleanType GetMagickRawSupport(
   return(((magick_info->flags & CoderRawSupportFlag) == 0) ? MagickFalse :
     MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1003,7 +1002,7 @@ MagickExport MagickBooleanType GetMagickStealth(const MagickInfo *magick_info)
   return(((magick_info->flags & CoderStealthFlag) == 0) ? MagickFalse :
     MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1036,7 +1035,7 @@ MagickExport MagickBooleanType GetMagickUseExtension(
   return(((magick_info->flags & CoderUseExtensionFlag) == 0) ? MagickFalse :
     MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1105,7 +1104,7 @@ static MagickBooleanType IsMagickTreeInstantiated(ExceptionInfo *exception)
     }
   return(magick_list != (SplayTreeInfo *) NULL ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1140,7 +1139,7 @@ MagickPrivate MagickBooleanType IsMagickConflict(const char *magick)
   return(MagickFalse);
 #endif
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1250,7 +1249,7 @@ MagickExport MagickBooleanType ListMagickInfo(FILE *file,
     magick_info);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1276,7 +1275,7 @@ MagickExport MagickBooleanType IsMagickCoreInstantiated(void)
 {
   return(magickcore_instantiated);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1301,7 +1300,7 @@ MagickPrivate MagickBooleanType MagickComponentGenesis(void)
     magick_semaphore=AcquireSemaphoreInfo();
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1333,7 +1332,7 @@ MagickPrivate void MagickComponentTerminus(void)
   UnlockSemaphoreInfo(magick_semaphore);
   RelinquishSemaphoreInfo(&magick_semaphore);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1595,7 +1594,7 @@ MagickExport void MagickCoreGenesis(const char *path,
   magickcore_instantiated=MagickTrue;
   UnlockMagickMutex();
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1682,7 +1681,7 @@ MagickExport void MagickCoreTerminus(void)
   UnlockMagickMutex();
   SemaphoreComponentTerminus();
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1729,7 +1728,7 @@ MagickExport MagickBooleanType RegisterMagickInfo(MagickInfo *magick_info)
   status=AddValueToSplayTree(magick_list,magick_info->name,magick_info);
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1752,7 +1751,7 @@ MagickPrivate void ResetMagickPrecision(void)
 {
   magick_precision=0;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1813,7 +1812,7 @@ MagickExport int SetMagickPrecision(const int precision)
     }
   return(magick_precision);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

@@ -81,13 +81,15 @@
 #include "MagickCore/type.h"
 #include "MagickCore/utility.h"
 #include "MagickCore/utility-private.h"
-#include "MagickCore/xwindow.h"
-#include "MagickCore/xwindow-private.h"
+#if defined(MAGICKCORE_X11_DELEGATE)
+#  include "MagickCore/xwindow.h"
+#  include "MagickCore/xwindow-private.h"
+#endif
 #if defined(MAGICKCORE_FREETYPE_DELEGATE)
 #if defined(__MINGW32__)
 #  undef interface
 #endif
-#include <ft2build.h>
+#include <freetype/config/ftheader.h>
 #if defined(FT_FREETYPE_H)
 #  include FT_FREETYPE_H
 #else

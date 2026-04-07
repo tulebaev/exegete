@@ -79,7 +79,7 @@
 #  include <sys/loadavg.h>
 #endif
 #if defined(MAGICKCORE_ZLIB_DELEGATE)
-#  include "zlib.h"
+#  include <zlib/zlib.h>
 #endif
 
 /*

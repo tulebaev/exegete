@@ -73,10 +73,10 @@
 #include "MagickCore/utility.h"
 #include "MagickCore/utility-private.h"
 #if defined(MAGICKCORE_ZLIB_DELEGATE)
-#include "zlib.h"
+#include <zlib/zlib.h>
 #endif
 #if defined(MAGICKCORE_BZLIB_DELEGATE)
-#include "bzlib.h"
+#include <bzip2/bzlib.h>
 #endif
 
 /*

@@ -75,10 +75,11 @@
 #include "MagickCore/version.h"
 #include "MagickCore/widget.h"
 #include "MagickCore/widget-private.h"
+
+#if defined(MAGICKCORE_X11_DELEGATE)
 #include "MagickCore/xwindow.h"
 #include "MagickCore/xwindow-private.h"
-
-#if defined(MAGICKCORE_X11_DELEGATE)
+
 /*
   Animate state declarations.
 */
@@ -158,7 +159,7 @@ static const char
     "\n"
     "  Ctl-q  Press to discard all images and exit program.\n"
   };
-
+
 /*
   Constant declarations.
 */
@@ -205,7 +206,7 @@ static const unsigned char
     (unsigned char) 0x00,
     (unsigned char) 0x00
   };
-
+
 /*
   Enumeration declarations.
 */
@@ -230,7 +231,7 @@ typedef enum
   StepForwardCommand,
   NullCommand
 } AnimateCommand;
-
+
 /*
   Stipples.
 */
@@ -238,7 +239,7 @@ typedef enum
 #define HighlightHeight  8
 #define ShadowWidth  8
 #define ShadowHeight  8
-
+
 /*
   Forward declarations.
 */
@@ -248,7 +249,7 @@ static Image
 
 static MagickBooleanType
   XSaveImage(Display *,XResourceInfo *,XWindows *,Image *,ExceptionInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -328,7 +329,7 @@ MagickExport MagickBooleanType AnimateImages(const ImageInfo *image_info,
   status=exception->severity == UndefinedException ? MagickTrue : MagickFalse;
   return(status != 0 ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -676,7 +677,7 @@ static Image *XMagickCommand(Display *display,XResourceInfo *resource_info,
   }
   return(nexus);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1169,7 +1170,7 @@ MagickExport void XAnimateBackgroundImage(Display *display,
   image_list=(Image **) RelinquishMagickMemory(image_list);
   images=DestroyImageList(images);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2867,7 +2868,7 @@ MagickExport Image *XAnimateImages(Display *display,
       "UnableToOpenFile","%s",resource_info->home_directory);
   return(nexus);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3012,7 +3013,7 @@ static MagickBooleanType XSaveImage(Display *display,
   return(status != 0 ? MagickTrue : MagickFalse);
 }
 #else
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

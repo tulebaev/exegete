@@ -60,7 +60,7 @@
 #include "MagickCore/resource_.h"
 #include "MagickCore/string_.h"
 #if defined(MAGICKCORE_ZLIB_DELEGATE)
-#include "zlib.h"
+#include <zlib/zlib.h>
 #endif
 
 /*

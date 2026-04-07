@@ -82,7 +82,7 @@
 #include "MagickCore/utility-private.h"
 #include "MagickCore/version.h"
 #if defined(MAGICKCORE_LQR_DELEGATE)
-#include <lqr.h>
+#include <lqr/lqr.h>
 #endif
 
 /*

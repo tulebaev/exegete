@@ -54,12 +54,12 @@
 #include "MagickCore/token-private.h"
 #include "MagickCore/utility.h"
 #include "MagickCore/utility-private.h"
-#include "MagickCore/xwindow-private.h"
 #include "MagickCore/widget.h"
 #include "MagickCore/widget-private.h"
 
 #if defined(MAGICKCORE_X11_DELEGATE)
-
+#include "MagickCore/xwindow-private.h"
+
 /*
   Define declarations.
 */
@@ -83,7 +83,7 @@
   ((position.x >= 0) && (position.y >= 0) &&  \
    (position.x < (int) window_info.width) &&  \
    (position.y < (int) window_info.height)) ? MagickTrue : MagickFalse)
-
+
 /*
   Enum declarations.
 */
@@ -129,7 +129,7 @@ typedef struct _XWidgetInfo
     trough,
     highlight;
 } XWidgetInfo;
-
+
 /*
   Variable declarations.
 */
@@ -150,14 +150,14 @@ static XWidgetInfo
     (char *) NULL, (char *) NULL, (char *) NULL, 0, 0, 0, 0, 0, 0, 0, 0,
     MagickFalse, MagickFalse, MagickFalse, MagickFalse, MagickFalse
   };
-
+
 /*
   Constant declarations.
 */
 static const int
   BorderOffset = 4,
   DoubleClick = 250;
-
+
 /*
   Method prototypes.
 */
@@ -166,7 +166,7 @@ static void
   XSetBevelColor(Display *,const XWindowInfo *,const MagickStatusType),
   XSetMatteColor(Display *,const XWindowInfo *,const MagickStatusType),
   XSetTextColor(Display *,const XWindowInfo *,const MagickStatusType);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -192,7 +192,7 @@ MagickPrivate void DestroyXWidget(void)
   if (selection_info != (XWidgetInfo *) NULL)
     selection_info=(XWidgetInfo *) RelinquishMagickMemory(selection_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -281,7 +281,7 @@ static void XDrawBevel(Display *display,const XWindowInfo *window_info,
     points,6,Complex,CoordModeOrigin);
   (void) XSetFillStyle(display,window_info->widget_context,FillSolid);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -384,7 +384,7 @@ static void XDrawBeveledButton(Display *display,const XWindowInfo *window_info,
   if (button_info->raised == MagickFalse)
     XDelay(display,SuspendTime << 2);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -424,7 +424,7 @@ static void XDrawBeveledMatte(Display *display,const XWindowInfo *window_info,
   XDrawBevel(display,window_info,matte_info);
   XDrawMatte(display,window_info,matte_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -471,7 +471,7 @@ static void XDrawMatte(Display *display,const XWindowInfo *window_info,
         matte_info->x,matte_info->y,matte_info->width,matte_info->height);
     }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -608,7 +608,7 @@ static void XDrawMatteText(Display *display,const XWindowInfo *window_info,
   (void) XDrawLine(display,window_info->id,window_info->annotate_context,x,y+3,
     x,y-(int) height+3);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -734,7 +734,7 @@ static void XDrawTriangleEast(Display *display,const XWindowInfo *window_info,
   (void) XDrawString(display,window_info->id,window_info->widget_context,x1,y1,
     triangle_info->text,Extent(triangle_info->text));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -844,7 +844,7 @@ static void XDrawTriangleNorth(Display *display,const XWindowInfo *window_info,
     points,4,Complex,CoordModeOrigin);
   (void) XSetFillStyle(display,window_info->widget_context,FillSolid);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -955,7 +955,7 @@ static void XDrawTriangleSouth(Display *display,const XWindowInfo *window_info,
     points,4,Complex,CoordModeOrigin);
   (void) XSetFillStyle(display,window_info->widget_context,FillSolid);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1050,7 +1050,7 @@ static void XDrawWidgetText(Display *display,const XWindowInfo *window_info,
       text_info->x,text_info->y,text_info->x,text_info->y+(int)
       text_info->height-1);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1183,7 +1183,7 @@ static void XEditText(Display *display,XWidgetInfo *text_info,
     }
   }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1232,7 +1232,7 @@ static void XGetWidgetInfo(const char *text,XWidgetInfo *widget_info)
     widget_info->cursor+=Extent(text);
   widget_info->marker=(char *) text;
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1283,7 +1283,7 @@ static void XHighlightWidget(Display *display,const XWindowInfo *window_info,
     ((int) window_info->height-(y << 1)));
   (void) XSetFillStyle(display,window_info->widget_context,FillSolid);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1407,7 +1407,7 @@ static int XScreenEvent(Display *display,XEvent *event,char *data)
 #if defined(__cplusplus) || defined(c_plusplus)
 }
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1466,7 +1466,7 @@ static void XSetBevelColor(Display *display,const XWindowInfo *window_info,
       (void) XSetForeground(display,window_info->widget_context,
         window_info->pixel_info->shadow_color.pixel);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1517,7 +1517,7 @@ static void XSetMatteColor(Display *display,const XWindowInfo *window_info,
       (void) XSetForeground(display,window_info->widget_context,
         window_info->pixel_info->depth_color.pixel);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1576,7 +1576,7 @@ static void XSetTextColor(Display *display,const XWindowInfo *window_info,
     (void) XSetForeground(display,window_info->widget_context,
       window_info->pixel_info->background_color.pixel);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2771,7 +2771,7 @@ MagickPrivate void XColorBrowserWidget(Display *display,XWindows *windows,
   XNoticeWidget(display,windows,"Color is unknown to X server:",reply);
   (void) CopyMagickString(reply,"gray",MagickPathExtent);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3202,7 +3202,7 @@ MagickPrivate int XCommandWidget(Display *display,XWindows *windows,
     }
   return(id);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3609,7 +3609,7 @@ MagickPrivate int XConfirmWidget(Display *display,XWindows *windows,
   XCheckRefreshWindows(display,windows);
   return(confirm);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4189,7 +4189,7 @@ MagickPrivate int XDialogWidget(Display *display,XWindows *windows,
         raised=MagickTrue;
   return(raised == MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5427,7 +5427,7 @@ MagickPrivate void XFileBrowserWidget(Display *display,XWindows *windows,
   if (*reply == '~')
     ExpandFilename(reply);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -6642,7 +6642,7 @@ MagickPrivate void XFontBrowserWidget(Display *display,XWindows *windows,
   (void) XFreeFontNames(listhead);
   fontlist=(char **) RelinquishMagickMemory(fontlist);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -6736,7 +6736,7 @@ MagickPrivate void XInfoWidget(Display *display,XWindows *windows,
   monitor_info.raised=MagickTrue;
   XDrawWidgetText(display,&windows->info,&monitor_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -7653,7 +7653,7 @@ MagickPrivate void XListBrowserWidget(Display *display,XWindows *windows,
   (void) XWithdrawWindow(display,window_info->id,window_info->screen);
   XCheckRefreshWindows(display,windows);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -8097,7 +8097,7 @@ MagickPrivate int XMenuWidget(Display *display,XWindows *windows,
   (void) CopyMagickString(item,selections[selection_info.id],MagickPathExtent);
   return(selection_info.id);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -8429,7 +8429,7 @@ MagickPrivate void XNoticeWidget(Display *display,XWindows *windows,
   (void) XWithdrawWindow(display,windows->widget.id,windows->widget.screen);
   XCheckRefreshWindows(display,windows);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -8884,7 +8884,7 @@ MagickPrivate MagickBooleanType XPreferencesWidget(Display *display,
   XUserPreferences(resource_info);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -8964,7 +8964,7 @@ MagickPrivate void XProgressMonitorWidget(Display *display,XWindows *windows,
   XDrawWidgetText(display,&windows->info,&monitor_info);
   (void) XFlush(display);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

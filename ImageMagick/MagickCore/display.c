@@ -98,15 +98,16 @@
 #include "MagickCore/visual-effects.h"
 #include "MagickCore/widget.h"
 #include "MagickCore/widget-private.h"
+
+#if defined(MAGICKCORE_X11_DELEGATE)
 #include "MagickCore/xwindow.h"
 #include "MagickCore/xwindow-private.h"
-
-#if defined(MAGICKCORE_X11_DELEGATE)
+
 /*
   Define declarations.
 */
 #define MaxColors  MagickMin((ssize_t) windows->visual_info->colormap_size,256L)
-
+
 /*
   Constant declarations.
 */
@@ -123,7 +124,7 @@ static const unsigned char
   {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
   };
-
+
 /*
   Help widget declarations.
 */
@@ -1303,7 +1304,7 @@ static const char
     "To cancel the image rotation, move the pointer back to the\n"
     "starting point of the line and release the button.\n"
   };
-
+
 /*
   Enumeration declarations.
 */
@@ -1473,7 +1474,7 @@ typedef enum
   TileDeleteCommand,
   TileUpdateCommand
 } ModeType;
-
+
 /*
   Stipples.
 */
@@ -1493,7 +1494,7 @@ typedef enum
 #define VerticalHeight  16
 #define WavyWidth  16
 #define WavyHeight  16
-
+
 /*
   Constant declaration.
 */
@@ -1533,7 +1534,7 @@ static const unsigned char
     0xe7, 0xff, 0x1f, 0xff, 0xff, 0xf8, 0xff, 0xe7, 0xff, 0xdf, 0xff, 0xbf,
     0xff, 0xbf, 0xff, 0x7f, 0xff, 0x7f, 0xff, 0x7f
   };
-
+
 /*
   Function prototypes.
 */
@@ -1588,7 +1589,7 @@ static void
   XSetCropGeometry(Display *,XWindows *,RectangleInfo *,Image *),
   XScreenEvent(Display *,XWindows *,XEvent *,ExceptionInfo *),
   XTranslateImage(Display *,XWindows *,Image *,const KeySym);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1682,7 +1683,7 @@ MagickExport MagickBooleanType DisplayImages(const ImageInfo *image_info,
     return(MagickFalse);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1739,7 +1740,7 @@ MagickExport MagickBooleanType RemoteDisplayCommand(const ImageInfo *image_info,
   (void) XCloseDisplay(display);
   return(status != 0 ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2718,7 +2719,7 @@ static MagickBooleanType XAnnotateEditImage(Display *display,
   (void) XConfigureImage(display,resource_info,windows,image,exception);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2792,7 +2793,7 @@ static MagickBooleanType XBackgroundImage(Display *display,
     exception);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3215,7 +3216,7 @@ static MagickBooleanType XChopImage(Display *display,
   (void) XConfigureImage(display,resource_info,windows,*image,exception);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3837,7 +3838,7 @@ static MagickBooleanType XColorEditImage(Display *display,
   (void) XFreeCursor(display,cursor);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4326,7 +4327,7 @@ static MagickBooleanType XCompositeImage(Display *display,
   (void) XConfigureImage(display,resource_info,windows,image,exception);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -4499,7 +4500,7 @@ static MagickBooleanType XConfigureImage(Display *display,
   XSetCursorState(display,windows,MagickFalse);
   return(status != 0 ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -5345,7 +5346,7 @@ static MagickBooleanType XCropImage(Display *display,
   (void) XConfigureImage(display,resource_info,windows,image,exception);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -6308,7 +6309,7 @@ static MagickBooleanType XDrawEditImage(Display *display,
   coordinate_info=(XPoint *) RelinquishMagickMemory(coordinate_info);
   return(status != 0 ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -6361,7 +6362,7 @@ static void XDrawPanRectangle(Display *display,XWindows *windows)
   XHighlightRectangle(display,windows->pan.id,windows->pan.annotate_context,
     &highlight_info);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -6644,7 +6645,7 @@ static void XImageCache(Display *display,XResourceInfo *resource_info,
   XDisplayImageInfo(display,resource_info,windows,undo_image,*image,exception);
   XSetCursorState(display,windows,MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -7046,7 +7047,7 @@ static DisplayCommand XImageWindowCommand(Display *display,
   }
   return(NullCommand);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -9291,7 +9292,7 @@ static Image *XMagickCommand(Display *display,XResourceInfo *resource_info,
   image_info=DestroyImageInfo(image_info);
   return(nexus);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -9418,7 +9419,7 @@ static void XMagnifyImage(Display *display,XWindows *windows,XEvent *event,
   */
   XSetCursorState(display,windows,MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -9542,7 +9543,7 @@ static void XMagnifyWindowCommand(Display *display,XWindows *windows,
   }
   XMakeMagnifyImage(display,windows,exception);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -9600,7 +9601,7 @@ static void XMakePanImage(Display *display,XResourceInfo *resource_info,
   XDrawPanRectangle(display,windows);
   XSetCursorState(display,windows,MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -10196,7 +10197,7 @@ static MagickBooleanType XMatteEditImage(Display *display,
   (void) XFreeCursor(display,cursor);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -10379,7 +10380,7 @@ static Image *XOpenImage(Display *display,XResourceInfo *resource_info,
   image_info=DestroyImageInfo(image_info);
   return(nexus);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -10549,7 +10550,7 @@ static void XPanImage(Display *display,XWindows *windows,XEvent *event,
   (void) XFreeCursor(display,cursor);
   (void) XWithdrawWindow(display,windows->info.id,windows->info.screen);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -10922,7 +10923,7 @@ static MagickBooleanType XPasteImage(Display *display,
   (void) XConfigureImage(display,resource_info,windows,image,exception);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -11030,7 +11031,7 @@ static MagickBooleanType XPrintImage(Display *display,
   XSetCursorState(display,windows,MagickFalse);
   return(status != 0 ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -11985,7 +11986,7 @@ static MagickBooleanType XROIImage(Display *display,
     return(MagickTrue);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -12501,7 +12502,7 @@ static MagickBooleanType XRotateImage(Display *display,
   (void) XConfigureImage(display,resource_info,windows,*image,exception);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -12680,7 +12681,7 @@ static MagickBooleanType XSaveImage(Display *display,
   XSetCursorState(display,windows,MagickFalse);
   return(status != 0 ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -12953,7 +12954,7 @@ static void XScreenEvent(Display *display,XWindows *windows,XEvent *event,
       break;
   }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -13042,7 +13043,7 @@ static void XSetCropGeometry(Display *display,XWindows *windows,
   (void) FormatLocaleString(windows->image.crop_geometry,MagickPathExtent,
     "%ux%u%+d%+d",width,height,x,y);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -13332,7 +13333,7 @@ static Image *XTileImage(Display *display,XResourceInfo *resource_info,
   XSetCursorState(display,windows,MagickFalse);
   return(tile_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -13451,7 +13452,7 @@ static void XTranslateImage(Display *display,XWindows *windows,
   XRefreshWindow(display,&windows->image,(XEvent *) NULL);
   (void) XWithdrawWindow(display,windows->info.id,windows->info.screen);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -13590,7 +13591,7 @@ static MagickBooleanType XTrimImage(Display *display,
   XSetCursorState(display,windows,MagickFalse);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -13782,7 +13783,7 @@ static Image *XVisualDirectoryImage(Display *display,
     windows->im_next_image,CurrentTime);
   return(montage_image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -14059,7 +14060,7 @@ MagickExport MagickBooleanType XDisplayBackgroundImage(Display *display,
   (void) XSync(display,MagickFalse);
   return(window_info.id == root_window ? MagickTrue : MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -16195,7 +16196,7 @@ MagickExport Image *XDisplayImage(Display *display,XResourceInfo *resource_info,
   return(nexus);
 }
 #else
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -16239,7 +16240,7 @@ MagickExport MagickBooleanType DisplayImages(const ImageInfo *image_info,
     "DelegateLibrarySupportNotBuiltIn","'%s' (X11)",image->filename);
   return(MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

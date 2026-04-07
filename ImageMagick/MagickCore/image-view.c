@@ -41,17 +41,17 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
+#include "MagickCore.h"
 #include "MagickCore/studio.h"
-#include "MagickCore/MagickCore.h"
 #include "MagickCore/exception-private.h"
 #include "MagickCore/memory-private.h"
 #include "MagickCore/monitor-private.h"
 #include "MagickCore/thread-private.h"
-
+
 /*
   Typedef declarations.
 */
@@ -78,7 +78,7 @@ struct _ImageView
   size_t
     signature;
 };
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -119,7 +119,7 @@ MagickExport ImageView *CloneImageView(const ImageView *image_view)
   clone_view->signature=MagickCoreSignature;
   return(clone_view);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -154,7 +154,7 @@ MagickExport ImageView *DestroyImageView(ImageView *image_view)
   image_view=(ImageView *) RelinquishMagickMemory(image_view);
   return(image_view);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -306,7 +306,7 @@ MagickExport MagickBooleanType DuplexTransferImageViewIterator(
   }
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -338,7 +338,7 @@ MagickExport void *GetImageViewAuthenticMetacontent(
   assert(image_view->signature == MagickCoreSignature);
   return(GetCacheViewAuthenticMetacontent(image_view->view));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -368,7 +368,7 @@ MagickExport Quantum *GetImageViewAuthenticPixels(
   assert(image_view->signature == MagickCoreSignature);
   return(GetCacheViewAuthenticPixelQueue(image_view->view));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -424,7 +424,7 @@ MagickExport char *GetImageViewException(const ImageView *image_view,
     }
   return(description);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -453,7 +453,7 @@ MagickExport RectangleInfo GetImageViewExtent(const ImageView *image_view)
   assert(image_view->signature == MagickCoreSignature);
   return(image_view->extent);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -482,7 +482,7 @@ MagickExport Image *GetImageViewImage(const ImageView *image_view)
   assert(image_view->signature == MagickCoreSignature);
   return(image_view->image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -594,7 +594,7 @@ MagickExport MagickBooleanType GetImageViewIterator(ImageView *source,
   }
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -626,7 +626,7 @@ MagickExport const void *GetImageViewVirtualMetacontent(
   assert(image_view->signature == MagickCoreSignature);
   return(GetCacheViewVirtualMetacontent(image_view->view));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -656,7 +656,7 @@ MagickExport const Quantum *GetImageViewVirtualPixels(
   assert(image_view->signature == MagickCoreSignature);
   return(GetCacheViewVirtualPixelQueue(image_view->view));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -688,7 +688,7 @@ MagickExport MagickBooleanType IsImageView(const ImageView *image_view)
     return(MagickFalse);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -736,7 +736,7 @@ MagickExport ImageView *NewImageView(Image *image,ExceptionInfo *exception)
   image_view->signature=MagickCoreSignature;
   return(image_view);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -791,7 +791,7 @@ MagickExport ImageView *NewImageViewRegion(Image *image,const ssize_t x,
   image_view->signature=MagickCoreSignature;
   return(image_view);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -824,7 +824,7 @@ MagickExport void SetImageViewDescription(ImageView *image_view,
   assert(image_view->signature == MagickCoreSignature);
   image_view->description=ConstantString(description);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -947,7 +947,7 @@ MagickExport MagickBooleanType SetImageViewIterator(ImageView *destination,
   }
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1087,7 +1087,7 @@ MagickExport MagickBooleanType TransferImageViewIterator(ImageView *source,
   }
   return(status);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
