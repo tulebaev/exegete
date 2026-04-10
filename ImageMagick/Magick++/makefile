@@ -1,9 +1,9 @@
-SRCS = Blob.cpp BlobRef.cpp CoderInfo.cpp \
-       Color.cpp Drawable.cpp Exception.cpp \
-       Functions.cpp Geometry.cpp Image.cpp \
-       ImageRef.cpp Montage.cpp Options.cpp \
-       Pixels.cpp ResourceLimits.cpp \
-       SecurityPolicy.cpp Statistic.cpp \
+SRCS = Blob.cpp BlobRef.cpp CoderInfo.cpp\
+       Color.cpp Drawable.cpp Exception.cpp\
+       Functions.cpp Geometry.cpp Image.cpp\
+       ImageRef.cpp Montage.cpp Options.cpp\
+       Pixels.cpp ResourceLimits.cpp\
+       SecurityPolicy.cpp Statistic.cpp\
        STL.cpp Thread.cpp TypeMetric.cpp
 
 

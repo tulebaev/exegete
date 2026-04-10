@@ -22,7 +22,7 @@
 extern "C" {
 #endif
 
-#include "MagickCore/magick-baseconfig.h"
+#include "magick-baseconfig.h"
 
 #define MAGICKCORE_STRING_QUOTE(str) #str
 #define MAGICKCORE_STRING_XQUOTE(str) MAGICKCORE_STRING_QUOTE(str)

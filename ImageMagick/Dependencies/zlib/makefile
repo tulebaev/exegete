@@ -6,7 +6,7 @@ STATICLIB = zlib.lib
 
 CC = cl
 AR = lib
-CFLAGS  = -nologo -MD -W3 -O2 -Oy- -Zi -Fd"zlib"
+CFLAGS  = -nologo -W3 -O2 -Oy- -Zi -Fd"zlib"
 WFLAGS  = -D_CRT_SECURE_NO_DEPRECATE -D_CRT_NONSTDC_NO_DEPRECATE
 ARFLAGS = -nologo
 

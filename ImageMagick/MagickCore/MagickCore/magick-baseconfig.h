@@ -90,7 +90,7 @@
 /*
   Exclude deprecated methods in MagickCore API
 */
-#undef MAGICKCORE_EXCLUDE_DEPRECATED
+#define MAGICKCORE_EXCLUDE_DEPRECATED
 
 /*
   Define to only use the built-in (in-memory) settings.
@@ -110,7 +110,7 @@ Define to use the CAIRO library
 /*
 Define to use the OpenEXR library
 */
-#define MAGICKCORE_OPENEXR_DELEGATE
+#undef MAGICKCORE_OPENEXR_DELEGATE
 
 /*
 Define to use the FreeType (TrueType & Postscript font support) library
@@ -120,7 +120,7 @@ Define to use the FreeType (TrueType & Postscript font support) library
 /*
 Define to use the libheif library
 */
-#define MAGICKCORE_HEIC_DELEGATE
+#undef MAGICKCORE_HEIC_DELEGATE
 
 /*
 Define to use the TurboJPEG library
@@ -130,7 +130,7 @@ Define to use the TurboJPEG library
 /*
 Define to use the jpeg-xl library
 */
-#define MAGICKCORE_JXL_DELEGATE
+#undef MAGICKCORE_JXL_DELEGATE
 
 /*
 Define to use the "little" Color Management System (LCMS) library
@@ -146,12 +146,12 @@ Define to use the Liquid Rescale library
 /*
 Define to use the lzma compression library
 */
-#define MAGICKCORE_LZMA_DELEGATE
+#undef MAGICKCORE_LZMA_DELEGATE
 
 /*
 Define to use the OpenJPEG library
 */
-#define MAGICKCORE_LIBOPENJP2_DELEGATE
+#undef MAGICKCORE_LIBOPENJP2_DELEGATE
 
 /*
 Define to use the Pango/Cairo library
@@ -166,12 +166,12 @@ Define to use the PNG library
 /*
 Define to use the raqm library
 */
-#define MAGICKCORE_RAQM_DELEGATE
+#undef MAGICKCORE_RAQM_DELEGATE
 
 /*
 Define to use the Raw library
 */
-#define MAGICKCORE_RAW_R_DELEGATE
+#undef MAGICKCORE_RAW_R_DELEGATE
 
 /*
 Define to use the RSVG library

@@ -66,14 +66,14 @@
 #include "MagickCore/xml-tree.h"
 #include "MagickCore/xml-tree-private.h"
 #if defined(MAGICKCORE_XML_DELEGATE)
-#  include <libxml/parser.h>
-#  include <libxml/tree.h>
+#  include <xml/parser.h>
+#  include <xml/tree.h>
 #endif
 
 /*
   Define declarations.
 */
-#define PolicyFilename  "policy.xml"
+#define PolicyFilename "policy.xml"
 
 /*
   Typedef declarations.

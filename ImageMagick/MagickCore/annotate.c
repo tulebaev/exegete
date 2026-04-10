@@ -115,7 +115,7 @@
 #endif
 #endif
 #if defined(MAGICKCORE_RAQM_DELEGATE)
-#include <raqm/raqm.h>
+#include <raqm.h>
 #endif
 typedef struct _GraphemeInfo
 {
