@@ -58,8 +58,10 @@
 #include "MagickCore/string_.h"
 #include "MagickCore/module.h"
 #include "MagickCore/utility.h"
-#include "MagickCore/xwindow.h"
-#include "MagickCore/xwindow-private.h"
+#if defined(MAGICKCORE_X11_DELEGATE)
+#  include "MagickCore/xwindow.h"
+#  include "MagickCore/xwindow-private.h"
+#endif
 
 /*
   Forward declarations.

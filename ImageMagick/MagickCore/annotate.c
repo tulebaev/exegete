@@ -81,7 +81,9 @@
 #include "MagickCore/type.h"
 #include "MagickCore/utility.h"
 #include "MagickCore/utility-private.h"
-#include "MagickCore/xwindow-private.h"
+#if defined(MAGICKCORE_X11_DELEGATE)
+#  include "MagickCore/xwindow-private.h"
+#endif
 
 #if defined(MAGICKCORE_FREETYPE_DELEGATE)
 #if defined(__MINGW32__)
@@ -141,13 +143,18 @@ static SemaphoreInfo
 */
 static MagickBooleanType
   RenderType(Image *,const DrawInfo *,const PointInfo *,TypeMetric *,
-    ExceptionInfo *),
+    ExceptionInfo *);
+static MagickBooleanType
   RenderPostscript(Image *,const DrawInfo *,const PointInfo *,TypeMetric *,
-    ExceptionInfo *),
+    ExceptionInfo *);
+static MagickBooleanType
   RenderFreetype(Image *,const DrawInfo *,const char *,const PointInfo *,
-    TypeMetric *,ExceptionInfo *),
+    TypeMetric *,ExceptionInfo *);
+#if defined(MAGICKCORE_X11_DELEGATE)
+static MagickBooleanType
   RenderX11(Image *,const DrawInfo *,const PointInfo *,TypeMetric *,
     ExceptionInfo *);
+#endif
 
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1011,8 +1018,10 @@ static MagickBooleanType RenderType(Image *image,const DrawInfo *draw_info,
             metrics,exception);
           return(status);
         }
+#if defined(MAGICKCORE_X11_DELEGATE)
       if (*draw_info->font == '-')
         return(RenderX11(image,draw_info,offset,metrics,exception));
+#endif
       if (*draw_info->font == '^')
         return(RenderPostscript(image,draw_info,offset,metrics,exception));
       if (IsPathAccessible(draw_info->font) != MagickFalse)
@@ -2443,6 +2452,7 @@ static MagickBooleanType RenderPostscript(Image *image,
   return(MagickTrue);
 }
 
+#if defined(MAGICKCORE_X11_DELEGATE)
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -2488,3 +2498,4 @@ static MagickBooleanType RenderX11(Image *image,const DrawInfo *draw_info,
   UnlockSemaphoreInfo(annotate_semaphore);
   return(status);
 }
+#endif

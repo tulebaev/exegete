@@ -1,5 +1,5 @@
 /*
-  Copyright @ 1999 ImageMagick Studio LLC, a non-profit organization
+  Copyright @ 2015 ImageMagick Studio LLC, a non-profit organization
   dedicated to making software imaging solutions freely available.
 
   You may not use this file except in compliance with the License.  You may
@@ -13,27 +13,43 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
-  MagickCore methods to interactively display and edit an image.
+  Private header to reuse psd functionality.
 */
-#ifndef MAGICKCORE_DISPLAY_PRIVATE_H
-#define MAGICKCORE_DISPLAY_PRIVATE_H
-
-#if defined(MAGICKCORE_X11_DELEGATE)
-#  include "MagickCore/xwindow-private.h"
-#endif
+#ifndef _PSD_PRIVATE_H
+#define _PSD_PRIVATE_H
 
 #if defined(__cplusplus) || defined(c_plusplus)
 extern "C" {
 #endif
 
-#if defined(MAGICKCORE_X11_DELEGATE)
-extern MagickExport Image
-  *XDisplayImage(Display *,XResourceInfo *,char **,int,Image **,size_t *,
-    ExceptionInfo *);
+typedef struct _PSDInfo
+{
+  char
+    signature[4];
 
-extern MagickExport MagickBooleanType XDisplayBackgroundImage(Display *,
-  XResourceInfo *,Image *,ExceptionInfo *);
-#endif
+  MagickBooleanType
+    has_merged_image;
+
+  size_t
+    rows,
+    columns;
+
+  unsigned char
+    reserved[6];
+
+  unsigned short
+    channels,
+    depth,
+    mode,
+    min_channels,
+    version;
+} PSDInfo;
+
+extern ModuleExport MagickBooleanType
+  ReadPSDLayers(Image *,const ImageInfo *,const PSDInfo *,
+    ExceptionInfo *),
+  WritePSDLayers(Image *,const ImageInfo *,const PSDInfo *,
+    ExceptionInfo *);
 
 #if defined(__cplusplus) || defined(c_plusplus)
 }

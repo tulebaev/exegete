@@ -13,26 +13,13 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
-  MagickCore methods to interactively display and edit an image.
+  MagickWand pixel wand private methods.
 */
-#ifndef MAGICKCORE_DISPLAY_PRIVATE_H
-#define MAGICKCORE_DISPLAY_PRIVATE_H
-
-#if defined(MAGICKCORE_X11_DELEGATE)
-#  include "MagickCore/xwindow-private.h"
-#endif
+#ifndef MAGICKWAND_PIXEL_WAND_PRIVATE_H
+#define MAGICKWAND_PIXEL_WAND_PRIVATE_H
 
 #if defined(__cplusplus) || defined(c_plusplus)
 extern "C" {
-#endif
-
-#if defined(MAGICKCORE_X11_DELEGATE)
-extern MagickExport Image
-  *XDisplayImage(Display *,XResourceInfo *,char **,int,Image **,size_t *,
-    ExceptionInfo *);
-
-extern MagickExport MagickBooleanType XDisplayBackgroundImage(Display *,
-  XResourceInfo *,Image *,ExceptionInfo *);
 #endif
 
 #if defined(__cplusplus) || defined(c_plusplus)

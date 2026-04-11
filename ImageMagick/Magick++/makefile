@@ -6,12 +6,11 @@ SRCS = Blob.cpp BlobRef.cpp CoderInfo.cpp\
        SecurityPolicy.cpp Statistic.cpp\
        STL.cpp Thread.cpp TypeMetric.cpp
 
-
 OBJS = $(SRCS:.cpp=.obj)
 
 all:
 	cl /c $(SRCS) /I.. /EHsc /DMAGICKCORE_WINDOWS_SUPPORT
-	lib $(OBJS) /out:..\Magick++.lib
+	lib $(OBJS) /nologo /out:..\Magick++.lib
 
 clean:
 	del *.obj

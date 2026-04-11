@@ -106,7 +106,7 @@
 /*
   Define declarations.
 */
-#define MaxColors  MagickMin((ssize_t) windows->visual_info->colormap_size,256L)
+#define MaxColors MagickMin((ssize_t) windows->visual_info->colormap_size,256L)
 
 /*
   Constant declarations.

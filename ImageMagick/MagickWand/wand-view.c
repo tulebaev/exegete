@@ -2,20 +2,20 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
 %                                                                             %
-%                     IIIII  M   M   AAA    GGGG  EEEEE                       %
-%                       I    MM MM  A   A  G      E                           %
-%                       I    M M M  AAAAA  G  GG  EEE                         %
-%                       I    M   M  A   A  G   G  E                           %
-%                     IIIII  M   M  A   A   GGGG  EEEEE                       %
+%                        W   W   AAA   N   N  DDDD                            %
+%                        W   W  A   A  NN  N  D   D                           %
+%                        W W W  AAAAA  N N N  D   D                           %
+%                        WW WW  A   A  N  NN  D   D                           %
+%                        W   W  A   A  N   N  DDDD                            %
 %                                                                             %
-%                         V   V  IIIII  EEEEE  W   W                          %
-%                         V   V    I    E      W   W                          %
-%                         V   V    I    EEE    W W W                          %
-%                          V V     I    E      WW WW                          %
-%                           V    IIIII  EEEEE  W   W                          %
+%                        V   V  IIIII  EEEEE  W   W                           %
+%                        V   V    I    E      W   W                           %
+%                        V   V    I    EEE    W W W                           %
+%                         V V     I    E      WW WW                           %
+%                          V    IIIII  EEEEE  W   W                           %
 %                                                                             %
 %                                                                             %
-%                       MagickCore Image View Methods                         %
+%                        MagickWand Wand View Methods                         %
 %                                                                             %
 %                              Software Design                                %
 %                                   Cristy                                    %
@@ -45,29 +45,43 @@
 /*
   Include declarations.
 */
-#include "MagickCore/studio.h"
-#include "MagickCore/image-view.h"
-#include "MagickCore/exception-private.h"
-#include "MagickCore/memory-private.h"
+#include "MagickWand/studio.h"
+#include "MagickWand/MagickWand.h"
+#include "MagickWand/magick-wand-private.h"
+#include "MagickWand/wand.h"
 #include "MagickCore/monitor-private.h"
 #include "MagickCore/thread-private.h"
+/*
+ Define declarations.
+*/
+#define WandViewId  "WandView"
 
 /*
   Typedef declarations.
 */
-struct _ImageView
+struct _WandView
 {
+  size_t
+    id;
+
   char
+    name[MagickPathExtent],
     *description;
 
   RectangleInfo
     extent;
 
-  Image
-    *image;
+  MagickWand
+    *wand;
 
   CacheView
     *view;
+
+  Image
+    *image;
+
+  PixelWand
+    ***pixel_wands;
 
   ExceptionInfo
     *exception;
@@ -84,39 +98,54 @@ struct _ImageView
 %                                                                             %
 %                                                                             %
 %                                                                             %
-%   C l o n e I m a g e V i e w                                               %
+%   C l o n e W a n d V i e w                                                 %
 %                                                                             %
 %                                                                             %
 %                                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%  CloneImageView() makes a copy of the specified image view.
+%  CloneWandView() makes a copy of the specified wand view.
 %
-%  The format of the CloneImageView method is:
+%  The format of the CloneWandView method is:
 %
-%      ImageView *CloneImageView(const ImageView *image_view)
+%      WandView *CloneWandView(const WandView *wand_view)
 %
 %  A description of each parameter follows:
 %
-%    o image_view: the image view.
+%    o wand_view: the wand view.
 %
 */
-MagickExport ImageView *CloneImageView(const ImageView *image_view)
+WandExport WandView *CloneWandView(const WandView *wand_view)
 {
-  ImageView
+  ssize_t
+    i;
+
+  WandView
     *clone_view;
 
-  assert(image_view != (ImageView *) NULL);
-  assert(image_view->signature == MagickCoreSignature);
-  clone_view=(ImageView *) AcquireCriticalMemory(sizeof(*clone_view));
+  assert(wand_view != (WandView *) NULL);
+  assert(wand_view->signature == MagickWandSignature);
+  if (wand_view->debug != MagickFalse)
+    (void) LogMagickEvent(WandEvent,GetMagickModule(),"%s",wand_view->name);
+  clone_view=(WandView *) AcquireCriticalMemory(sizeof(*clone_view));
   (void) memset(clone_view,0,sizeof(*clone_view));
-  clone_view->description=ConstantString(image_view->description);
-  clone_view->extent=image_view->extent;
-  clone_view->view=CloneCacheView(image_view->view);
+  clone_view->id=AcquireWandId();
+  (void) FormatLocaleString(clone_view->name,MagickPathExtent,"%s-%.20g",
+    WandViewId,(double) clone_view->id);
+  clone_view->description=ConstantString(wand_view->description);
+  clone_view->image=CloneImage(wand_view->image,0,0,MagickTrue,
+    wand_view->exception);
+  clone_view->view=CloneCacheView(wand_view->view);
+  clone_view->extent=wand_view->extent;
   clone_view->exception=AcquireExceptionInfo();
-  InheritException(clone_view->exception,image_view->exception);
-  clone_view->debug=image_view->debug;
-  clone_view->signature=MagickCoreSignature;
+  InheritException(clone_view->exception,wand_view->exception);
+  for (i=0; i < (ssize_t) GetMagickResourceLimit(ThreadResource); i++)
+    clone_view->pixel_wands[i]=ClonePixelWands((const PixelWand **)
+      wand_view->pixel_wands[i],wand_view->extent.width);
+  clone_view->debug=wand_view->debug;
+  if (clone_view->debug != MagickFalse)
+    (void) LogMagickEvent(WandEvent,GetMagickModule(),"%s",clone_view->name);
+  clone_view->signature=MagickWandSignature;
   return(clone_view);
 }
 
@@ -125,34 +154,50 @@ MagickExport ImageView *CloneImageView(const ImageView *image_view)
 %                                                                             %
 %                                                                             %
 %                                                                             %
-%   D e s t r o y I m a g e V i e w                                           %
+%   D e s t r o y W a n d V i e w                                             %
 %                                                                             %
 %                                                                             %
 %                                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%  DestroyImageView() deallocates memory associated with a image view.
+%  DestroyWandView() deallocates memory associated with a wand view.
 %
-%  The format of the DestroyImageView method is:
+%  The format of the DestroyWandView method is:
 %
-%      ImageView *DestroyImageView(ImageView *image_view)
+%      WandView *DestroyWandView(WandView *wand_view)
 %
 %  A description of each parameter follows:
 %
-%    o image_view: the image view.
+%    o wand_view: the wand view.
 %
 */
-MagickExport ImageView *DestroyImageView(ImageView *image_view)
+
+static PixelWand ***DestroyPixelsTLS(PixelWand ***pixel_wands,
+  const size_t number_wands)
 {
-  assert(image_view != (ImageView *) NULL);
-  assert(image_view->signature == MagickCoreSignature);
-  if (image_view->description != (char *) NULL)
-    image_view->description=DestroyString(image_view->description);
-  image_view->view=DestroyCacheView(image_view->view);
-  image_view->exception=DestroyExceptionInfo(image_view->exception);
-  image_view->signature=(~MagickCoreSignature);
-  image_view=(ImageView *) RelinquishMagickMemory(image_view);
-  return(image_view);
+  ssize_t
+    i;
+
+  assert(pixel_wands != (PixelWand ***) NULL);
+  for (i=0; i < (ssize_t) GetMagickResourceLimit(ThreadResource); i++)
+    if (pixel_wands[i] != (PixelWand **) NULL)
+      pixel_wands[i]=DestroyPixelWands(pixel_wands[i],number_wands);
+  pixel_wands=(PixelWand ***) RelinquishMagickMemory(pixel_wands);
+  return(pixel_wands);
+}
+
+WandExport WandView *DestroyWandView(WandView *wand_view)
+{
+  assert(wand_view != (WandView *) NULL);
+  assert(wand_view->signature == MagickWandSignature);
+  wand_view->pixel_wands=DestroyPixelsTLS(wand_view->pixel_wands,
+    wand_view->extent.width);
+  wand_view->view=DestroyCacheView(wand_view->view);
+  wand_view->exception=DestroyExceptionInfo(wand_view->exception);
+  wand_view->signature=(~MagickWandSignature);
+  RelinquishWandId(wand_view->id);
+  wand_view=(WandView *) RelinquishMagickMemory(wand_view);
+  return(wand_view);
 }
 
 /*
@@ -160,24 +205,24 @@ MagickExport ImageView *DestroyImageView(ImageView *image_view)
 %                                                                             %
 %                                                                             %
 %                                                                             %
-%   D u p l e x T r a n s f e r I m a g e V i e w I t e r a t o r             %
+%   D u p l e x T r a n s f e r W a n d V i e w I t e r a t o r               %
 %                                                                             %
 %                                                                             %
 %                                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%  DuplexTransferImageViewIterator() iterates over three image views in
+%  DuplexTransferWandViewIterator() iterates over three wand views in
 %  parallel and calls your transfer method for each scanline of the view.  The
 %  source and duplex pixel extent is not confined to the image canvas-- that is
 %  you can include negative offsets or widths or heights that exceed the image
-%  dimension.  However, the destination image view is confined to the image
+%  dimension.  However, the destination wand view is confined to the image
 %  canvas-- that is no negative offsets or widths or heights that exceed the
 %  image dimension are permitted.
 %
 %  The callback signature is:
 %
-%      MagickBooleanType DuplexTransferImageViewMethod(const ImageView *source,
-%        const ImageView *duplex,ImageView *destination,const ssize_t y,
+%      MagickBooleanType DuplexTransferImageViewMethod(const WandView *source,
+%        const WandView *duplex,WandView *destination,const ssize_t y,
 %        const int thread_id,void *context)
 %
 %  Use this pragma if the view is not single threaded:
@@ -187,28 +232,28 @@ MagickExport ImageView *DestroyImageView(ImageView *image_view)
 %  to define a section of code in your callback transfer method that must be
 %  executed by a single thread at a time.
 %
-%  The format of the DuplexTransferImageViewIterator method is:
+%  The format of the DuplexTransferWandViewIterator method is:
 %
-%      MagickBooleanType DuplexTransferImageViewIterator(ImageView *source,
-%        ImageView *duplex,ImageView *destination,
-%        DuplexTransferImageViewMethod transfer,void *context)
+%      MagickBooleanType DuplexTransferWandViewIterator(WandView *source,
+%        WandView *duplex,WandView *destination,
+%        DuplexTransferWandViewMethod transfer,void *context)
 %
 %  A description of each parameter follows:
 %
-%    o source: the source image view.
+%    o source: the source wand view.
 %
-%    o duplex: the duplex image view.
+%    o duplex: the duplex wand view.
 %
-%    o destination: the destination image view.
+%    o destination: the destination wand view.
 %
 %    o transfer: the transfer callback method.
 %
 %    o context: the user defined context.
 %
 */
-MagickExport MagickBooleanType DuplexTransferImageViewIterator(
-  ImageView *source,ImageView *duplex,ImageView *destination,
-  DuplexTransferImageViewMethod transfer,void *context)
+WandExport MagickBooleanType DuplexTransferWandViewIterator(WandView *source,
+  WandView *duplex,WandView *destination,DuplexTransferWandViewMethod transfer,
+  void *context)
 {
   Image
     *destination_image,
@@ -228,12 +273,12 @@ MagickExport MagickBooleanType DuplexTransferImageViewIterator(
   ssize_t
     y;
 
-  assert(source != (ImageView *) NULL);
-  assert(source->signature == MagickCoreSignature);
-  if (transfer == (DuplexTransferImageViewMethod) NULL)
+  assert(source != (WandView *) NULL);
+  assert(source->signature == MagickWandSignature);
+  if (transfer == (DuplexTransferWandViewMethod) NULL)
     return(MagickFalse);
-  source_image=source->image;
-  destination_image=destination->image;
+  source_image=source->wand->images;
+  destination_image=destination->wand->images;
   status=SetImageStorageClass(destination_image,DirectClass,
     destination->exception);
   if (status == MagickFalse)
@@ -241,7 +286,7 @@ MagickExport MagickBooleanType DuplexTransferImageViewIterator(
   status=MagickTrue;
   progress=0;
 #if defined(MAGICKCORE_OPENMP_SUPPORT)
-  height=source->extent.height-(size_t) source->extent.y;
+  height=(size_t) ((ssize_t) source->extent.height-source->extent.y);
   #pragma omp parallel for schedule(static) shared(progress,status) \
     magick_number_threads(source_image,destination_image,height,1)
 #endif
@@ -257,6 +302,9 @@ MagickExport MagickBooleanType DuplexTransferImageViewIterator(
       *magick_restrict duplex_pixels,
       *magick_restrict pixels;
 
+    ssize_t
+      x;
+
     Quantum
       *magick_restrict destination_pixels;
 
@@ -269,6 +317,11 @@ MagickExport MagickBooleanType DuplexTransferImageViewIterator(
         status=MagickFalse;
         continue;
       }
+    for (x=0; x < (ssize_t) source->extent.width; x++)
+    {
+      PixelSetQuantumPixel(source->image,pixels,source->pixel_wands[id][x]);
+      pixels+=(ptrdiff_t) GetPixelChannels(source->image);
+    }
     duplex_pixels=GetCacheViewVirtualPixels(duplex->view,duplex->extent.x,y,
       duplex->extent.width,1,duplex->exception);
     if (duplex_pixels == (const Quantum *) NULL)
@@ -276,6 +329,12 @@ MagickExport MagickBooleanType DuplexTransferImageViewIterator(
         status=MagickFalse;
         continue;
       }
+    for (x=0; x < (ssize_t) duplex->extent.width; x++)
+    {
+      PixelSetQuantumPixel(duplex->image,duplex_pixels,
+        duplex->pixel_wands[id][x]);
+      duplex_pixels+=(ptrdiff_t) GetPixelChannels(duplex->image);
+    }
     destination_pixels=GetCacheViewAuthenticPixels(destination->view,
       destination->extent.x,y,destination->extent.width,1,
       destination->exception);
@@ -284,8 +343,23 @@ MagickExport MagickBooleanType DuplexTransferImageViewIterator(
         status=MagickFalse;
         continue;
       }
+    for (x=0; x < (ssize_t) destination->extent.width; x++)
+    {
+      PixelSetQuantumPixel(destination->image,destination_pixels,
+        destination->pixel_wands[id][x]);
+      destination_pixels+=(ptrdiff_t) GetPixelChannels(destination->image);
+    }
     if (transfer(source,duplex,destination,y,id,context) == MagickFalse)
       status=MagickFalse;
+    destination_pixels=GetCacheViewAuthenticPixels(destination->view,
+      destination->extent.x,y,destination->extent.width,1,
+      destination->exception);
+    for (x=0; x < (ssize_t) destination->extent.width; x++)
+    {
+      PixelGetQuantumPixel(destination->image,destination->pixel_wands[id][x],
+        destination_pixels);
+      destination_pixels+=(ptrdiff_t) GetPixelChannels(destination->image);
+    }
     sync=SyncCacheViewAuthenticPixels(destination->view,destination->exception);
     if (sync == MagickFalse)
       status=MagickFalse;
@@ -293,7 +367,7 @@ MagickExport MagickBooleanType DuplexTransferImageViewIterator(
       {
         MagickBooleanType
           proceed;
- 
+
 #if defined(MAGICKCORE_OPENMP_SUPPORT)
         #pragma omp atomic
 #endif
@@ -312,113 +386,54 @@ MagickExport MagickBooleanType DuplexTransferImageViewIterator(
 %                                                                             %
 %                                                                             %
 %                                                                             %
-%   G e t I m a g e V i e w A u t h e n t i c M e t a c o n t e n t           %
+%   G e t W a n d V i e w E x c e p t i o n                                   %
 %                                                                             %
 %                                                                             %
 %                                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%  GetImageViewAuthenticMetacontent() returns the image view authentic
-%  meta-content.
+%  GetWandViewException() returns the severity, reason, and description of any
+%  error that occurs when utilizing a wand view.
 %
-%  The format of the GetImageViewAuthenticPixels method is:
+%  The format of the GetWandViewException method is:
 %
-%      void *GetImageViewAuthenticMetacontent(
-%        const ImageView *image_view)
-%
-%  A description of each parameter follows:
-%
-%    o image_view: the image view.
-%
-*/
-MagickExport void *GetImageViewAuthenticMetacontent(
-  const ImageView *image_view)
-{
-  assert(image_view != (ImageView *) NULL);
-  assert(image_view->signature == MagickCoreSignature);
-  return(GetCacheViewAuthenticMetacontent(image_view->view));
-}
-
-/*
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                             %
-%                                                                             %
-%                                                                             %
-%   G e t I m a g e V i e w A u t h e n t i c P i x e l s                     %
-%                                                                             %
-%                                                                             %
-%                                                                             %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%  GetImageViewAuthenticPixels() returns the image view authentic pixels.
-%
-%  The format of the GetImageViewAuthenticPixels method is:
-%
-%      Quantum *GetImageViewAuthenticPixels(const ImageView *image_view)
-%
-%  A description of each parameter follows:
-%
-%    o image_view: the image view.
-%
-*/
-MagickExport Quantum *GetImageViewAuthenticPixels(
-  const ImageView *image_view)
-{
-  assert(image_view != (ImageView *) NULL);
-  assert(image_view->signature == MagickCoreSignature);
-  return(GetCacheViewAuthenticPixelQueue(image_view->view));
-}
-
-/*
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                             %
-%                                                                             %
-%                                                                             %
-%   G e t I m a g e V i e w E x c e p t i o n                                 %
-%                                                                             %
-%                                                                             %
-%                                                                             %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%  GetImageViewException() returns the severity, reason, and description of any
-%  error that occurs when utilizing a image view.
-%
-%  The format of the GetImageViewException method is:
-%
-%      char *GetImageViewException(const PixelImage *image_view,
+%      char *GetWandViewException(const WandView *wand_view,
 %        ExceptionType *severity)
 %
 %  A description of each parameter follows:
 %
-%    o image_view: the pixel image_view.
+%    o wand_view: the pixel wand_view.
 %
 %    o severity: the severity of the error is returned here.
 %
 */
-MagickExport char *GetImageViewException(const ImageView *image_view,
+WandExport char *GetWandViewException(const WandView *wand_view,
   ExceptionType *severity)
 {
   char
     *description;
 
-  assert(image_view != (const ImageView *) NULL);
-  assert(image_view->signature == MagickCoreSignature);
+  assert(wand_view != (const WandView *) NULL);
+  assert(wand_view->signature == MagickWandSignature);
+  if (wand_view->debug != MagickFalse)
+    (void) LogMagickEvent(WandEvent,GetMagickModule(),"%s",wand_view->name);
   assert(severity != (ExceptionType *) NULL);
-  *severity=image_view->exception->severity;
-  description=(char *) AcquireQuantumMemory(MagickPathExtent,
-    2*sizeof(*description));
+  *severity=wand_view->exception->severity;
+  description=(char *) AcquireQuantumMemory(2UL*MagickPathExtent,
+    sizeof(*description));
   if (description == (char *) NULL)
-    ThrowFatalException(ResourceLimitFatalError,"MemoryAllocationFailed");
+    ThrowWandFatalException(ResourceLimitFatalError,"MemoryAllocationFailed",
+      wand_view->name);
   *description='\0';
-  if (image_view->exception->reason != (char *) NULL)
+  if (wand_view->exception->reason != (char *) NULL)
     (void) CopyMagickString(description,GetLocaleExceptionMessage(
-      image_view->exception->severity,image_view->exception->reason),
+      wand_view->exception->severity,wand_view->exception->reason),
         MagickPathExtent);
-  if (image_view->exception->description != (char *) NULL)
+  if (wand_view->exception->description != (char *) NULL)
     {
       (void) ConcatenateMagickString(description," (",MagickPathExtent);
       (void) ConcatenateMagickString(description,GetLocaleExceptionMessage(
-        image_view->exception->severity,image_view->exception->description),
+        wand_view->exception->severity,wand_view->exception->description),
         MagickPathExtent);
       (void) ConcatenateMagickString(description,")",MagickPathExtent);
     }
@@ -430,28 +445,28 @@ MagickExport char *GetImageViewException(const ImageView *image_view,
 %                                                                             %
 %                                                                             %
 %                                                                             %
-%   G e t I m a g e V i e w E x t e n t                                       %
+%   G e t W a n d V i e w E x t e n t                                         %
 %                                                                             %
 %                                                                             %
 %                                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%  GetImageViewExtent() returns the image view extent.
+%  GetWandViewExtent() returns the wand view extent.
 %
-%  The format of the GetImageViewExtent method is:
+%  The format of the GetWandViewExtent method is:
 %
-%      RectangleInfo GetImageViewExtent(const ImageView *image_view)
+%      RectangleInfo GetWandViewExtent(const WandView *wand_view)
 %
 %  A description of each parameter follows:
 %
-%    o image_view: the image view.
+%    o wand_view: the wand view.
 %
 */
-MagickExport RectangleInfo GetImageViewExtent(const ImageView *image_view)
+WandExport RectangleInfo GetWandViewExtent(const WandView *wand_view)
 {
-  assert(image_view != (ImageView *) NULL);
-  assert(image_view->signature == MagickCoreSignature);
-  return(image_view->extent);
+  assert(wand_view != (WandView *) NULL);
+  assert(wand_view->signature == MagickWandSignature);
+  return(wand_view->extent);
 }
 
 /*
@@ -459,42 +474,13 @@ MagickExport RectangleInfo GetImageViewExtent(const ImageView *image_view)
 %                                                                             %
 %                                                                             %
 %                                                                             %
-%   G e t I m a g e V i e w I m a g e                                         %
+%   G e t W a n d V i e w I t e r a t o r                                     %
 %                                                                             %
 %                                                                             %
 %                                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%  GetImageViewImage() returns the image associated with the image view.
-%
-%  The format of the GetImageViewImage method is:
-%
-%      MagickCore *GetImageViewImage(const ImageView *image_view)
-%
-%  A description of each parameter follows:
-%
-%    o image_view: the image view.
-%
-*/
-MagickExport Image *GetImageViewImage(const ImageView *image_view)
-{
-  assert(image_view != (ImageView *) NULL);
-  assert(image_view->signature == MagickCoreSignature);
-  return(image_view->image);
-}
-
-/*
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                                                             %
-%                                                                             %
-%                                                                             %
-%   G e t I m a g e V i e w I t e r a t o r                                   %
-%                                                                             %
-%                                                                             %
-%                                                                             %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%  GetImageViewIterator() iterates over the image view in parallel and calls
+%  GetWandViewIterator() iterates over the wand view in parallel and calls
 %  your get method for each scanline of the view.  The pixel extent is
 %  not confined to the image canvas-- that is you can include negative offsets
 %  or widths or heights that exceed the image dimension.  Any updates to
@@ -502,7 +488,7 @@ MagickExport Image *GetImageViewImage(const ImageView *image_view)
 %
 %  The callback signature is:
 %
-%      MagickBooleanType GetImageViewMethod(const ImageView *source,
+%      MagickBooleanType GetImageViewMethod(const WandView *source,
 %        const ssize_t y,const int thread_id,void *context)
 %
 %  Use this pragma if the view is not single threaded:
@@ -512,22 +498,22 @@ MagickExport Image *GetImageViewImage(const ImageView *image_view)
 %  to define a section of code in your callback get method that must be
 %  executed by a single thread at a time.
 %
-%  The format of the GetImageViewIterator method is:
+%  The format of the GetWandViewIterator method is:
 %
-%      MagickBooleanType GetImageViewIterator(ImageView *source,
-%        GetImageViewMethod get,void *context)
+%      MagickBooleanType GetWandViewIterator(WandView *source,
+%        GetWandViewMethod get,void *context)
 %
 %  A description of each parameter follows:
 %
-%    o source: the source image view.
+%    o source: the source wand view.
 %
 %    o get: the get callback method.
 %
 %    o context: the user defined context.
 %
 */
-MagickExport MagickBooleanType GetImageViewIterator(ImageView *source,
-  GetImageViewMethod get,void *context)
+WandExport MagickBooleanType GetWandViewIterator(WandView *source,
+  GetWandViewMethod get,void *context)
 {
   Image
     *source_image;
@@ -546,15 +532,15 @@ MagickExport MagickBooleanType GetImageViewIterator(ImageView *source,
   ssize_t
     y;
 
-  assert(source != (ImageView *) NULL);
-  assert(source->signature == MagickCoreSignature);
-  if (get == (GetImageViewMethod) NULL)
+  assert(source != (WandView *) NULL);
+  assert(source->signature == MagickWandSignature);
+  if (get == (GetWandViewMethod) NULL)
     return(MagickFalse);
-  source_image=source->image;
+  source_image=source->wand->images;
   status=MagickTrue;
   progress=0;
 #if defined(MAGICKCORE_OPENMP_SUPPORT)
-  height=source->extent.height-(size_t) source->extent.y;
+  height=(size_t) ((ssize_t) source->extent.height-source->extent.y);
   #pragma omp parallel for schedule(static) shared(progress,status) \
     magick_number_threads(source_image,source_image,height,1)
 #endif
@@ -566,6 +552,9 @@ MagickExport MagickBooleanType GetImageViewIterator(ImageView *source,
     const Quantum
       *pixels;
 
+    ssize_t
+      x;
+
     if (status == MagickFalse)
       continue;
     pixels=GetCacheViewVirtualPixels(source->view,source->extent.x,y,
@@ -575,6 +564,11 @@ MagickExport MagickBooleanType GetImageViewIterator(ImageView *source,
         status=MagickFalse;
         continue;
       }
+    for (x=0; x < (ssize_t) source->extent.width; x++)
+    {
+      PixelSetQuantumPixel(source->image,pixels,source->pixel_wands[id][x]);
+      pixels+=(ptrdiff_t) GetPixelChannels(source->image);
+    }
     if (get(source,y,id,context) == MagickFalse)
       status=MagickFalse;
     if (source_image->progress_monitor != (MagickProgressMonitor) NULL)
@@ -600,31 +594,31 @@ MagickExport MagickBooleanType GetImageViewIterator(ImageView *source,
 %                                                                             %
 %                                                                             %
 %                                                                             %
-%   G e t I m a g e V i e w V i r t u a l M e t a c o n t e n t     %
+%   G e t W a n d V i e w P i x e l s                                         %
 %                                                                             %
 %                                                                             %
 %                                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%  GetImageViewVirtualMetacontent() returns the image view virtual
-%  meta-content.
+%  GetWandViewPixels() returns the wand view pixel_wands.
 %
-%  The format of the GetImageViewVirtualMetacontent method is:
+%  The format of the GetWandViewPixels method is:
 %
-%      const void *GetImageViewVirtualMetacontent(
-%        const ImageView *image_view)
+%      PixelWand *GetWandViewPixels(const WandView *wand_view)
 %
 %  A description of each parameter follows:
 %
-%    o image_view: the image view.
+%    o wand_view: the wand view.
 %
 */
-MagickExport const void *GetImageViewVirtualMetacontent(
-  const ImageView *image_view)
+WandExport PixelWand **GetWandViewPixels(const WandView *wand_view)
 {
-  assert(image_view != (ImageView *) NULL);
-  assert(image_view->signature == MagickCoreSignature);
-  return(GetCacheViewVirtualMetacontent(image_view->view));
+  const int
+    id = GetOpenMPThreadId();
+
+  assert(wand_view != (WandView *) NULL);
+  assert(wand_view->signature == MagickWandSignature);
+  return(wand_view->pixel_wands[id]);
 }
 
 /*
@@ -632,29 +626,28 @@ MagickExport const void *GetImageViewVirtualMetacontent(
 %                                                                             %
 %                                                                             %
 %                                                                             %
-%   G e t I m a g e V i e w V i r t u a l P i x e l s                         %
+%   G e t W a n d V i e w W a n d                                             %
 %                                                                             %
 %                                                                             %
 %                                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%  GetImageViewVirtualPixels() returns the image view virtual pixels.
+%  GetWandViewWand() returns the magick wand associated with the wand view.
 %
-%  The format of the GetImageViewVirtualPixels method is:
+%  The format of the GetWandViewWand method is:
 %
-%      const Quantum *GetImageViewVirtualPixels(const ImageView *image_view)
+%      MagickWand *GetWandViewWand(const WandView *wand_view)
 %
 %  A description of each parameter follows:
 %
-%    o image_view: the image view.
+%    o wand_view: the wand view.
 %
 */
-MagickExport const Quantum *GetImageViewVirtualPixels(
-  const ImageView *image_view)
+WandExport MagickWand *GetWandViewWand(const WandView *wand_view)
 {
-  assert(image_view != (ImageView *) NULL);
-  assert(image_view->signature == MagickCoreSignature);
-  return(GetCacheViewVirtualPixelQueue(image_view->view));
+  assert(wand_view != (WandView *) NULL);
+  assert(wand_view->signature == MagickWandSignature);
+  return(wand_view->wand);
 }
 
 /*
@@ -662,29 +655,35 @@ MagickExport const Quantum *GetImageViewVirtualPixels(
 %                                                                             %
 %                                                                             %
 %                                                                             %
-%   I s I m a g e V i e w                                                     %
+%   I s W a n d V i e w                                                       %
 %                                                                             %
 %                                                                             %
 %                                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%  IsImageView() returns MagickTrue if the parameter is verified as a image
+%  IsWandView() returns MagickTrue if the parameter is verified as a wand
 %  view object.
 %
-%  The format of the IsImageView method is:
+%  The format of the IsWandView method is:
 %
-%      MagickBooleanType IsImageView(const ImageView *image_view)
+%      MagickBooleanType IsWandView(const WandView *wand_view)
 %
 %  A description of each parameter follows:
 %
-%    o image_view: the image view.
+%    o wand_view: the wand view.
 %
 */
-MagickExport MagickBooleanType IsImageView(const ImageView *image_view)
+WandExport MagickBooleanType IsWandView(const WandView *wand_view)
 {
-  if (image_view == (const ImageView *) NULL)
+  size_t
+    length;
+
+  if (wand_view == (const WandView *) NULL)
     return(MagickFalse);
-  if (image_view->signature != MagickCoreSignature)
+  if (wand_view->signature != MagickWandSignature)
+    return(MagickFalse);
+  length=strlen(WandViewId);
+  if (LocaleNCompare(wand_view->name,WandViewId,length) != 0)
     return(MagickFalse);
   return(MagickTrue);
 }
@@ -694,47 +693,81 @@ MagickExport MagickBooleanType IsImageView(const ImageView *image_view)
 %                                                                             %
 %                                                                             %
 %                                                                             %
-%   N e w I m a g e V i e w                                                   %
+%   N e w W a n d V i e w                                                     %
 %                                                                             %
 %                                                                             %
 %                                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%  NewImageView() returns a image view required for all other methods in the
-%  Image View API.
+%  NewWandView() returns a wand view required for all other methods in the
+%  Wand View API.
 %
-%  The format of the NewImageView method is:
+%  The format of the NewWandView method is:
 %
-%      ImageView *NewImageView(MagickCore *wand,ExceptionInfo *exception)
+%      WandView *NewWandView(MagickWand *wand)
 %
 %  A description of each parameter follows:
 %
-%    o image: the image.
-%
-%    o exception: return any errors or warnings in this structure.
+%    o wand: the wand.
 %
 */
-MagickExport ImageView *NewImageView(Image *image,ExceptionInfo *exception)
-{
-  ImageView
-    *image_view;
 
-  assert(image != (Image *) NULL);
-  assert(image->signature == MagickCoreSignature);
-  image_view=(ImageView *) AcquireCriticalMemory(sizeof(*image_view));
-  (void) memset(image_view,0,sizeof(*image_view));
-  image_view->description=ConstantString("ImageView");
-  image_view->image=image;
-  image_view->view=AcquireVirtualCacheView(image_view->image,exception);
-  image_view->extent.width=image->columns;
-  image_view->extent.height=image->rows;
-  image_view->extent.x=0;
-  image_view->extent.y=0;
-  image_view->exception=AcquireExceptionInfo();
-  image_view->debug=(GetLogEventMask() & ImageEvent) != 0 ? MagickTrue : 
-    MagickFalse;
-  image_view->signature=MagickCoreSignature;
-  return(image_view);
+static PixelWand ***AcquirePixelsTLS(const size_t number_wands)
+{
+  PixelWand
+    ***pixel_wands;
+
+  size_t
+    number_threads;
+
+  ssize_t
+    i;
+
+  number_threads=GetOpenMPMaximumThreads();
+  pixel_wands=(PixelWand ***) AcquireQuantumMemory(number_threads,
+    sizeof(*pixel_wands));
+  if (pixel_wands == (PixelWand ***) NULL)
+    return((PixelWand ***) NULL);
+  (void) memset(pixel_wands,0,number_threads*sizeof(*pixel_wands));
+  for (i=0; i < (ssize_t) number_threads; i++)
+  {
+    pixel_wands[i]=NewPixelWands(number_wands);
+    if (pixel_wands[i] == (PixelWand **) NULL)
+      return(DestroyPixelsTLS(pixel_wands,number_wands));
+  }
+  return(pixel_wands);
+}
+
+WandExport WandView *NewWandView(MagickWand *wand)
+{
+  ExceptionInfo
+    *exception;
+
+  WandView
+    *wand_view;
+
+  assert(wand != (MagickWand *) NULL);
+  assert(wand->signature == MagickWandSignature);
+  wand_view=(WandView *) AcquireCriticalMemory(sizeof(*wand_view));
+  (void) memset(wand_view,0,sizeof(*wand_view));
+  wand_view->id=AcquireWandId();
+  (void) FormatLocaleString(wand_view->name,MagickPathExtent,"%s-%.20g",
+    WandViewId,(double) wand_view->id);
+  wand_view->description=ConstantString("WandView");
+  wand_view->wand=wand;
+  exception=AcquireExceptionInfo();
+  wand_view->view=AcquireVirtualCacheView(wand_view->wand->images,exception);
+  wand_view->image=(Image *) GetCacheViewImage(wand_view->view);
+  wand_view->extent.width=wand_view->image->columns;
+  wand_view->extent.height=wand_view->image->rows;
+  wand_view->pixel_wands=AcquirePixelsTLS(wand_view->extent.width);
+  wand_view->exception=exception;
+  if (wand_view->pixel_wands == (PixelWand ***) NULL)
+    ThrowWandFatalException(ResourceLimitFatalError,"MemoryAllocationFailed",
+      GetExceptionMessage(errno));
+  wand_view->debug=IsEventLogging();
+  wand_view->signature=MagickWandSignature;
+  return(wand_view);
 }
 
 /*
@@ -742,20 +775,19 @@ MagickExport ImageView *NewImageView(Image *image,ExceptionInfo *exception)
 %                                                                             %
 %                                                                             %
 %                                                                             %
-%   N e w I m a g e V i e w R e g i o n                                       %
+%   N e w W a n d V i e w E x t e n t                                         %
 %                                                                             %
 %                                                                             %
 %                                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%  NewImageViewRegion() returns a image view required for all other methods
-%  in the Image View API.
+%  NewWandViewExtent() returns a wand view required for all other methods
+%  in the Wand View API.
 %
-%  The format of the NewImageViewRegion method is:
+%  The format of the NewWandViewExtent method is:
 %
-%      ImageView *NewImageViewRegion(MagickCore *wand,const ssize_t x,
-%        const ssize_t y,const size_t width,const size_t height,
-%        ExceptionInfo *exception)
+%      WandView *NewWandViewExtent(MagickWand *wand,const ssize_t x,
+%        const ssize_t y,const size_t width,const size_t height)
 %
 %  A description of each parameter follows:
 %
@@ -764,32 +796,39 @@ MagickExport ImageView *NewImageView(Image *image,ExceptionInfo *exception)
 %    o x,y,columns,rows:  These values define the perimeter of a extent of
 %      pixel_wands view.
 %
-%    o exception: return any errors or warnings in this structure.
-%
 */
-MagickExport ImageView *NewImageViewRegion(Image *image,const ssize_t x,
-  const ssize_t y,const size_t width,const size_t height,
-  ExceptionInfo *exception)
+WandExport WandView *NewWandViewExtent(MagickWand *wand,const ssize_t x,
+  const ssize_t y,const size_t width,const size_t height)
 {
-  ImageView
-    *image_view;
+  ExceptionInfo
+    *exception;
 
-  assert(image != (Image *) NULL);
-  assert(image->signature == MagickCoreSignature);
-  image_view=(ImageView *) AcquireCriticalMemory(sizeof(*image_view));
-  (void) memset(image_view,0,sizeof(*image_view));
-  image_view->description=ConstantString("ImageView");
-  image_view->view=AcquireVirtualCacheView(image_view->image,exception);
-  image_view->image=image;
-  image_view->extent.width=width;
-  image_view->extent.height=height;
-  image_view->extent.x=x;
-  image_view->extent.y=y;
-  image_view->exception=AcquireExceptionInfo();
-  image_view->debug=(GetLogEventMask() & ImageEvent) != 0 ? MagickTrue : 
-    MagickFalse;
-  image_view->signature=MagickCoreSignature;
-  return(image_view);
+  WandView
+    *wand_view;
+
+  assert(wand != (MagickWand *) NULL);
+  assert(wand->signature == MagickWandSignature);
+  wand_view=(WandView *) AcquireCriticalMemory(sizeof(*wand_view));
+  (void) memset(wand_view,0,sizeof(*wand_view));
+  wand_view->id=AcquireWandId();
+  (void) FormatLocaleString(wand_view->name,MagickPathExtent,"%s-%.20g",
+    WandViewId,(double) wand_view->id);
+  wand_view->description=ConstantString("WandView");
+  exception=AcquireExceptionInfo();
+  wand_view->view=AcquireVirtualCacheView(wand_view->wand->images,exception);
+  wand_view->wand=wand;
+  wand_view->extent.width=width;
+  wand_view->extent.height=height;
+  wand_view->extent.x=x;
+  wand_view->extent.y=y;
+  wand_view->exception=exception;
+  wand_view->pixel_wands=AcquirePixelsTLS(wand_view->extent.width);
+  if (wand_view->pixel_wands == (PixelWand ***) NULL)
+    ThrowWandFatalException(ResourceLimitFatalError,"MemoryAllocationFailed",
+      GetExceptionMessage(errno));
+  wand_view->debug=IsEventLogging();
+  wand_view->signature=MagickWandSignature;
+  return(wand_view);
 }
 
 /*
@@ -797,32 +836,31 @@ MagickExport ImageView *NewImageViewRegion(Image *image,const ssize_t x,
 %                                                                             %
 %                                                                             %
 %                                                                             %
-%   S e t I m a g e V i e w D e s c r i p t i o n                             %
+%   S e t W a n d V i e w D e s c r i p t i o n                               %
 %                                                                             %
 %                                                                             %
 %                                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%  SetImageViewDescription() associates a description with an image view.
+%  SetWandViewDescription() associates a description with an image view.
 %
-%  The format of the SetImageViewDescription method is:
+%  The format of the SetWandViewDescription method is:
 %
-%      void SetImageViewDescription(ImageView *image_view,
-%        const char *description)
+%      void SetWandViewDescription(WandView *image_view,const char *description)
 %
 %  A description of each parameter follows:
 %
-%    o image_view: the image view.
+%    o wand_view: the wand view.
 %
-%    o description: the image view description.
+%    o description: the wand view description.
 %
 */
-MagickExport void SetImageViewDescription(ImageView *image_view,
+MagickExport void SetWandViewDescription(WandView *wand_view,
   const char *description)
 {
-  assert(image_view != (ImageView *) NULL);
-  assert(image_view->signature == MagickCoreSignature);
-  image_view->description=ConstantString(description);
+  assert(wand_view != (WandView *) NULL);
+  assert(wand_view->signature == MagickWandSignature);
+  wand_view->description=ConstantString(description);
 }
 
 /*
@@ -830,13 +868,13 @@ MagickExport void SetImageViewDescription(ImageView *image_view,
 %                                                                             %
 %                                                                             %
 %                                                                             %
-%   S e t I m a g e V i e w I t e r a t o r                                   %
+%   S e t W a n d V i e w I t e r a t o r                                     %
 %                                                                             %
 %                                                                             %
 %                                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%  SetImageViewIterator() iterates over the image view in parallel and calls
+%  SetWandViewIterator() iterates over the wand view in parallel and calls
 %  your set method for each scanline of the view.  The pixel extent is
 %  confined to the image canvas-- that is no negative offsets or widths or
 %  heights that exceed the image dimension.  The pixels are initially
@@ -855,22 +893,22 @@ MagickExport void SetImageViewDescription(ImageView *image_view,
 %  to define a section of code in your callback set method that must be
 %  executed by a single thread at a time.
 %
-%  The format of the SetImageViewIterator method is:
+%  The format of the SetWandViewIterator method is:
 %
-%      MagickBooleanType SetImageViewIterator(ImageView *destination,
-%        SetImageViewMethod set,void *context)
+%      MagickBooleanType SetWandViewIterator(WandView *destination,
+%        SetWandViewMethod set,void *context)
 %
 %  A description of each parameter follows:
 %
-%    o destination: the image view.
+%    o destination: the wand view.
 %
 %    o set: the set callback method.
 %
 %    o context: the user defined context.
 %
 */
-MagickExport MagickBooleanType SetImageViewIterator(ImageView *destination,
-  SetImageViewMethod set,void *context)
+WandExport MagickBooleanType SetWandViewIterator(WandView *destination,
+  SetWandViewMethod set,void *context)
 {
   Image
     *destination_image;
@@ -889,11 +927,11 @@ MagickExport MagickBooleanType SetImageViewIterator(ImageView *destination,
   ssize_t
     y;
 
-  assert(destination != (ImageView *) NULL);
-  assert(destination->signature == MagickCoreSignature);
-  if (set == (SetImageViewMethod) NULL)
+  assert(destination != (WandView *) NULL);
+  assert(destination->signature == MagickWandSignature);
+  if (set == (SetWandViewMethod) NULL)
     return(MagickFalse);
-  destination_image=destination->image;
+  destination_image=destination->wand->images;
   status=SetImageStorageClass(destination_image,DirectClass,
     destination->exception);
   if (status == MagickFalse)
@@ -901,7 +939,7 @@ MagickExport MagickBooleanType SetImageViewIterator(ImageView *destination,
   status=MagickTrue;
   progress=0;
 #if defined(MAGICKCORE_OPENMP_SUPPORT)
-  height=destination->extent.height-(size_t) destination->extent.y;
+  height=(size_t) ((ssize_t) destination->extent.height-destination->extent.y);
   #pragma omp parallel for schedule(static) shared(progress,status) \
     magick_number_threads(destination_image,destination_image,height,1)
 #endif
@@ -916,6 +954,9 @@ MagickExport MagickBooleanType SetImageViewIterator(ImageView *destination,
     Quantum
       *magick_restrict pixels;
 
+    ssize_t
+      x;
+
     if (status == MagickFalse)
       continue;
     pixels=GetCacheViewAuthenticPixels(destination->view,destination->extent.x,
@@ -927,6 +968,12 @@ MagickExport MagickBooleanType SetImageViewIterator(ImageView *destination,
       }
     if (set(destination,y,id,context) == MagickFalse)
       status=MagickFalse;
+    for (x=0; x < (ssize_t) destination->extent.width; x++)
+    {
+      PixelGetQuantumPixel(destination->image,destination->pixel_wands[id][x],
+        pixels);
+      pixels+=(ptrdiff_t) GetPixelChannels(destination->image);
+    }
     sync=SyncCacheViewAuthenticPixels(destination->view,destination->exception);
     if (sync == MagickFalse)
       status=MagickFalse;
@@ -953,24 +1000,24 @@ MagickExport MagickBooleanType SetImageViewIterator(ImageView *destination,
 %                                                                             %
 %                                                                             %
 %                                                                             %
-%   T r a n s f e r I m a g e V i e w I t e r a t o r                         %
+%   T r a n s f e r W a n d V i e w I t e r a t o r                           %
 %                                                                             %
 %                                                                             %
 %                                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%  TransferImageViewIterator() iterates over two image views in parallel and
+%  TransferWandViewIterator() iterates over two wand views in parallel and
 %  calls your transfer method for each scanline of the view.  The source pixel
 %  extent is not confined to the image canvas-- that is you can include
 %  negative offsets or widths or heights that exceed the image dimension.
-%  However, the destination image view is confined to the image canvas-- that
+%  However, the destination wand view is confined to the image canvas-- that
 %  is no negative offsets or widths or heights that exceed the image dimension
 %  are permitted.
 %
 %  The callback signature is:
 %
-%      MagickBooleanType TransferImageViewMethod(const ImageView *source,
-%        ImageView *destination,const ssize_t y,const int thread_id,
+%      MagickBooleanType TransferImageViewMethod(const WandView *source,
+%        WandView *destination,const ssize_t y,const int thread_id,
 %        void *context)
 %
 %  Use this pragma if the view is not single threaded:
@@ -980,24 +1027,24 @@ MagickExport MagickBooleanType SetImageViewIterator(ImageView *destination,
 %  to define a section of code in your callback transfer method that must be
 %  executed by a single thread at a time.
 %
-%  The format of the TransferImageViewIterator method is:
+%  The format of the TransferWandViewIterator method is:
 %
-%      MagickBooleanType TransferImageViewIterator(ImageView *source,
-%        ImageView *destination,TransferImageViewMethod transfer,void *context)
+%      MagickBooleanType TransferWandViewIterator(WandView *source,
+%        WandView *destination,TransferWandViewMethod transfer,void *context)
 %
 %  A description of each parameter follows:
 %
-%    o source: the source image view.
+%    o source: the source wand view.
 %
-%    o destination: the destination image view.
+%    o destination: the destination wand view.
 %
 %    o transfer: the transfer callback method.
 %
 %    o context: the user defined context.
 %
 */
-MagickExport MagickBooleanType TransferImageViewIterator(ImageView *source,
-  ImageView *destination,TransferImageViewMethod transfer,void *context)
+WandExport MagickBooleanType TransferWandViewIterator(WandView *source,
+  WandView *destination,TransferWandViewMethod transfer,void *context)
 {
   Image
     *destination_image,
@@ -1017,12 +1064,12 @@ MagickExport MagickBooleanType TransferImageViewIterator(ImageView *source,
   ssize_t
     y;
 
-  assert(source != (ImageView *) NULL);
-  assert(source->signature == MagickCoreSignature);
-  if (transfer == (TransferImageViewMethod) NULL)
+  assert(source != (WandView *) NULL);
+  assert(source->signature == MagickWandSignature);
+  if (transfer == (TransferWandViewMethod) NULL)
     return(MagickFalse);
-  source_image=source->image;
-  destination_image=destination->image;
+  source_image=source->wand->images;
+  destination_image=destination->wand->images;
   status=SetImageStorageClass(destination_image,DirectClass,
     destination->exception);
   if (status == MagickFalse)
@@ -1030,7 +1077,7 @@ MagickExport MagickBooleanType TransferImageViewIterator(ImageView *source,
   status=MagickTrue;
   progress=0;
 #if defined(MAGICKCORE_OPENMP_SUPPORT)
-  height=source->extent.height-(size_t) source->extent.y;
+  height=(size_t) ((ssize_t) source->extent.height-source->extent.y);
   #pragma omp parallel for schedule(static) shared(progress,status) \
     magick_number_threads(source_image,destination_image,height,1)
 #endif
@@ -1039,14 +1086,17 @@ MagickExport MagickBooleanType TransferImageViewIterator(ImageView *source,
     const int
       id = GetOpenMPThreadId();
 
-    MagickBooleanType
-      sync;
-
     const Quantum
       *magick_restrict pixels;
 
+    MagickBooleanType
+      sync;
+
     Quantum
       *magick_restrict destination_pixels;
+
+    ssize_t
+      x;
 
     if (status == MagickFalse)
       continue;
@@ -1057,6 +1107,11 @@ MagickExport MagickBooleanType TransferImageViewIterator(ImageView *source,
         status=MagickFalse;
         continue;
       }
+    for (x=0; x < (ssize_t) source->extent.width; x++)
+    {
+      PixelSetQuantumPixel(source->image,pixels,source->pixel_wands[id][x]);
+      pixels+=(ptrdiff_t) GetPixelChannels(source->image);
+    }
     destination_pixels=GetCacheViewAuthenticPixels(destination->view,
       destination->extent.x,y,destination->extent.width,1,
       destination->exception);
@@ -1065,8 +1120,23 @@ MagickExport MagickBooleanType TransferImageViewIterator(ImageView *source,
         status=MagickFalse;
         continue;
       }
+    for (x=0; x < (ssize_t) destination->extent.width; x++)
+    {
+      PixelSetQuantumPixel(destination->image,destination_pixels,
+        destination->pixel_wands[id][x]);
+      destination_pixels+=(ptrdiff_t) GetPixelChannels(destination->image);
+    }
     if (transfer(source,destination,y,id,context) == MagickFalse)
       status=MagickFalse;
+    destination_pixels=GetCacheViewAuthenticPixels(destination->view,
+      destination->extent.x,y,destination->extent.width,1,
+      destination->exception);
+    for (x=0; x < (ssize_t) destination->extent.width; x++)
+    {
+      PixelGetQuantumPixel(destination->image,destination->pixel_wands[id][x],
+        destination_pixels);
+      destination_pixels+=(ptrdiff_t) GetPixelChannels(destination->image);
+    }
     sync=SyncCacheViewAuthenticPixels(destination->view,destination->exception);
     if (sync == MagickFalse)
       status=MagickFalse;
@@ -1093,13 +1163,13 @@ MagickExport MagickBooleanType TransferImageViewIterator(ImageView *source,
 %                                                                             %
 %                                                                             %
 %                                                                             %
-%   U p d a t e I m a g e V i e w I t e r a t o r                             %
+%   U p d a t e W a n d V i e w I t e r a t o r                               %
 %                                                                             %
 %                                                                             %
 %                                                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%  UpdateImageViewIterator() iterates over the image view in parallel and calls
+%  UpdateWandViewIterator() iterates over the wand view in parallel and calls
 %  your update method for each scanline of the view.  The pixel extent is
 %  confined to the image canvas-- that is no negative offsets or widths or
 %  heights that exceed the image dimension are permitted.  Updates to pixels
@@ -1107,8 +1177,8 @@ MagickExport MagickBooleanType TransferImageViewIterator(ImageView *source,
 %
 %  The callback signature is:
 %
-%      MagickBooleanType UpdateImageViewMethod(ImageView *source,
-%        const ssize_t y,const int thread_id,void *context)
+%      MagickBooleanType UpdateImageViewMethod(WandView *source,const ssize_t y,
+%        const int thread_id,void *context)
 %
 %  Use this pragma if the view is not single threaded:
 %
@@ -1117,22 +1187,22 @@ MagickExport MagickBooleanType TransferImageViewIterator(ImageView *source,
 %  to define a section of code in your callback update method that must be
 %  executed by a single thread at a time.
 %
-%  The format of the UpdateImageViewIterator method is:
+%  The format of the UpdateWandViewIterator method is:
 %
-%      MagickBooleanType UpdateImageViewIterator(ImageView *source,
-%        UpdateImageViewMethod update,void *context)
+%      MagickBooleanType UpdateWandViewIterator(WandView *source,
+%        UpdateWandViewMethod update,void *context)
 %
 %  A description of each parameter follows:
 %
-%    o source: the source image view.
+%    o source: the source wand view.
 %
 %    o update: the update callback method.
 %
 %    o context: the user defined context.
 %
 */
-MagickExport MagickBooleanType UpdateImageViewIterator(ImageView *source,
-  UpdateImageViewMethod update,void *context)
+WandExport MagickBooleanType UpdateWandViewIterator(WandView *source,
+  UpdateWandViewMethod update,void *context)
 {
   Image
     *source_image;
@@ -1151,18 +1221,18 @@ MagickExport MagickBooleanType UpdateImageViewIterator(ImageView *source,
   ssize_t
     y;
 
-  assert(source != (ImageView *) NULL);
-  assert(source->signature == MagickCoreSignature);
-  if (update == (UpdateImageViewMethod) NULL)
+  assert(source != (WandView *) NULL);
+  assert(source->signature == MagickWandSignature);
+  if (update == (UpdateWandViewMethod) NULL)
     return(MagickFalse);
-  source_image=source->image;
+  source_image=source->wand->images;
   status=SetImageStorageClass(source_image,DirectClass,source->exception);
   if (status == MagickFalse)
     return(MagickFalse);
   status=MagickTrue;
   progress=0;
 #if defined(MAGICKCORE_OPENMP_SUPPORT)
-  height=source->extent.height-(size_t) source->extent.y;
+  height=(size_t) ((ssize_t) source->extent.height-source->extent.y);
   #pragma omp parallel for schedule(static) shared(progress,status) \
     magick_number_threads(source_image,source_image,height,1)
 #endif
@@ -1171,8 +1241,18 @@ MagickExport MagickBooleanType UpdateImageViewIterator(ImageView *source,
     const int
       id = GetOpenMPThreadId();
 
+    const Quantum
+      *magick_restrict p;
+
+    MagickBooleanType
+      sync;
+
+    ssize_t
+      x;
+
     Quantum
-      *magick_restrict pixels;
+      *magick_restrict pixels,
+      *magick_restrict q;
 
     if (status == MagickFalse)
       continue;
@@ -1183,9 +1263,23 @@ MagickExport MagickBooleanType UpdateImageViewIterator(ImageView *source,
         status=MagickFalse;
         continue;
       }
+    p=(const Quantum *) pixels;
+    for (x=0; x < (ssize_t) source->extent.width; x++)
+    {
+      PixelSetQuantumPixel(source->image,p,source->pixel_wands[id][x]);
+      p+=(ptrdiff_t) GetPixelChannels(source->image);
+    }
     if (update(source,y,id,context) == MagickFalse)
       status=MagickFalse;
-    status=SyncCacheViewAuthenticPixels(source->view,source->exception);
+    q=pixels;
+    for (x=0; x < (ssize_t) source->extent.width; x++)
+    {
+      PixelGetQuantumPixel(source->image,source->pixel_wands[id][x],q);
+      q+=(ptrdiff_t) GetPixelChannels(source->image);
+    }
+    sync=SyncCacheViewAuthenticPixels(source->view,source->exception);
+    if (sync == MagickFalse)
+      status=MagickFalse;
     if (source_image->progress_monitor != (MagickProgressMonitor) NULL)
       {
         MagickBooleanType

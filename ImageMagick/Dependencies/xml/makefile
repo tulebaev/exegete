@@ -1,6 +1,6 @@
 OBJS = globals.obj buf.obj parser.obj tree.obj xmlmemory.obj
 
-CFLAGS = -nologo /D_LIB /wd4090
+CFLAGS = /nologo /D_LIB /wd4090
 
 lib: $(OBJS)
 	lib /out:..\..\xml.lib $(OBJS)
