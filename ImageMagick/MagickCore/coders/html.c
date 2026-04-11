@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -60,13 +60,13 @@
 #include "MagickCore/string_.h"
 #include "MagickCore/module.h"
 #include "MagickCore/utility.h"
-
+
 /*
   Forward declarations.
 */
 static MagickBooleanType
   WriteHTMLImage(const ImageInfo *,Image *,ExceptionInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -100,7 +100,7 @@ static MagickBooleanType IsHTML(const unsigned char *magick,const size_t length)
     return(MagickTrue);
   return(MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -149,7 +149,7 @@ ModuleExport size_t RegisterHTMLImage(void)
   (void) RegisterMagickInfo(entry);
   return(MagickImageCoderSignature);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -175,7 +175,7 @@ ModuleExport void UnregisterHTMLImage(void)
   (void) UnregisterMagickInfo("HTML");
   (void) UnregisterMagickInfo("SHTML");
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

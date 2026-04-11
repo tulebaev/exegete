@@ -37,7 +37,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -69,7 +69,7 @@
 #include "MagickCore/string-private.h"
 #include "MagickCore/module.h"
 #include "MagickCore/transform.h"
-
+
 /*
   Definitions
 */
@@ -2705,7 +2705,7 @@ static MagickBooleanType ReadUncompressedRGBA(const ImageInfo *image_info,
   else
     return(SkipRGBMipmaps(image,dds_info,4,exception));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3054,7 +3054,7 @@ static Image *ReadDDSImage(const ImageInfo *image_info,ExceptionInfo *exception)
     return(DestroyImageList(image));
   return(GetFirstImageInList(image));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3118,7 +3118,7 @@ static void RemapIndices(const ssize_t *map, const unsigned char *source,
       target[i] = source[map[i]];
   }
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

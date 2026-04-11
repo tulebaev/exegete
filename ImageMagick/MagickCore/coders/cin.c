@@ -42,7 +42,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -71,7 +71,7 @@
 #include "MagickCore/string_.h"
 #include "MagickCore/string-private.h"
 #include "MagickCore/timer-private.h"
-
+
 /*
   Typedef declaration.
 */
@@ -224,13 +224,13 @@ typedef struct CINInfo
   CINUserInfo
     user;
 } CINInfo;
-
+
 /*
   Forward declarations.
 */
 static MagickBooleanType
   WriteCINImage(const ImageInfo *,Image *,ExceptionInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -264,7 +264,7 @@ static MagickBooleanType IsCIN(const unsigned char *magick,const size_t length)
     return(MagickTrue);
   return(MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -798,7 +798,7 @@ static Image *ReadCINImage(const ImageInfo *image_info,ExceptionInfo *exception)
     return(DestroyImageList(image));
   return(GetFirstImageInList(image));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -835,7 +835,7 @@ ModuleExport size_t RegisterCINImage(void)
   (void) RegisterMagickInfo(entry);
   return(MagickImageCoderSignature);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -859,7 +859,7 @@ ModuleExport void UnregisterCINImage(void)
 {
   (void) UnregisterMagickInfo("CINEON");
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

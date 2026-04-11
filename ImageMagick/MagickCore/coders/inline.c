@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -60,13 +60,13 @@
 #include "MagickCore/utility.h"
 #include "MagickCore/xwindow.h"
 #include "MagickCore/xwindow-private.h"
-
+
 /*
   Forward declarations.
 */
 static MagickBooleanType
   WriteINLINEImage(const ImageInfo *,Image *,ExceptionInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -178,7 +178,7 @@ static Image *ReadINLINEImage(const ImageInfo *image_info,
   inline_image=(unsigned char *) RelinquishMagickMemory(inline_image);
   return(image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -219,7 +219,7 @@ ModuleExport size_t RegisterINLINEImage(void)
   (void) RegisterMagickInfo(entry);
   return(MagickImageCoderSignature);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -244,7 +244,7 @@ ModuleExport void UnregisterINLINEImage(void)
   (void) UnregisterMagickInfo("INLINE");
   (void) UnregisterMagickInfo("DATA");
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -55,7 +55,7 @@
 #include "MagickCore/static.h"
 #include "MagickCore/string_.h"
 #include "MagickCore/module.h"
-
+
 /*
   Predefined ImageMagick images.
 */
@@ -12998,13 +12998,13 @@ static const MagickImageInfo
     { "WIZARD", "GIF", WizardImage, sizeof(WizardImage) },
     { "", "", (const void *) NULL, 0 }
   };
-
+
 /*
   Forward declarations.
 */
 static MagickBooleanType
   WriteMAGICKImage(const ImageInfo *,Image *,ExceptionInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -13077,7 +13077,7 @@ static Image *ReadMAGICKImage(const ImageInfo *image_info,
     return(image);
   return(GetFirstImageInList(image));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -13150,7 +13150,7 @@ ModuleExport size_t RegisterMAGICKImage(void)
   (void) RegisterMagickInfo(entry);
   return(MagickImageCoderSignature);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -13180,7 +13180,7 @@ ModuleExport void UnregisterMAGICKImage(void)
   (void) UnregisterMagickInfo("MAGICK");
   (void) UnregisterMagickInfo("LOGO");
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

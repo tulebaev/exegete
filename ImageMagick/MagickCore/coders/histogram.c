@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -68,13 +68,13 @@
 #include "MagickCore/module.h"
 #include "MagickCore/token.h"
 #include "MagickCore/utility.h"
-
+
 /*
   Forward declarations.
 */
 static MagickBooleanType
   WriteHISTOGRAMImage(const ImageInfo *,Image *,ExceptionInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -110,7 +110,7 @@ ModuleExport size_t RegisterHISTOGRAMImage(void)
   (void) RegisterMagickInfo(entry);
   return(MagickImageCoderSignature);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -134,7 +134,7 @@ ModuleExport void UnregisterHISTOGRAMImage(void)
 {
   (void) UnregisterMagickInfo("HISTOGRAM");
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

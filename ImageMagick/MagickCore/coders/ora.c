@@ -38,7 +38,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -62,9 +62,9 @@
 #include "MagickCore/utility.h"
 
 #if defined(MAGICKCORE_ZIP_DELEGATE)
-#include <zip.h>
+#include <zip/zip.h>
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -246,7 +246,7 @@ static Image *ReadORAImage(const ImageInfo *image_info,
   return(out_image);
 }
 #endif /* MAGICKCORE_ZIP_DELEGATE && MAGICKCORE_PNG_DELEGATE */
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -286,7 +286,7 @@ ModuleExport size_t RegisterORAImage(void)
   (void) RegisterMagickInfo(entry);
   return(MagickImageCoderSignature);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

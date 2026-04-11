@@ -16,8 +16,8 @@ OBJS = blocksort.obj  \
 lib: $(OBJS)
 	lib /out:..\..\bz2.lib $(OBJS)
 
-.c.obj: 
+.c.obj:
 	$(CC) $(CFLAGS) -c $*.c
 
-clean: 
+clean:
 	del *.obj

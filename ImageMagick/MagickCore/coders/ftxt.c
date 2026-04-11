@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 #include "MagickCore/studio.h"
 #include "MagickCore/annotate.h"
 #include "MagickCore/artifact.h"
@@ -69,7 +69,7 @@
 #include "MagickCore/string_.h"
 #include "MagickCore/token.h"
 #include "coders/ftxt.h"
-
+
 /*
   Define declarations.
 */
@@ -95,7 +95,7 @@ typedef enum
 */
 static MagickBooleanType
   WriteFTXTImage(const ImageInfo *,Image *,ExceptionInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -129,7 +129,7 @@ static MagickBooleanType IsFTXT(const unsigned char *magick,const size_t length)
     return(MagickTrue);
   return(MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -742,7 +742,7 @@ static Image *ReadFTXTImage(const ImageInfo *image_info,
     return(DestroyImageList(image));
   return(GetFirstImageInList(image));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -779,7 +779,7 @@ ModuleExport size_t RegisterFTXTImage(void)
   (void) RegisterMagickInfo(entry);
   return(MagickImageCoderSignature);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -803,7 +803,7 @@ ModuleExport void UnregisterFTXTImage(void)
 {
   (void) UnregisterMagickInfo("FTXT");
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

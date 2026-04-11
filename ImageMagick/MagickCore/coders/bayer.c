@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -66,14 +66,14 @@
 #include "MagickCore/transform.h"
 #include "MagickCore/module.h"
 #include "MagickCore/utility.h"
-
-
+
+
 /*
   Forward declarations.
 */
 static MagickBooleanType
   WriteBAYERImage(const ImageInfo *,Image *,ExceptionInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -198,7 +198,7 @@ static Image *ReadBAYERImage(const ImageInfo *image_info,
   image=DestroyImageList(image);
   return(image_a);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -239,7 +239,7 @@ ModuleExport size_t RegisterBAYERImage(void)
   (void) RegisterMagickInfo(entry);
   return(MagickImageCoderSignature);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -264,7 +264,7 @@ ModuleExport void UnregisterBAYERImage(void)
   (void) UnregisterMagickInfo("BAYERA");
   (void) UnregisterMagickInfo("BAYER");
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

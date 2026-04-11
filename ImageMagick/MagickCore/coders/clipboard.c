@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -65,9 +65,9 @@
 #include "MagickCore/static.h"
 #include "MagickCore/string_.h"
 #include "MagickCore/module.h"
-
+
 #define BMP_HEADER_SIZE 14
-
+
 /*
   Forward declarations.
 */
@@ -75,7 +75,7 @@
 static MagickBooleanType
   WriteCLIPBOARDImage(const ImageInfo *,Image *,ExceptionInfo *);
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -207,7 +207,7 @@ static Image *ReadCLIPBOARDImage(const ImageInfo *image_info,
   return(image);
 }
 #endif /* MAGICKCORE_WINGDI32_DELEGATE */
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -246,7 +246,7 @@ ModuleExport size_t RegisterCLIPBOARDImage(void)
   (void) RegisterMagickInfo(entry);
   return(MagickImageCoderSignature);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -270,7 +270,7 @@ ModuleExport void UnregisterCLIPBOARDImage(void)
 {
   (void) UnregisterMagickInfo("CLIPBOARD");
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -73,13 +73,13 @@
 #include "MagickCore/string_.h"
 #include "MagickCore/string-private.h"
 #include "MagickCore/module.h"
-
+
 /*
   Define declarations.
 */
 #define MaximumLZWBits  12
 #define MaximumLZWCode  (1UL << MaximumLZWBits)
-
+
 /*
   Typedef declarations.
 */
@@ -130,7 +130,7 @@ typedef struct _LZWInfo
   LZWCodeInfo
     code_info;
 } LZWInfo;
-
+
 /*
   Forward declarations.
 */
@@ -142,7 +142,7 @@ static MagickBooleanType
 
 static ssize_t
   ReadBlobBlock(Image *,unsigned char *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -505,7 +505,7 @@ static MagickBooleanType DecodeImage(Image *image,const ssize_t opacity,
     ThrowBinaryException(CorruptImageError,"CorruptImage",image->filename);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -812,7 +812,7 @@ static MagickBooleanType EncodeImage(const ImageInfo *image_info,Image *image,
   packet=(unsigned char *) RelinquishMagickMemory(packet);
   return(MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -846,7 +846,7 @@ static MagickBooleanType IsGIF(const unsigned char *magick,const size_t length)
     return(MagickTrue);
   return(MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -893,7 +893,7 @@ static ssize_t ReadBlobBlock(Image *image,unsigned char *data)
     return(0);
   return(count);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1390,7 +1390,7 @@ static Image *ReadGIFImage(const ImageInfo *image_info,ExceptionInfo *exception)
     return(DestroyImageList(image));
   return(GetFirstImageInList(image));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1437,7 +1437,7 @@ ModuleExport size_t RegisterGIFImage(void)
   (void) RegisterMagickInfo(entry);
   return(MagickImageCoderSignature);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1462,7 +1462,7 @@ ModuleExport void UnregisterGIFImage(void)
   (void) UnregisterMagickInfo("GIF");
   (void) UnregisterMagickInfo("GIF87");
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

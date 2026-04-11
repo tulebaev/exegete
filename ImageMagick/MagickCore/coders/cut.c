@@ -34,7 +34,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -63,7 +63,7 @@
 #include "MagickCore/utility.h"
 #include "MagickCore/utility-private.h"
 #include "coders/coders-private.h"
-
+
 typedef struct
 {
   unsigned Width;
@@ -87,7 +87,7 @@ typedef struct
   char PaletteId[20];
 } CUTPalHeader;
 
-
+
 static MagickBooleanType InsertRow(Image *image,ssize_t bpp,unsigned char *p,
   ssize_t y,ExceptionInfo *exception)
 {
@@ -287,7 +287,7 @@ static int GetCutColors(Image *image,ExceptionInfo *exception)
     return(16);
   return((int) intensity);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -661,7 +661,7 @@ static Image *ReadCUTImage(const ImageInfo *image_info,ExceptionInfo *exception)
     return(DestroyImageList(image));
   return(GetFirstImageInList(image));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -696,7 +696,7 @@ ModuleExport size_t RegisterCUTImage(void)
   (void) RegisterMagickInfo(entry);
   return(MagickImageCoderSignature);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

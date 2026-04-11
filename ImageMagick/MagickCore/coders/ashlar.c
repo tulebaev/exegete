@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -64,13 +64,13 @@
 #include "MagickCore/utility.h"
 #include "MagickCore/xwindow.h"
 #include "MagickCore/xwindow-private.h"
-
+
 /*
   Forward declarations.
 */
 static MagickBooleanType
   WriteASHLARImage(const ImageInfo *,Image *,ExceptionInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -105,7 +105,7 @@ ModuleExport size_t RegisterASHLARImage(void)
   (void) RegisterMagickInfo(entry);
   return(MagickImageCoderSignature);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -129,7 +129,7 @@ ModuleExport void UnregisterASHLARImage(void)
 {
   (void) UnregisterMagickInfo("ASHLAR");
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

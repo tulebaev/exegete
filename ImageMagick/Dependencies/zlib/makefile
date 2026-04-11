@@ -51,5 +51,4 @@ zutil.obj: zutil.c zutil.h zlib.h zconf.h
 
 clean:
 	-del *.obj
-        -del *.pdb
-
+       -del *.pdb

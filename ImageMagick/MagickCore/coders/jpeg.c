@@ -39,7 +39,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -94,10 +94,10 @@
 # define XMD_H 1  /* Avoid conflicting typedef for INT32 */
 #endif
 #undef HAVE_STDLIB_H
-#include "jpeglib.h"
-#include "jerror.h"
+#include <jpeg-turbo/jpeglib.h>
+#include <jpeg-turbo/jerror.h>
 #endif
-
+
 /*
   Define declarations.
 */
@@ -111,7 +111,7 @@
 #define IPTC_MARKER  (JPEG_APP0+IPTC_INDEX)
 #define MaxJPEGProfiles  16
 #define MaxJPEGScans  1024
-
+
 /*
   Typedef declarations.
 */
@@ -178,13 +178,13 @@ typedef struct _QuantizationTable
   unsigned int
     *levels;
 } QuantizationTable;
-
+
 /*
   Const declarations.
 */
 static const char
   xmp_namespace[] = "http://ns.adobe.com/xap/1.0/";
-
+
 /*
   Forward declarations.
 */
@@ -192,7 +192,7 @@ static const char
 static MagickBooleanType
   WriteJPEGImage(const ImageInfo *,Image *,ExceptionInfo *);
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -226,7 +226,7 @@ static MagickBooleanType IsJPEG(const unsigned char *magick,const size_t length)
     return(MagickTrue);
   return(MagickFalse);
 }
-
+
 #if defined(MAGICKCORE_JPEG_DELEGATE)
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1735,7 +1735,7 @@ static Image *ReadJPEGImage(const ImageInfo *image_info,
   return(images);
 }
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1870,7 +1870,7 @@ ModuleExport size_t RegisterJPEGImage(void)
   (void) RegisterMagickInfo(entry);
   return(MagickImageCoderSignature);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1899,7 +1899,7 @@ ModuleExport void UnregisterJPEGImage(void)
   (void) UnregisterMagickInfo("JPEG");
   (void) UnregisterMagickInfo("JPE");
 }
-
+
 #if defined(MAGICKCORE_JPEG_DELEGATE)
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

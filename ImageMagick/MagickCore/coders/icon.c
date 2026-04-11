@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -66,13 +66,13 @@
 #include "MagickCore/static.h"
 #include "MagickCore/string_.h"
 #include "MagickCore/module.h"
-
+
 /*
   Define declarations.
 */
 #define IconRgbCompression (size_t) 0
 #define MaxIcons  1024
-
+
 /*
   Typedef declarations.
 */
@@ -101,7 +101,7 @@ typedef struct _IconDirectory
   IconEntry
     **icons;
 } IconDirectory;
-
+
 /*
   Forward declarations.
 */
@@ -156,7 +156,7 @@ static IconDirectory *AcquireIconDirectory(size_t count)
   }
   return(directory);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -810,7 +810,7 @@ static Image *ReadICONImage(const ImageInfo *image_info,
     return(DestroyImageList(image));
   return(GetFirstImageInList(image));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -868,7 +868,7 @@ ModuleExport size_t RegisterICONImage(void)
   (void) RegisterMagickInfo(entry);
   return(MagickImageCoderSignature);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -894,7 +894,7 @@ ModuleExport void UnregisterICONImage(void)
   (void) UnregisterMagickInfo("ICO");
   (void) UnregisterMagickInfo("ICON");
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

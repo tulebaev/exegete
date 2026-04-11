@@ -37,7 +37,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -100,14 +100,14 @@
 #  include <xml/parserInternals.h>
 #  include <xml/xmlerror.h>
 #endif
-
+
 /*
   Define Declarations.
 */
 #define ThrowMSLException(severity,tag,reason) \
   (void) ThrowMagickException(msl_info->exception,GetMagickModule(),severity, \
     tag,"`%s'",reason);
-
+
 /*
   Typedef declarations.
 */
@@ -143,13 +143,13 @@ typedef struct _MSLInfo
   MSLGroupInfo
     *group_info;
 } MSLInfo;
-
+
 /*    
   Global declarations.
 */  
 static SplayTreeInfo
   *msl_tree = (SplayTreeInfo *) NULL;
-
+
 /*
   Forward declarations.
 */
@@ -157,9 +157,9 @@ static SplayTreeInfo
 static MagickBooleanType
   SetMSLAttributes(MSLInfo *,const char *,const char *);
 #endif
-
+
 #if defined(MAGICKCORE_XML_DELEGATE)
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -7548,7 +7548,7 @@ static Image *ReadMSLImage(const ImageInfo *image_info,ExceptionInfo *exception)
   return(GetFirstImageInList(image));
 }
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -7588,7 +7588,7 @@ ModuleExport size_t RegisterMSLImage(void)
   (void) RegisterMagickInfo(entry);
   return(MagickImageCoderSignature);
 }
-
+
 #if defined(MAGICKCORE_XML_DELEGATE)
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -7876,7 +7876,7 @@ static MagickBooleanType SetMSLAttributes(MSLInfo *msl_info,const char *keyword,
   return(MagickTrue);
 }
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

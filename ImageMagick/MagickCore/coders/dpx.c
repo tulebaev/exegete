@@ -35,7 +35,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -68,12 +68,12 @@
 #include "MagickCore/string-private.h"
 #include "MagickCore/timer-private.h"
 #include "coders/coders-private.h"
-
+
 /*
   Define declaration.
 */
 #define MaxNumberImageElements  8
-
+
 /*
   Typedef declaration.
 */
@@ -328,13 +328,13 @@ typedef struct DPXInfo
   DPXUserInfo
     user;
 } DPXInfo;
-
+
 /*
   Forward declarations.
 */
 static MagickBooleanType
   WriteDPXImage(const ImageInfo *,Image *,ExceptionInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -370,7 +370,7 @@ static MagickBooleanType IsDPX(const unsigned char *magick,const size_t extent)
     return(MagickTrue);
   return(MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1323,7 +1323,7 @@ static Image *ReadDPXImage(const ImageInfo *image_info,ExceptionInfo *exception)
     return(DestroyImageList(image));
   return(GetFirstImageInList(image));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1370,7 +1370,7 @@ ModuleExport size_t RegisterDPXImage(void)
   (void) RegisterMagickInfo(entry);
   return(MagickImageCoderSignature);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1394,7 +1394,7 @@ ModuleExport void UnregisterDPXImage(void)
 {
   (void) UnregisterMagickInfo("DPX");
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

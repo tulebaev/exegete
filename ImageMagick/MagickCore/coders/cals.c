@@ -40,7 +40,7 @@
 % CAD/CAM, and image processing applications.
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -68,7 +68,7 @@
 #include "MagickCore/string_.h"
 #include "MagickCore/string-private.h"
 #include "MagickCore/module.h"
-
+
 #if defined(MAGICKCORE_TIFF_DELEGATE)
 /*
  Forward declarations.
@@ -76,7 +76,7 @@
 static MagickBooleanType
   WriteCALSImage(const ImageInfo *,Image *,ExceptionInfo *);
 #endif
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -114,7 +114,7 @@ static MagickBooleanType IsCALS(const unsigned char *magick,const size_t length)
     return(MagickTrue);
   return(MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -286,7 +286,7 @@ static Image *ReadCALSImage(const ImageInfo *image_info,
   (void) RelinquishUniqueFileResource(filename);
   return(image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -338,7 +338,7 @@ ModuleExport size_t RegisterCALSImage(void)
   (void) RegisterMagickInfo(entry);
   return(MagickImageCoderSignature);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -363,7 +363,7 @@ ModuleExport void UnregisterCALSImage(void)
   (void) UnregisterMagickInfo("CAL");
   (void) UnregisterMagickInfo("CALS");
 }
-
+
 #if defined(MAGICKCORE_TIFF_DELEGATE)
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

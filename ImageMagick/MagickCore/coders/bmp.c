@@ -36,7 +36,7 @@
 %
 %
 */
-
+
 /*
   Include declarations.
 */
@@ -67,7 +67,7 @@
 #include "MagickCore/string_.h"
 #include "MagickCore/module.h"
 #include "MagickCore/transform.h"
-
+
 /*
   Macro definitions (from Windows wingdi.h).
 */
@@ -108,7 +108,7 @@
 #undef LCS_GM_ABS_COLORIMETRIC
 #define LCS_GM_ABS_COLORIMETRIC  8  /* Absolute */
 #endif
-
+
 /*
   Enumerated declarations.
 */
@@ -161,13 +161,13 @@ typedef struct _BMPInfo
     blue_primary,
     gamma_scale;
 } BMPInfo;
-
+
 /*
   Forward declarations.
 */
 static MagickBooleanType
   WriteBMPImage(const ImageInfo *,Image *,ExceptionInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -353,7 +353,7 @@ static MagickBooleanType DecodeImage(Image *image,const size_t compression,
   (void) ReadBlobByte(image);
   return((p-pixels) < (ssize_t) number_pixels ? MagickFalse : MagickTrue);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -448,7 +448,7 @@ static size_t EncodeImage(Image *image,const size_t bytes_per_line,
   *q++=(unsigned char) 0x01;
   return((size_t) (q-compressed_pixels));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -487,7 +487,7 @@ static MagickBooleanType IsBMP(const unsigned char *magick,const size_t length)
     return(MagickTrue);
   return(MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1720,7 +1720,7 @@ static Image *ReadBMPImage(const ImageInfo *image_info,ExceptionInfo *exception)
     return(DestroyImageList(image));
   return(GetFirstImageInList(image));
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1775,7 +1775,7 @@ ModuleExport size_t RegisterBMPImage(void)
   (void) RegisterMagickInfo(entry);
   return(MagickImageCoderSignature);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -1801,7 +1801,7 @@ ModuleExport void UnregisterBMPImage(void)
   (void) UnregisterMagickInfo("BMP2");
   (void) UnregisterMagickInfo("BMP3");
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
