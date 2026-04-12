@@ -49,15 +49,16 @@ CODERS = coders/aai.c coders/art.c coders/ashlar.c\
   coders/ttf.c coders/txt.c coders/uil.c coders/url.c\
   coders/uyvy.c coders/vicar.c coders/vid.c coders/video.c\
   coders/viff.c coders/vips.c coders/wbmp.c coders/webp.c\
-  coders/wmf.c coders/xpm.c coders/xps.c coders/yaml.c\
+  coders/wmf.c coders/wpg.c coders/xbm.c coders/xc.c\
+  coders/xcf.c coders/xpm.c coders/xps.c coders/yaml.c\
   coders/ycbcr.c coders/yuv.c
 
 CFLAGS = /TP /DWIN32 /D_LIB /I..\Dependencies
 
 all:
-#	cl /c $(SRCS) $(CFLAGS)
+	cl /c $(SRCS) $(CFLAGS)
 	cl /c $(CODERS) $(CFLAGS) /I.
-#	lib /nologo /out:..\MagickCore.lib *.obj
+	lib /nologo /out:..\MagickCore.lib *.obj
 
 clean:
 	del *.obj
