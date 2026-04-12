@@ -25,10 +25,10 @@ extern "C" {
 
 #if !defined(MAGICKWAND_CONFIG_H)
 # define MAGICKWAND_CONFIG_H
-# if !defined(vms)
-#  include <MagickCore/MagickCore/magick-config.h>
-# else
+# if defined(vms)
 #  include "magick-config.h"
+# else
+#  include "../MagickCore/MagickCore/magick-config.h"
 # endif
 #if defined(_magickcore_const) && !defined(const)
 # define const _magickcore_const
@@ -73,27 +73,27 @@ extern "C" {
 typedef struct _MagickWand
   MagickWand;
 
-#include "MagickWand/method-attribute.h"
-#include "MagickCore/MagickCore.h"
-#include "MagickWand/animate.h"
-#include "MagickWand/compare.h"
-#include "MagickWand/composite.h"
-#include "MagickWand/conjure.h"
-#include "MagickWand/display.h"
-#include "MagickWand/drawing-wand.h"
-#include "MagickWand/identify.h"
-#include "MagickWand/import.h"
-#include "MagickWand/wandcli.h"
-#include "MagickWand/operation.h"
-#include "MagickWand/magick-cli.h"
-#include "MagickWand/magick-property.h"
-#include "MagickWand/magick-image.h"
-#include "MagickWand/mogrify.h"
-#include "MagickWand/montage.h"
-#include "MagickWand/pixel-iterator.h"
-#include "MagickWand/pixel-wand.h"
-#include "MagickWand/stream.h"
-#include "MagickWand/wand-view.h"
+#include "../MagickCore/MagickCore.h"
+#include "method-attribute.h"
+#include "animate.h"
+#include "compare.h"
+#include "composite.h"
+#include "conjure.h"
+#include "display.h"
+#include "drawing-wand.h"
+#include "identify.h"
+#include "import.h"
+#include "wandcli.h"
+#include "operation.h"
+#include "magick-cli.h"
+#include "magick-property.h"
+#include "magick-image.h"
+#include "mogrify.h"
+#include "montage.h"
+#include "pixel-iterator.h"
+#include "pixel-wand.h"
+#include "stream.h"
+#include "wand-view.h"
 
 extern WandExport char
   *MagickGetException(const MagickWand *,ExceptionType *);

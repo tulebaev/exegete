@@ -100,12 +100,12 @@
 #include <rsvg/librsvg-features.h>
 #endif
 #endif
-
+
 /*
   Define declarations.
 */
 #define DefaultSVGDensity  96.0
-
+
 /*
   Typedef declarations.
 */
@@ -185,7 +185,7 @@ typedef struct _SVGInfo
   ssize_t
     svgDepth;
 } SVGInfo;
-
+
 /*
   Global declarations.
 */
@@ -196,19 +196,19 @@ static SemaphoreInfo
 
 static SplayTreeInfo
   *svg_tree = (SplayTreeInfo *) NULL;
-
+
 /*
   Static declarations.
 */
 static char
   SVGDensityGeometry[] = "96.0x96.0";
-
+
 /*
   Forward declarations.
 */
 static MagickBooleanType
   WriteSVGImage(const ImageInfo *,Image *,ExceptionInfo *);
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -246,7 +246,7 @@ static MagickBooleanType IsSVG(const unsigned char *magick,const size_t length)
     return(MagickTrue);
   return(MagickFalse);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3350,7 +3350,7 @@ static Image *ReadSVGImage(const ImageInfo *image_info,ExceptionInfo *exception)
     image=RenderMSVGImage(image_info,image,exception);
   return(image);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3436,7 +3436,7 @@ ModuleExport size_t RegisterSVGImage(void)
   (void) RegisterMagickInfo(entry);
   return(MagickImageCoderSignature);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %
@@ -3467,7 +3467,7 @@ ModuleExport void UnregisterSVGImage(void)
   if (svg_tree != (SplayTreeInfo *) NULL)
     svg_tree=DestroySplayTree(svg_tree);
 }
-
+
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                             %

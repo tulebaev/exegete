@@ -67,141 +67,90 @@
 */
 #define MAGICKCORE_QUANTUM_DEPTH 16
 
-/*
-  Channel mask depth
-*/
+// Channel mask depth
 #define MAGICKCORE_CHANNEL_MASK_DEPTH 64
 
-/*
-  Define to enable high dynamic range imagery (HDRI)
-*/
+// Define to enable high dynamic range imagery (HDRI)
 #define MAGICKCORE_HDRI_ENABLE 1
 
-/*
-  Define to enable OpenCL
-*/
+// Define to enable OpenCL
 #undef MAGICKCORE_HAVE_CL_CL_H
 
-/*
-  Define to enable Distributed Pixel Cache
-*/
+// Define to enable Distributed Pixel Cache
 #define MAGICKCORE_DPC_SUPPORT
 
-/*
-  Exclude deprecated methods in MagickCore API
-*/
+// Exclude deprecated methods in MagickCore API
 #define MAGICKCORE_EXCLUDE_DEPRECATED
 
-/*
-  Define to only use the built-in (in-memory) settings.
-*/
+// Define to only use the built-in (in-memory) settings
 #define MAGICKCORE_ZERO_CONFIGURATION_SUPPORT 0
 
-/*
-Define to use the bzip2 compression library
-*/
+// Define to use the bzip2 compression library
 #define MAGICKCORE_BZLIB_DELEGATE
 
-/*
-Define to use the CAIRO library
-*/
+// Define to use the CAIRO library
 #define MAGICKCORE_CAIRO_DELEGATE
 
-/*
-Define to use the OpenEXR library
-*/
+// Define to use the OpenEXR library
 #undef MAGICKCORE_OPENEXR_DELEGATE
 
-/*
-Define to use the FreeType (TrueType & Postscript font support) library
-*/
+// Define to use the FreeType (TrueType & Postscript font support) library
 #define MAGICKCORE_FREETYPE_DELEGATE
 
-/*
-Define to use the libheif library
-*/
+// Define to use the libheif library
 #undef MAGICKCORE_HEIC_DELEGATE
 
-/*
-Define to use the TurboJPEG library
-*/
+// Define to use the TurboJPEG library
 #define MAGICKCORE_JPEG_DELEGATE
 
-/*
-Define to use the jpeg-xl library
-*/
+// Define to use the jpeg-xl library
 #undef MAGICKCORE_JXL_DELEGATE
 
-/*
-Define to use the "little" Color Management System (LCMS) library
-*/
+// Define to use the "little" Color Management System (LCMS) library
 #define MAGICKCORE_LCMS_DELEGATE
 #define MAGICKCORE_HAVE_LCMS2_H
 
-/*
-Define to use the Liquid Rescale library
-*/
+// Define to use the Liquid Rescale library
 #define MAGICKCORE_LQR_DELEGATE
 
-/*
-Define to use the lzma compression library
-*/
+// Define to use the lzma compression library
 #undef MAGICKCORE_LZMA_DELEGATE
 
-/*
-Define to use the OpenJPEG library
-*/
+// Define to use the OpenJPEG library
 #undef MAGICKCORE_LIBOPENJP2_DELEGATE
 
-/*
-Define to use the Pango/Cairo library
-*/
+// Define to use the Pango/Cairo library
 #define MAGICKCORE_PANGOCAIRO_DELEGATE
 
-/*
-Define to use the PNG library
-*/
+// Define to use the PNG library
 #define MAGICKCORE_PNG_DELEGATE
 
-/*
-Define to use the raqm library
-*/
+// Define to use the raqm library
 #undef MAGICKCORE_RAQM_DELEGATE
 
-/*
-Define to use the Raw library
-*/
+// Define to use the Raw library
 #undef MAGICKCORE_RAW_R_DELEGATE
 
-/*
-Define to use the RSVG library
-*/
+// Define to use the RSVG library
 #define MAGICKCORE_RSVG_DELEGATE
 
-/*
-Define to use the TIFF library
-*/
+// Define to use the TIFF library
 #define MAGICKCORE_TIFF_DELEGATE
 
-/*
-Define to use the WebP library
-*/
+// Define to use the WebP library
 #define MAGICKCORE_WEBP_DELEGATE
 #define MAGICKCORE_WEBPMUX_DELEGATE
 
-/*
-Define to use the GNOME XML library
-*/
+// Define to use the GNOME XML library
 #define MAGICKCORE_XML_DELEGATE
 
-/*
-Define if you have ZIP library
-*/
+// Define if you have WMF library
+#define MAGICKCORE_WMF_DELEGATE
+
+// Define if you have ZIP library
 #define MAGICKCORE_ZIP_DELEGATE
 
-/*
-Define to use the zlib ZIP compression library
-*/
+// Define to use the zlib ZIP compression library
 #define MAGICKCORE_ZLIB_DELEGATE
 
 
