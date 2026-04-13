@@ -35,8 +35,8 @@
 #define HAVE_GETSECURITYINFO
 /* #undef HAVE_GNUTLS */
 /* #undef HAVE_LIBBZ2 */
-/* #undef HAVE_LIBLZMA */
-/* #undef HAVE_LIBZSTD */
+#undef HAVE_LIBLZMA
+#undef HAVE_LIBZSTD
 /* #undef HAVE_LOCALTIME_R */
 #define HAVE_LOCALTIME_S
 #define HAVE_MEMCPY_S

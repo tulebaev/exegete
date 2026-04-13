@@ -14,20 +14,14 @@
  * understand and accept it fully.
  *
  */
-
-
 #ifndef FREETYPE_H_
 #define FREETYPE_H_
-
 
 #include <freetype/config/ftconfig.h>
 #include <freetype/fttypes.h>
 #include <freetype/fterrors.h>
 
-
 FT_BEGIN_HEADER
-
-
 
   /**************************************************************************
    *
@@ -5274,10 +5268,8 @@ FT_BEGIN_HEADER
 
   /* */
 
-
 FT_END_HEADER
 
 #endif /* FREETYPE_H_ */
-
 
 /* END */
