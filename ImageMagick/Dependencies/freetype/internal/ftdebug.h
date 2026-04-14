@@ -20,7 +20,6 @@
  *
  */
 
-
 #ifndef FTDEBUG_H_
 #define FTDEBUG_H_
 
@@ -163,6 +162,8 @@ FT_BEGIN_HEADER
 #endif /* !FT_DEBUG_LEVEL_TRACE */
 
 
+#ifdef FT_DEBUG_LEVEL_TRACE
+
   /**************************************************************************
    *
    * @function:
@@ -181,7 +182,6 @@ FT_BEGIN_HEADER
    */
   FT_BASE( FT_Int )
   FT_Trace_Get_Count( void );
-
 
   /**************************************************************************
    *
@@ -206,7 +206,6 @@ FT_BEGIN_HEADER
   FT_BASE( const char* )
   FT_Trace_Get_Name( FT_Int  idx );
 
-
   /**************************************************************************
    *
    * @function:
@@ -218,7 +217,6 @@ FT_BEGIN_HEADER
    */
   FT_BASE( void )
   FT_Trace_Disable( void );
-
 
   /**************************************************************************
    *
@@ -232,6 +230,7 @@ FT_BEGIN_HEADER
   FT_BASE( void )
   FT_Trace_Enable( void );
 
+  #endif /* !FT_DEBUG_LEVEL_TRACE */
 
   /**************************************************************************
    *
@@ -435,6 +434,5 @@ FT_BEGIN_HEADER
 FT_END_HEADER
 
 #endif /* FTDEBUG_H_ */
-
 
 /* END */

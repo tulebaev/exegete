@@ -66,12 +66,13 @@
     /* scan the array of segments in each direction */
     AF_GlyphHintsRec  hints[1];
 
-
+#ifdef FT_DEBUG_LEVEL_TRACE
     FT_TRACE5(( "\n" ));
     FT_TRACE5(( "cjk standard widths computation (style `%s')\n",
                 af_style_names[metrics->root.style_class->style] ));
     FT_TRACE5(( "===================================================\n" ));
     FT_TRACE5(( "\n" ));
+#endif
 
     af_glyph_hints_init( hints, face->memory );
 
@@ -115,7 +116,6 @@
         const char*  p_old;
 #endif
 
-
         while ( *p == ' ' )
           p++;
 
@@ -147,8 +147,10 @@
       if ( !glyph_index )
         goto Exit;
 
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE5(( "standard character: U+%04lX (glyph index %lu)\n",
                   ch, glyph_index ));
+#endif
 
       error = FT_Load_Glyph( face, glyph_index, FT_LOAD_NO_SCALE );
       if ( error || face->glyph->outline.n_points <= 0 )
@@ -245,7 +247,6 @@
         {
           FT_UInt  i;
 
-
           FT_TRACE5(( "%s widths:\n",
                       dim == AF_DIMENSION_VERT ? "horizontal"
                                                : "vertical" ));
@@ -260,7 +261,9 @@
       }
     }
 
+#ifdef FT_DEBUG_LEVEL_TRACE
     FT_TRACE5(( "\n" ));
+#endif
 
     af_glyph_hints_done( hints );
   }
@@ -300,9 +303,11 @@
     /* style's entry in the `af_blue_stringset' array, computing its */
     /* extremum points (depending on the string properties)          */
 
+#ifdef FT_DEBUG_LEVEL_TRACE
     FT_TRACE5(( "cjk blue zones computation\n" ));
     FT_TRACE5(( "==========================\n" ));
     FT_TRACE5(( "\n" ));
+#endif
 
     if ( ft_hb_enabled( metrics->root.globals ) )
       shaper_buf = af_shaper_buf_create( metrics->root.globals );
@@ -329,7 +334,6 @@
           (FT_String*)"right"      /* HORIZ, TOP */
         };
 
-
         FT_TRACE5(( "blue zone %u (%s):\n",
                     axis->blue_count,
                     cjk_blue_name[AF_CJK_IS_HORIZ_BLUE( bs ) |
@@ -339,9 +343,11 @@
 
       num_fills = 0;
       num_flats = 0;
-
       fill = 1;  /* start with characters that define fill values */
+
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE5(( "  [overshoot values]\n" ));
+#endif
 
       while ( *p )
       {
@@ -370,7 +376,9 @@
         if ( *p == '|' )
         {
           fill = 0;
+#ifdef FT_DEBUG_LEVEL_TRACE
           FT_TRACE5(( "  [reference values]\n" ));
+#endif
           p++;
           continue;
         }
@@ -388,7 +396,9 @@
                                           NULL );
         if ( glyph_index == 0 )
         {
+#ifdef FT_DEBUG_LEVEL_TRACE
           FT_TRACE5(( "  U+%04lX unavailable\n", ch ));
+#endif
           continue;
         }
 
@@ -396,7 +406,9 @@
         outline = face->glyph->outline;
         if ( error || outline.n_points <= 2 )
         {
+#ifdef FT_DEBUG_LEVEL_TRACE
           FT_TRACE5(( "  U+%04lX contains no (usable) outlines\n", ch ));
+#endif
           continue;
         }
 
@@ -408,7 +420,6 @@
         {
           FT_Int  nn;
           FT_Int  pp, first, last;
-
 
           last = -1;
           for ( nn = 0; nn < outline.n_contours; nn++ )
@@ -465,8 +476,9 @@
               }
             }
           }
-
+#ifdef FT_DEBUG_LEVEL_TRACE
           FT_TRACE5(( "  U+%04lX: best_pos = %5ld\n", ch, best_pos ));
+#endif
         }
 
         if ( fill )
@@ -482,7 +494,9 @@
          * we couldn't find a single glyph to compute this blue zone,
          * we will simply ignore it then
          */
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE5(( "  empty\n" ));
+#endif
         continue;
       }
 
@@ -528,9 +542,10 @@
         {
           *blue_ref   =
           *blue_shoot = ( shoot + ref ) / 2;
-
+#ifdef FT_DEBUG_LEVEL_TRACE
           FT_TRACE5(( "  [reference smaller than overshoot,"
                       " taking mean value]\n" ));
+#endif
         }
       }
 
@@ -538,14 +553,17 @@
       if ( AF_CJK_IS_TOP_BLUE( bs ) )
         blue->flags |= AF_CJK_BLUE_TOP;
 
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE5(( "    -> reference = %ld\n", *blue_ref ));
       FT_TRACE5(( "       overshoot = %ld\n", *blue_shoot ));
+#endif
 
     } /* end for loop */
 
     af_shaper_buf_destroy( metrics->root.globals, shaper_buf );
-
+#ifdef FT_DEBUG_LEVEL_TRACE
     FT_TRACE5(( "\n" ));
+#endif
 
     return;
   }
@@ -706,8 +724,9 @@
           delta2 = -delta2;
 
         delta2 = FT_MulFix( delta2, scale );
-
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE5(( "delta: %ld", delta1 ));
+#endif
         if ( delta2 < 32 )
           delta2 = 0;
 #if 0
@@ -716,8 +735,9 @@
 #endif
         else
           delta2 = FT_PIX_ROUND( delta2 );
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE5(( "/%ld\n", delta2 ));
-
+#endif
         if ( delta1 < 0 )
           delta2 = -delta2;
 
@@ -737,7 +757,6 @@
       }
     }
   }
-
 
   /* Scale global values in both directions. */
 
@@ -1534,7 +1553,6 @@
       {
         FT_Pos  delta;
 
-
         delta  = dist & 63;
         dist  &= -64;
 
@@ -1618,9 +1636,8 @@
                                                       base_edge->flags,
                                                       stem_edge->flags );
 
-
     stem_edge->pos = base_edge->pos + fitted_width;
-
+#ifdef FT_DEBUG_LEVEL_TRACE
     FT_TRACE5(( "  CJKLINK: edge %td @%d (opos=%.2f) linked to %.2f,"
                 " dist was %.2f, now %.2f\n",
                 stem_edge - hints->axis[dim].edges, stem_edge->fpos,
@@ -1628,6 +1645,7 @@
                 (double)stem_edge->pos / 64,
                 (double)dist / 64,
                 (double)fitted_width / 64 ));
+#endif
   }
 
 
@@ -1806,12 +1824,11 @@
 
 #ifdef FT_DEBUG_LEVEL_TRACE
     FT_UInt       num_actions = 0;
-#endif
-
 
     FT_TRACE5(( "cjk %s edge hinting (style `%s')\n",
                 dim == AF_DIMENSION_VERT ? "horizontal" : "vertical",
                 af_style_names[hints->metrics->style_class->style] ));
+#endif
 
     /* we begin by aligning all stems relative to the blue zone */
 
@@ -1821,7 +1838,6 @@
       {
         AF_Width  blue;
         AF_Edge   edge1, edge2;
-
 
         if ( edge->flags & AF_EDGE_DONE )
           continue;
@@ -1909,8 +1925,9 @@
       /* this should not happen, but it's better to be safe */
       if ( edge2->blue_edge )
       {
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE5(( "ASSERTION FAILED for edge %td\n", edge2 - edges ));
-
+#endif
         af_cjk_align_linked_edge( hints, dim, edge2, edge );
         edge->flags |= AF_EDGE_DONE;
 

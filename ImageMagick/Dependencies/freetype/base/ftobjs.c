@@ -507,8 +507,10 @@
                  height > 10 * slot->face->size->metrics.y_ppem ) ) );
 
     if ( ret )
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE3(( "ft_glyphslot_preset_bitmap: [%ld %ld %ld %ld]\n",
                   pbox.xMin, pbox.yMin, pbox.xMax, pbox.yMax ));
+#endif
 
     switch ( pixel_mode )
     {
@@ -700,7 +702,10 @@
     clazz  = driver->clazz;
     memory = driver->root.memory;
 
+#ifdef FT_DEBUG_LEVEL_TRACE
     FT_TRACE4(( "FT_New_GlyphSlot: Creating new slot object\n" ));
+#endif
+
     if ( !FT_ALLOC( slot, clazz->slot_object_size ) )
     {
       slot->face = face;
@@ -724,7 +729,9 @@
 
 
   Exit:
+#ifdef FT_DEBUG_LEVEL_TRACE
     FT_TRACE4(( "FT_New_GlyphSlot: Return 0x%x\n", error ));
+#endif
 
     return error;
   }
@@ -1898,13 +1905,17 @@
 
     if ( offset > stream->size )
     {
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE2(( "open_face_PS_from_sfnt_stream: invalid table offset\n" ));
+#endif
       error = FT_THROW( Invalid_Table );
       goto Exit;
     }
     else if ( length > stream->size - offset )
     {
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE2(( "open_face_PS_from_sfnt_stream: invalid table length\n" ));
+#endif
       error = FT_THROW( Invalid_Table );
       goto Exit;
     }
@@ -1991,16 +2002,20 @@
       /* FT2 allocator takes signed long buffer length,
        * too large value causing overflow should be checked
        */
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE4(( "                 POST fragment #%d: length=0x%08lx"
                   " total pfb_len=0x%08lx\n",
                   i, temp, pfb_len + temp + 6 ));
+#endif
 
       if ( FT_MAC_RFORK_MAX_LEN < temp               ||
            FT_MAC_RFORK_MAX_LEN - temp < pfb_len + 6 )
       {
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE2(( "             MacOS resource length cannot exceed"
                     " 0x%08lx\n",
                     FT_MAC_RFORK_MAX_LEN ));
+#endif
 
         error = FT_THROW( Invalid_Offset );
         goto Exit;
@@ -2008,17 +2023,19 @@
 
       pfb_len += temp + 6;
     }
-
+#ifdef FT_DEBUG_LEVEL_TRACE
     FT_TRACE2(( "             total buffer size to concatenate"
                 " %ld POST fragments: 0x%08lx\n",
                  resource_cnt, pfb_len + 2 ));
+#endif
 
     if ( pfb_len + 2 < 6 )
     {
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE2(( "             too long fragment length makes"
                   " pfb_len confused: pfb_len=0x%08lx\n",
                   pfb_len ));
-
+#endif
       error = FT_THROW( Array_Too_Large );
       goto Exit;
     }
@@ -2058,9 +2075,11 @@
       if ( FT_READ_USHORT( flags ) )
         goto Exit2;
 
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE3(( "POST fragment[%d]:"
                   " offsets=0x%08lx, rlen=0x%08lx, flags=0x%04x\n",
                   i, offsets[i], rlen, flags ));
+#endif
 
       error = FT_ERR( Array_Too_Large );
 
@@ -2069,8 +2088,9 @@
 
       if ( ( flags >> 8 ) == 0 )        /* Comment, should not be loaded */
       {
-        FT_TRACE3(( "    Skip POST fragment #%d because it is a comment\n",
-                    i ));
+#ifdef FT_DEBUG_LEVEL_TRACE
+        FT_TRACE3(( "    Skip POST fragment #%d because it is a comment\n", i ));
+#endif
         continue;
       }
 
@@ -2085,9 +2105,11 @@
         len += rlen;
       else
       {
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE3(( "    Write POST fragment #%d header (4-byte) to buffer"
                     " %p + 0x%08lx\n",
                     i, (void*)pfb_data, pfb_lenpos ));
+#endif
 
         if ( pfb_lenpos + 3 > pfb_len + 2 )
           goto Exit2;
@@ -2100,9 +2122,11 @@
         if ( ( flags >> 8 ) == 5 )      /* End of font mark */
           break;
 
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE3(( "    Write POST fragment #%d header (6-byte) to buffer"
                     " %p + 0x%08lx\n",
                     i, (void*)pfb_data, pfb_pos ));
+#endif
 
         if ( pfb_pos + 6 > pfb_len + 2 )
           goto Exit2;
@@ -2123,9 +2147,11 @@
       if ( pfb_pos > pfb_len || pfb_pos + rlen > pfb_len )
         goto Exit2;
 
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE3(( "    Load POST fragment #%d (%lu byte) to buffer"
                   " %p + 0x%08lx\n",
                   i, rlen, (void*)pfb_data, pfb_pos ));
+#endif
 
       error = FT_Stream_Read( stream, (FT_Byte *)pfb_data + pfb_pos, rlen );
       if ( error )
@@ -2156,12 +2182,13 @@
                                   aface );
 
   Exit2:
+#ifdef FT_DEBUG_LEVEL_TRACE
     if ( FT_ERR_EQ( error, Array_Too_Large ) )
       FT_TRACE2(( "  Abort due to too-short buffer to store"
                   " all POST fragments\n" ));
     else if ( FT_ERR_EQ( error, Invalid_Offset ) )
       FT_TRACE2(( "  Abort due to invalid offset in a POST fragment\n" ));
-
+#endif
     if ( error )
       error = FT_ERR( Cannot_Open_Resource );
     FT_FREE( pfb_data );
@@ -2396,25 +2423,31 @@
       is_darwin_vfs = ft_raccess_rule_by_darwin_vfs( library, i );
       if ( is_darwin_vfs && vfs_rfork_has_no_font )
       {
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE3(( "Skip rule %u: darwin vfs resource fork"
                     " is already checked and"
                     " no font is found\n",
                     i ));
+#endif
         continue;
       }
 
       if ( errors[i] )
       {
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE3(( "Error 0x%x has occurred in rule %u\n",
                     errors[i], i ));
+#endif
         continue;
       }
 
       args2.flags    = FT_OPEN_PATHNAME;
       args2.pathname = file_names[i] ? file_names[i] : args->pathname;
 
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE3(( "Try rule %u: %s (offset=%ld) ...",
                   i, args2.pathname, offsets[i] ));
+#endif
 
       error = FT_Stream_New( library, &args2, &stream2 );
       if ( is_darwin_vfs && FT_ERR_EQ( error, Cannot_Open_Stream ) )
@@ -2422,7 +2455,9 @@
 
       if ( error )
       {
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE3(( "failed\n" ));
+#endif
         continue;
       }
 
@@ -2430,7 +2465,9 @@
                              face_index, aface );
       FT_Stream_Free( stream2, 0 );
 
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE3(( "%s\n", error ? "failed": "successful" ));
+#endif
 
       if ( !error )
           break;
@@ -2489,7 +2526,9 @@
 
       error = IsMacResource( library, stream, 0, face_index, aface );
 
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE3(( "%s\n", error ? "failed" : "successful" ));
+#endif
 
 #undef  FT_COMPONENT
 #define FT_COMPONENT  objs
@@ -2716,7 +2755,9 @@
     }
 
   Success:
+#ifdef FT_DEBUG_LEVEL_TRACE
     FT_TRACE4(( "FT_Open_Face: New face object, adding to list\n" ));
+#endif
 
     /* add the face object to its driver's list */
     if ( FT_QNEW( node ) )
@@ -2727,8 +2768,10 @@
     /* face->driver instead.                                   */
     FT_List_Add( &face->driver->faces_list, node );
 
+#ifdef FT_DEBUG_LEVEL_TRACE
     /* now allocate a glyph slot object for the face */
     FT_TRACE4(( "FT_Open_Face: Creating glyph slot\n" ));
+#endif
 
     if ( face_index >= 0 )
     {
@@ -2738,11 +2781,10 @@
 
       /* finally, allocate a size object for the face */
       {
-        FT_Size  size;
-
-
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE4(( "FT_Open_Face: Creating size object\n" ));
-
+#endif
+        FT_Size  size;
         error = FT_New_Size( face, &size );
         if ( error )
           goto Fail;
@@ -2782,9 +2824,11 @@
         /* check whether negation actually has worked */
         if ( bsize->height < 0 || bsize->x_ppem < 0 || bsize->y_ppem < 0 )
         {
+#ifdef FT_DEBUG_LEVEL_TRACE
           FT_TRACE0(( "FT_Open_Face:"
                       " Invalid bitmap dimensions for strike %d,"
                       " now disabled\n", i ));
+#endif
           bsize->width  = 0;
           bsize->height = 0;
           bsize->size   = 0;
@@ -2797,7 +2841,6 @@
     /* initialize internal face data */
     {
       FT_Face_Internal  internal = face->internal;
-
 
       internal->transform_matrix.xx = 0x10000L;
       internal->transform_matrix.xy = 0;
@@ -2837,10 +2880,9 @@
                   ( face->style_flags >> 16 ) == 1 ? "" : "s",
                   -face_index - 1 ));
     }
-#endif
 
     FT_TRACE4(( "FT_Open_Face: Return 0x%x\n", error ));
-
+#endif
     return error;
   }
 
@@ -3124,17 +3166,18 @@
 
       if ( w == FT_PIX_ROUND( bsize->x_ppem ) || ignore_width )
       {
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE3(( "FT_Match_Size: bitmap strike %d matches\n", i ));
-
+#endif
         if ( size_index )
           *size_index = (FT_ULong)i;
 
         return FT_Err_Ok;
       }
     }
-
+#ifdef FT_DEBUG_LEVEL_TRACE
     FT_TRACE3(( "FT_Match_Size: no matching bitmap strike\n" ));
-
+#endif
     return FT_THROW( Invalid_Pixel_Size );
   }
 
@@ -3395,21 +3438,22 @@
     if ( clazz->select_size )
     {
       error = clazz->select_size( face->size, (FT_ULong)strike_index );
-
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE5(( "FT_Select_Size (%s driver):\n",
                   face->driver->root.clazz->module_name ));
+#endif
     }
     else
     {
       FT_Select_Metrics( face, (FT_ULong)strike_index );
-
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE5(( "FT_Select_Size:\n" ));
+#endif
     }
 
 #ifdef FT_DEBUG_LEVEL_TRACE
     {
       FT_Size_Metrics*  metrics = &face->size->metrics;
-
 
       FT_TRACE5(( "  x scale: %ld (%f)\n",
                   metrics->x_scale, (double)metrics->x_scale / 65536 ));
@@ -3462,9 +3506,10 @@
     if ( clazz->request_size )
     {
       error = clazz->request_size( face->size, req );
-
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE5(( "FT_Request_Size (%s driver):\n",
                   face->driver->root.clazz->module_name ));
+#endif
     }
     else if ( !FT_IS_SCALABLE( face ) && FT_HAS_FIXED_SIZES( face ) )
     {
@@ -3486,14 +3531,14 @@
       error = FT_Request_Metrics( face, req );
       if ( error )
         goto Exit;
-
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE5(( "FT_Request_Size:\n" ));
+#endif
     }
 
 #ifdef FT_DEBUG_LEVEL_TRACE
     {
       FT_Size_Metrics*  metrics = &face->size->metrics;
-
 
       FT_TRACE5(( "  x scale: %ld (%f)\n",
                   metrics->x_scale, (double)metrics->x_scale / 65536 ));
@@ -3657,7 +3702,6 @@
             {
               FT_Pos  orig_x_rounded = FT_PIX_ROUND( orig_x );
               FT_Pos  orig_y_rounded = FT_PIX_ROUND( orig_y );
-
 
               if ( akerning->x != orig_x_rounded ||
                    akerning->y != orig_y_rounded )
@@ -3933,8 +3977,10 @@
 
       if ( charcode > 0xFFFFFFFFUL )
       {
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE1(( "FT_Get_Char_Index: too large charcode" ));
         FT_TRACE1(( " 0x%lx is truncated\n", charcode ));
+#endif
       }
 
       result = cmap->clazz->char_index( cmap, (FT_UInt32)charcode );
@@ -4098,15 +4144,19 @@
 
         if ( charcode > 0xFFFFFFFFUL )
         {
+#ifdef FT_DEBUG_LEVEL_TRACE
           FT_TRACE1(( "FT_Face_GetCharVariantIndex:"
                       " too large charcode" ));
           FT_TRACE1(( " 0x%lx is truncated\n", charcode ));
+#endif
         }
         if ( variantSelector > 0xFFFFFFFFUL )
         {
+#ifdef FT_DEBUG_LEVEL_TRACE
           FT_TRACE1(( "FT_Face_GetCharVariantIndex:"
                       " too large variantSelector" ));
           FT_TRACE1(( " 0x%lx is truncated\n", variantSelector ));
+#endif
         }
 
         result = vcmap->clazz->char_var_index( vcmap, ucmap,
@@ -4141,15 +4191,19 @@
 
         if ( charcode > 0xFFFFFFFFUL )
         {
+#ifdef FT_DEBUG_LEVEL_TRACE
           FT_TRACE1(( "FT_Face_GetCharVariantIsDefault:"
                       " too large charcode" ));
           FT_TRACE1(( " 0x%lx is truncated\n", charcode ));
+#endif
         }
         if ( variantSelector > 0xFFFFFFFFUL )
         {
+#ifdef FT_DEBUG_LEVEL_TRACE
           FT_TRACE1(( "FT_Face_GetCharVariantIsDefault:"
                       " too large variantSelector" ));
           FT_TRACE1(( " 0x%lx is truncated\n", variantSelector ));
+#endif
         }
 
         result = vcmap->clazz->char_var_default( vcmap,
@@ -4211,8 +4265,10 @@
 
         if ( charcode > 0xFFFFFFFFUL )
         {
+#ifdef FT_DEBUG_LEVEL_TRACE
           FT_TRACE1(( "FT_Face_GetVariantsOfChar: too large charcode" ));
           FT_TRACE1(( " 0x%lx is truncated\n", charcode ));
+#endif
         }
 
         result = vcmap->clazz->charvariant_list( vcmap, memory,
@@ -4245,8 +4301,10 @@
 
         if ( variantSelector > 0xFFFFFFFFUL )
         {
+#ifdef FT_DEBUG_LEVEL_TRACE
           FT_TRACE1(( "FT_Get_Char_Index: too large variantSelector" ));
           FT_TRACE1(( " 0x%lx is truncated\n", variantSelector ));
+#endif
         }
 
         result = vcmap->clazz->variantchar_list( vcmap, memory,
@@ -4872,7 +4930,6 @@
       FT_Bitmap  bitmap;
       FT_Error   err;
 
-
       FT_Bitmap_Init( &bitmap );
 
       /* we convert to a single bitmap format for computing the checksum */
@@ -4887,18 +4944,21 @@
         int            rows  = (int)bitmap.rows;
         int            pitch = bitmap.pitch;
 
-
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE3(( "FT_Render_Glyph: bitmap %dx%d, %s (mode %d)\n",
                     pitch,
                     rows,
                     pixel_modes[slot->bitmap.pixel_mode],
                     slot->bitmap.pixel_mode ));
+#endif
 
         for ( i = 0; i < rows; i++ )
           for ( j = 0; j < pitch; j++ )
             coverage += bitmap.buffer[i * pitch + j];
 
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE3(( "  Total coverage: %lu\n", coverage ));
+#endif
 
         MD5_Init( &ctx );
         if ( bitmap.buffer )
@@ -4906,10 +4966,12 @@
                       (unsigned long)rows * (unsigned long)pitch );
         MD5_Final( md5, &ctx );
 
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE3(( "  MD5 checksum: " ));
         for ( i = 0; i < 16; i++ )
           FT_TRACE3(( "%02X", md5[i] ));
         FT_TRACE3(( "\n" ));
+#endif
       }
 
       FT_Bitmap_Done( library, &bitmap );
@@ -4933,7 +4995,6 @@
         int  i, j, m;
 
         unsigned char*  topleft = slot->bitmap.buffer;
-
 
         if ( pitch < 0 )
           topleft -= pitch * ( rows - 1 );
@@ -5319,7 +5380,6 @@
 
     FT_Bool  missing_func;
 
-
     if ( !library )
       return FT_THROW( Invalid_Library_Handle );
 
@@ -5336,16 +5396,20 @@
 
     if ( cur == limit )
     {
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE2(( "%s: can't find module `%s'\n",
                   func_name, module_name ));
+#endif
       return FT_THROW( Missing_Module );
     }
 
     /* check whether we have a service interface */
     if ( !cur[0]->clazz->get_interface )
     {
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE2(( "%s: module `%s' doesn't support properties\n",
                   func_name, module_name ));
+#endif
       return FT_THROW( Unimplemented_Feature );
     }
 
@@ -5354,8 +5418,10 @@
                                               FT_SERVICE_ID_PROPERTIES );
     if ( !interface )
     {
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE2(( "%s: module `%s' doesn't support properties\n",
                   func_name, module_name ));
+#endif
       return FT_THROW( Unimplemented_Feature );
     }
 
@@ -5368,8 +5434,10 @@
 
     if ( missing_func )
     {
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE2(( "%s: property service of module `%s' is broken\n",
                   func_name, module_name ));
+#endif
       return FT_THROW( Unimplemented_Feature );
     }
 
@@ -5592,14 +5660,18 @@
           if ( ( module->clazz->module_flags & FT_MODULE_FONT_DRIVER ) == 0 )
             continue;
 
+#ifdef FT_DEBUG_LEVEL_TRACE
           FT_TRACE7(( "FT_Done_Library: close faces for %s\n", module_name ));
+#endif
 
           faces = &FT_DRIVER( module )->faces_list;
           while ( faces->head )
           {
             FT_Done_Face( FT_FACE( faces->head->data ) );
+#ifdef FT_DEBUG_LEVEL_TRACE
             if ( faces->head )
               FT_TRACE0(( "FT_Done_Library: failed to free some faces\n" ));
+#endif
           }
         }
       }
@@ -5617,11 +5689,9 @@
     {
       FT_UInt  n;
 
-
       for ( n = 0; n < library->num_modules; n++ )
       {
         FT_Module  module = library->modules[n];
-
 
         if ( module )
         {

@@ -70,8 +70,8 @@
 #endif
 
 #if defined(MAGICKCORE_SANS_DELEGATE)
-#include "libwmf/api.h"
-#include "libwmf/eps.h"
+#include <libwmf/api.h>
+#include <libwmf/eps.h>
 
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -251,9 +251,9 @@ static Image *ReadWMFImage(const ImageInfo *image_info,ExceptionInfo *exception)
 #  include <ft2build.h>
 #endif
 
-#include "libwmf/fund.h"
-#include "libwmf/types.h"
-#include "libwmf/api.h"
+#include <libwmf/fund.h>
+#include <libwmf/types.h>
+#include <libwmf/api.h>
 #undef SRCCOPY
 #undef SRCPAINT
 #undef SRCAND
@@ -292,10 +292,10 @@ static Image *ReadWMFImage(const ImageInfo *image_info,ExceptionInfo *exception)
 #undef ETO_GLYPH_INDEX
 #undef ETO_RTLREADING
 
-#include "libwmf/defs.h"
-#include "libwmf/ipa.h"
-#include "libwmf/color.h"
-#include "libwmf/macro.h"
+#include <libwmf/defs.h>
+#include <libwmf/ipa.h>
+#include <libwmf/color.h>
+#include <libwmf/macro.h>
 
 /* Unit conversions */
 #define TWIPS_PER_INCH        1440

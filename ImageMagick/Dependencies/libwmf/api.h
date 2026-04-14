@@ -20,7 +20,7 @@
 #ifndef LIBWMF_API_H
 #define LIBWMF_API_H
 
-#include <zlib/zlib.h>
+#include <zlib.h>
 
 #include <libwmf/types.h>
 

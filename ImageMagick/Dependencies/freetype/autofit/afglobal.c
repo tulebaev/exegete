@@ -296,7 +296,6 @@
       FT_UInt        count       = 0;
       FT_UInt        idx;
 
-
       FT_TRACE4(( "%s:\n", af_style_names[style_class->style] ));
 
       for ( idx = 0; idx < globals->glyph_count; idx++ )

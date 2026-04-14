@@ -96,9 +96,9 @@
 #include "MagickCore/visual-effects.h"
 #include "coders/coders-private.h"
 #if defined(MAGICKCORE_XML_DELEGATE)
-#  include <xml/xmlmemory.h>
-#  include <xml/parserInternals.h>
-#  include <xml/xmlerror.h>
+#  include <libxml/xmlmemory.h>
+#  include <libxml/parserInternals.h>
+#  include <libxml/xmlerror.h>
 #endif
 
 /*

@@ -51,7 +51,7 @@ CODERS = coders/aai.c coders/art.c coders/ashlar.c\
   coders/viff.c coders/vips.c coders/wbmp.c coders/webp.c\
   coders/wmf.c coders/wpg.c coders/xbm.c coders/xc.c\
   coders/xcf.c coders/xpm.c coders/xps.c coders/yaml.c\
-  coders/ycbcr.c coders/yuv.c
+  coders/ycbcr.c coders/yuv.c filters/analyze.c
 
 CFLAGS = /TP /DWIN32 /D_LIB /I..\Dependencies
 

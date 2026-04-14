@@ -15,12 +15,10 @@
  *
  */
 
-
 #ifndef FTSYSTEM_H_
 #define FTSYSTEM_H_
 
-
-
+#include <freetype/config/ftheader.h>
 
 FT_BEGIN_HEADER
 
@@ -339,12 +337,8 @@ FT_BEGIN_HEADER
 
   } FT_StreamRec;
 
-  /* */
-
-
 FT_END_HEADER
 
 #endif /* FTSYSTEM_H_ */
-
 
 /* END */

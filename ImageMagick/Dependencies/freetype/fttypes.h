@@ -19,14 +19,11 @@
 #ifndef FTTYPES_H_
 #define FTTYPES_H_
 
-
-#include "config/ftheader.h"
-#include FT_CONFIG_CONFIG_H
+#include <freetype/config/ftconfig.h>
 #include <freetype/ftsystem.h>
 #include <freetype/ftimage.h>
 
 #include <stddef.h>
-
 
 FT_BEGIN_HEADER
 
@@ -608,10 +605,8 @@ FT_BEGIN_HEADER
 #define FT_ERR_NEQ( x, e )                                       \
           ( FT_ERROR_BASE( x ) != FT_ERROR_BASE( FT_ERR( e ) ) )
 
-
 FT_END_HEADER
 
 #endif /* FTTYPES_H_ */
-
 
 /* END */

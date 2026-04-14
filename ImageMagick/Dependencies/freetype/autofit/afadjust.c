@@ -1288,10 +1288,11 @@
     FT_UInt32  codepoint;
     FT_Offset  i;
 
-
+#ifdef FT_DEBUG_LEVEL_TRACE
     FT_TRACE4(( "af_reverse_character_map_new:"
                 " building reverse character map (style `%s')\n",
                 af_style_names[metrics->style_class->style] ));
+#endif
 
     /* Search for a unicode charmap.           */
     /* If there isn't one, create a blank map. */
@@ -1398,7 +1399,6 @@
 #ifdef FT_DEBUG_LEVEL_TRACE
       {
         FT_Bool  have_idx = FALSE;
-
 
         FT_TRACE4(( "  GSUB lookups to check:\n" ));
 
@@ -1512,14 +1512,13 @@
 
 #endif /* FT_CONFIG_OPTION_USE_HARFBUZZ */
 
+#ifdef FT_DEBUG_LEVEL_TRACE
+
     FT_TRACE4(( "    reverse character map built successfully"
                 " with %u entries\n", ( *map )->used ));
 
-#ifdef FT_DEBUG_LEVEL_TRACE
-
     {
       FT_UInt  cnt;
-
 
       FT_TRACE7(( "       gidx   code    flags\n" ));
                /* "      XXXXX  0xXXXX  XXXXXXXXXXX..." */
@@ -1591,8 +1590,10 @@
 
     if ( error )
     {
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE4(( "    error while building reverse character map."
                   " Using blank map.\n" ));
+#endif
 
       if ( *map )
         ft_hash_num_free( *map, memory );

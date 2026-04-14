@@ -15,7 +15,6 @@
  *
  */
 
-
 #include <freetype/ftadvanc.h>
 #include <freetype/internal/ftdebug.h>
 
@@ -58,12 +57,13 @@
     /* scan the array of segments in each direction */
     AF_GlyphHintsRec  hints[1];
 
-
+#ifdef FT_DEBUG_LEVEL_TRACE
     FT_TRACE5(( "\n" ));
     FT_TRACE5(( "latin standard widths computation (style `%s')\n",
                 af_style_names[metrics->root.style_class->style] ));
     FT_TRACE5(( "=====================================================\n" ));
     FT_TRACE5(( "\n" ));
+#endif
 
     af_glyph_hints_init( hints, face->memory );
 
@@ -91,7 +91,6 @@
       FT_ULong  ch = 0;
 #endif
 
-
       p = script_class->standard_charstring;
 
       if ( ft_hb_enabled ( metrics->root.globals ) )
@@ -112,7 +111,6 @@
 #ifdef FT_DEBUG_LEVEL_TRACE
         const char*  p_old;
 #endif
-
 
         while ( *p == ' ' )
           p++;
@@ -141,13 +139,16 @@
 
       if ( !glyph_index )
       {
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE5(( "standard character missing;"
                     " using fallback stem widths\n" ));
+#endif
         goto Exit;
       }
-
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE5(( "standard character: U+%04lX (glyph index %lu)\n",
                   ch, glyph_index ));
+#endif
 
       error = FT_Load_Glyph( face, glyph_index, FT_LOAD_NO_SCALE );
       if ( error || face->glyph->outline.n_points <= 0 )
@@ -244,7 +245,6 @@
         {
           FT_UInt  i;
 
-
           FT_TRACE5(( "%s widths:\n",
                       dim == AF_DIMENSION_VERT ? "horizontal"
                                                : "vertical" ));
@@ -259,7 +259,9 @@
       }
     }
 
+#ifdef FT_DEBUG_LEVEL_TRACE
     FT_TRACE5(( "\n" ));
+#endif
 
     af_glyph_hints_done( hints );
   }
@@ -334,13 +336,13 @@
     FT_ULong  shaper_buf_;
     void*     shaper_buf = &shaper_buf_;
 
-
     /* we walk over the blue character strings as specified in the */
     /* style's entry in the `af_blue_stringset' array              */
-
+#ifdef FT_DEBUG_LEVEL_TRACE
     FT_TRACE5(( "latin blue zones computation\n" ));
     FT_TRACE5(( "============================\n" ));
     FT_TRACE5(( "\n" ));
+#endif
 
     if ( ft_hb_enabled ( metrics->root.globals ) )
       shaper_buf = af_shaper_buf_create( metrics->root.globals );
@@ -353,11 +355,9 @@
       FT_Pos       ascender;
       FT_Pos       descender;
 
-
 #ifdef FT_DEBUG_LEVEL_TRACE
       {
         FT_Bool  have_flag = 0;
-
 
         FT_TRACE5(( "blue zone %u", axis->blue_count ));
 
@@ -442,7 +442,6 @@
         FT_ULong     ch;
 #endif
 
-
         while ( *p == ' ' )
           p++;
 
@@ -455,7 +454,9 @@
 
         if ( !num_idx )
         {
+#ifdef FT_DEBUG_LEVEL_TRACE
           FT_TRACE5(( "  U+%04lX unavailable\n", ch ));
+#endif
           continue;
         }
 
@@ -480,7 +481,9 @@
                                             &y_offset );
           if ( glyph_index == 0 )
           {
+#ifdef FT_DEBUG_LEVEL_TRACE
             FT_TRACE5(( "  U+%04lX unavailable\n", ch ));
+#endif
             continue;
           }
 
@@ -859,11 +862,14 @@
             if ( round && AF_LATIN_IS_NEUTRAL_BLUE( bs ) )
             {
               /* only use flat segments for a neutral blue zone */
+#ifdef FT_DEBUG_LEVEL_TRACE
               FT_TRACE5(( " (round, skipped)\n" ));
+#endif
               continue;
             }
-
+#ifdef FT_DEBUG_LEVEL_TRACE
             FT_TRACE5(( " (%s)\n", round ? "round" : "flat" ));
+#endif
           }
 
           if ( AF_LATIN_IS_TOP_BLUE( bs ) )
@@ -902,7 +908,9 @@
          * we couldn't find a single glyph to compute this blue zone,
          * we will simply ignore it then
          */
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE5(( "  empty\n" ));
+#endif
         continue;
       }
 
@@ -943,15 +951,15 @@
         FT_Pos   shoot    = *blue_shoot;
         FT_Bool  over_ref = FT_BOOL( shoot > ref );
 
-
         if ( ( AF_LATIN_IS_TOP_BLUE( bs )    ||
                AF_LATIN_IS_SUB_TOP_BLUE( bs) ) ^ over_ref )
         {
           *blue_ref   =
           *blue_shoot = ( shoot + ref ) / 2;
-
+#ifdef FT_DEBUG_LEVEL_TRACE
           FT_TRACE5(( "  [overshoot smaller than reference,"
                       " taking mean value]\n" ));
+#endif
         }
       }
 
@@ -977,9 +985,10 @@
        */
       if ( AF_LATIN_IS_X_HEIGHT_BLUE( bs ) )
         blue->flags |= AF_LATIN_BLUE_ADJUSTMENT;
-
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE5(( "    -> reference = %ld\n", *blue_ref ));
       FT_TRACE5(( "       overshoot = %ld\n", *blue_shoot ));
+#endif
 
     } /* end for loop */
 
@@ -1031,15 +1040,18 @@
         if ( *a > *b )
         {
           *a = *b;
+#ifdef FT_DEBUG_LEVEL_TRACE
           FT_TRACE5(( "blue zone overlap:"
                       " adjusting %s %td to %ld\n",
                       a_is_top ? "overshoot" : "reference",
                       blue_sorted[i] - axis->blues,
                       *a ));
+#endif
         }
       }
-
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE5(( "\n" ));
+#endif
 
       return 0;
     }
@@ -1052,9 +1064,10 @@
 
       FT_UInt  i;
 
-
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE5(( "no blue zones found:"
                   " hinting disabled for this style\n" ));
+#endif
 
       for ( i = 0; i < globals->glyph_count; i++ )
       {
@@ -1062,7 +1075,9 @@
           gstyles[i] = AF_STYLE_NONE_DFLT;
       }
 
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE5(( "\n" ));
+#endif
 
       return 1;
     }
@@ -1277,6 +1292,7 @@
 
             if ( -128 < dist && dist < 128 )
             {
+#ifdef FT_DEBUG_LEVEL_TRACE
               FT_TRACE5(( "af_latin_metrics_scale_dim:"
                           " x height alignment (style `%s'):\n",
                           af_style_names[metrics->root.style_class->style] ));
@@ -1287,7 +1303,7 @@
                           (double)new_scale / 65536,
                           ( fitted - scaled ) * 100 / scaled ));
               FT_TRACE5(( "\n" ));
-
+#endif
               scale = new_scale;
             }
 #ifdef FT_DEBUG_LEVEL_TRACE
@@ -1320,25 +1336,28 @@
       metrics->root.scaler.y_delta = delta;
     }
 
+#ifdef FT_DEBUG_LEVEL_TRACE
     FT_TRACE5(( "%s widths (style `%s')\n",
                 dim == AF_DIMENSION_HORZ ? "horizontal" : "vertical",
                 af_style_names[metrics->root.style_class->style] ));
+#endif
 
     /* scale the widths */
     for ( nn = 0; nn < axis->width_count; nn++ )
     {
       AF_Width  width = axis->widths + nn;
 
-
       width->cur = FT_MulFix( width->org, scale );
       width->fit = width->cur;
-
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE5(( "  %ld scaled to %.2f\n",
                   width->org,
                   (double)width->cur / 64 ));
+#endif
     }
-
+#ifdef FT_DEBUG_LEVEL_TRACE
     FT_TRACE5(( "\n" ));
+#endif
 
     /* an extra-light axis corresponds to a standard width that is */
     /* smaller than 5/8 pixels                                     */
@@ -1474,7 +1493,6 @@
       for ( nn = 0; nn < axis->blue_count; nn++ )
       {
         AF_LatinBlue  blue = &axis->blues[nn];
-
 
         FT_TRACE5(( "  reference %u: %ld scaled to %.2f%s\n",
                     nn,
@@ -1890,10 +1908,12 @@
            */
           if ( axis->num_segments > 1000 )
           {
+#ifdef FT_DEBUG_LEVEL_TRACE
             FT_TRACE0(( "af_latin_hints_compute_segments:"
                         " more than 1000 segments in this glyph;\n" ));
             FT_TRACE0(( "                                "
                         " hinting is suppressed\n" ));
+#endif
             axis->num_segments = 0;
             return FT_Err_Ok;
           }
@@ -3229,8 +3249,10 @@
     if ( min_y == max_y )
       return 0;
 
+#ifdef FT_DEBUG_LEVEL_TRACE
     FT_TRACE4(( "af_latin_stretch_top_tilde: min y: %ld, max y: %ld\n",
                 min_y, max_y ));
+#endif
 
     height             = SUB_LONG( max_y, min_y );
     extremum_threshold = height / 8;    /* Value 8 is heuristic. */
@@ -3291,8 +3313,10 @@
     if ( !measurement_taken )
       min_measurement = 0;
 
+#ifdef FT_DEBUG_LEVEL_TRACE
     FT_TRACE4(( "af_latin_stretch_top_tilde: min measurement %ld\n",
                 min_measurement ));
+#endif
 
     /* To preserve the stretched shape we prevent that the tilde */
     /* gets auto-hinted; we do this for all contours equal or    */
@@ -3345,8 +3369,10 @@
     if ( min_y == max_y )
       return 0;
 
+#ifdef FT_DEBUG_LEVEL_TRACE
     FT_TRACE4(( "af_latin_stretch_bottom_tilde: min y: %ld, max y: %ld\n",
                 min_y, max_y ));
+#endif
 
     height             = SUB_LONG( max_y, min_y );
     extremum_threshold = height / 8;
@@ -3394,8 +3420,10 @@
     if ( !measurement_taken )
       min_measurement = 0;
 
+#ifdef FT_DEBUG_LEVEL_TRACE
     FT_TRACE4(( "af_latin_stretch_bottom_tilde: min measurement %ld\n",
                 min_measurement ));
+#endif
 
     af_touch_bottom_contours( hints, tilde_contour );
 
@@ -3596,9 +3624,10 @@
     size_t*    val;
     FT_UInt32  adj_type = AF_ADJUST_NONE;
 
-
+#ifdef FT_DEBUG_LEVEL_TRACE
     FT_TRACE4(( "Entering"
                 " af_glyph_hints_apply_vertical_separation_adjustments\n" ));
+#endif
 
     if ( dim != AF_DIMENSION_VERT )
       return;
@@ -3656,10 +3685,11 @@
       FT_Bool  is_top_tilde       = !!( adj_type & AF_ADJUST_TILDE_TOP );
       FT_Bool  is_below_top_tilde = !!( adj_type & AF_ADJUST_TILDE_TOP2 );
 
-
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE4(( "af_glyph_hints_apply_vertical_separation_adjustments:\n"
                   "  Applying vertical adjustment: %s\n",
                   adjust_top ? "AF_ADJUST_TOP" : "AF_ADJUST_TOP2" ));
+#endif
 
       high_contour = adjust_below_top
                        ? af_find_second_highest_contour( hints )
@@ -3671,9 +3701,11 @@
         af_check_contour_horizontal_overlap( hints, high_contour );
       if ( !horizontal_overlap )
       {
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE4(( "    High contour does not horizontally overlap"
                     " with other contours.\n"
                     "    Skipping adjustment.\n" ));
+#endif
         return;
       }
 
@@ -3683,11 +3715,13 @@
 
       if ( high_height > accent_height_limit )
       {
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE4(( "    High contour height (%.2f) exceeds accent height"
                     " limit (%.2f).\n"
                     "    Skipping adjustment.\n",
                     (double)high_height / 64,
                     (double)accent_height_limit / 64 ));
+#endif
         return;
       }
 
@@ -3745,9 +3779,10 @@
         {
           centering_adjustment = ( FT_PIX_ROUND( tilde_height ) -
                                    tilde_height ) / 2;
-
+#ifdef FT_DEBUG_LEVEL_TRACE
           FT_TRACE4(( "    Additional tilde centering adjustment: %ld\n",
                       centering_adjustment ));
+#endif
         }
       }
 
@@ -3758,11 +3793,13 @@
         calculated_amount = adjustment_amount;
 
       /* allow a delta of 2/64px to handle rounding differences */
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE4(( "    Calculated adjustment amount: %ld%s\n",
                   calculated_amount,
                   ( calculated_amount < -2                               ||
                     ( adjustment_amount > 66 && calculated_amount > 66 ) )
                       ? " (out of range [-2;66], not adjusting)" : "" ));
+#endif
 
       if ( calculated_amount != 0                                 &&
            calculated_amount >= -2                                &&
@@ -3772,9 +3809,10 @@
         FT_Pos  height_delta = high_height / 8;
         FT_Pos  min_y_limit  = SUB_LONG( high_min_y, height_delta );
 
-
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE4(( "    Pushing high contour %ld units up\n",
                     calculated_amount ));
+#endif
 
         /* While we use only a single contour (the 'high' one) for    */
         /* computing `adjustment_amount`, we apply it to all contours */
@@ -3786,9 +3824,10 @@
 
         if ( adjust_below_top && is_top_tilde )
         {
+#ifdef FT_DEBUG_LEVEL_TRACE
           FT_TRACE4(( "    Pushing top tilde %ld units up\n",
                       centering_adjustment ));
-
+#endif
           af_move_contours_up( hints,
                                ADD_LONG( min_y_limit, high_height ),
                                centering_adjustment );
@@ -3823,10 +3862,11 @@
       FT_Bool  is_above_bottom_tilde =
                  !!( adj_type & AF_ADJUST_TILDE_BOTTOM2 );
 
-
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE4(( "af_glyph_hints_apply_vertical_separation_adjustments:\n"
                   "  Applying vertical adjustment: %s\n",
                   adjust_bottom ? "AF_ADJUST_DOWN": "AF_ADJUST_DOWN2" ));
+#endif
 
       low_contour = adjust_above_bottom
                       ? af_find_second_lowest_contour( hints )
@@ -3836,9 +3876,11 @@
         af_check_contour_horizontal_overlap( hints, low_contour );
       if ( !horizontal_overlap )
       {
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE4(( "    Low contour does not horizontally overlap"
                     " with other contours.\n"
                     "    Skipping adjustment.\n" ));
+#endif
         return;
       }
 
@@ -3848,11 +3890,13 @@
 
       if ( low_height > accent_height_limit )
       {
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE4(( "    Low contour height (%.2f) exceeds accent height"
                     " limit (%.2f).\n"
                     "    Skipping adjustment.\n",
                     (double)low_height / 64,
                     (double)accent_height_limit / 64 ));
+#endif
         return;
       }
 
@@ -3898,9 +3942,10 @@
         {
           centering_adjustment = ( FT_PIX_ROUND( tilde_height ) -
                                    tilde_height ) / 2;
-
+#ifdef FT_DEBUG_LEVEL_TRACE
           FT_TRACE4(( "    Additional tilde centering adjustment: %ld\n",
                       centering_adjustment ));
+#endif
         }
       }
 
@@ -3910,11 +3955,13 @@
       else
         calculated_amount = adjustment_amount;
 
+#ifdef FT_DEBUG_LEVEL_TRACE
       FT_TRACE4(( "    Calculated adjustment amount: %ld%s\n",
                   calculated_amount,
                   ( calculated_amount < -2                               ||
                     ( adjustment_amount > 66 && calculated_amount > 66 ) )
                       ? " (out of range [-2;66], not adjusting)" : "" ));
+#endif
 
       if ( calculated_amount != 0                                 &&
            calculated_amount >= -2                                &&
@@ -3923,17 +3970,19 @@
         FT_Pos  height_delta = low_height / 8;
         FT_Pos  max_y_limit  = ADD_LONG( low_max_y, height_delta );
 
-
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE4(( "    Pushing low contour %ld units down\n",
                     calculated_amount ));
+#endif
 
         af_move_contours_down( hints, max_y_limit, adjustment_amount );
 
         if ( adjust_above_bottom && is_bottom_tilde )
         {
+#ifdef FT_DEBUG_LEVEL_TRACE
           FT_TRACE4(( "    Pushing bottom tilde %ld units down\n",
                       centering_adjustment ));
-
+#endif
           af_move_contours_down( hints,
                                  SUB_LONG( max_y_limit, low_height ),
                                  centering_adjustment );
@@ -3948,10 +3997,9 @@
               hints->num_contours >= 3                    ) ) )
       FT_TRACE4(( "af_glyph_hints_apply_vertical_separation_adjustments:\n"
                   "  No vertical adjustment applied\n" ));
-#endif
-
     FT_TRACE4(( "Exiting"
                 " af_glyph_hints_apply_vertical_separation_adjustments\n" ));
+#endif
   }
 
 
@@ -4178,14 +4226,15 @@
                                                 base_edge->flags,
                                                 stem_edge->flags );
 
-
     stem_edge->pos = base_edge->pos + fitted_width;
 
+#ifdef FT_DEBUG_LEVEL_TRACE
     FT_TRACE5(( "  LINK: edge %td (opos=%.2f) linked to %.2f,"
                 " dist was %.2f, now %.2f\n",
                 stem_edge - hints->axis[dim].edges,
                 (double)stem_edge->opos / 64, (double)stem_edge->pos / 64,
                 (double)dist / 64, (double)fitted_width / 64 ));
+#endif
   }
 
 
@@ -4237,12 +4286,11 @@
 
 #ifdef FT_DEBUG_LEVEL_TRACE
     FT_UInt  num_actions = 0;
-#endif
-
 
     FT_TRACE5(( "latin %s edge hinting (style `%s')\n",
                 dim == AF_DIMENSION_VERT ? "horizontal" : "vertical",
                 af_style_names[hints->metrics->style_class->style] ));
+#endif
 
     if ( dim == AF_DIMENSION_VERT )
       top_to_bottom_hinting = script_class->top_to_bottom_hinting;
@@ -4364,8 +4412,9 @@
       /* this should not happen, but it's better to be safe */
       if ( edge2->blue_edge )
       {
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE5(( "  ASSERTION FAILED for edge %td\n", edge2 - edges ));
-
+#endif
         af_latin_align_linked_edge( hints, dim, edge2, edge );
         edge->flags |= AF_EDGE_DONE;
 
@@ -4432,11 +4481,13 @@
         anchor       = edge;
         edge->flags |= AF_EDGE_DONE;
 
+#ifdef FT_DEBUG_LEVEL_TRACE
         FT_TRACE5(( "  ANCHOR: edge %td (opos=%.2f) and %td (opos=%.2f)"
                     " snapped to %.2f and %.2f\n",
                     edge - edges, (double)edge->opos / 64,
                     edge2 - edges, (double)edge2->opos / 64,
                     (double)edge->pos / 64, (double)edge2->pos / 64 ));
+#endif
 
         af_latin_align_linked_edge( hints, dim, edge, edge2 );
 
@@ -4461,10 +4512,11 @@
 
         if ( edge2->flags & AF_EDGE_DONE )
         {
+#ifdef FT_DEBUG_LEVEL_TRACE
           FT_TRACE5(( "  ADJUST: edge %td (pos=%.2f) moved to %.2f\n",
                       edge - edges, (double)edge->pos / 64,
                       (double)( edge2->pos - cur_len ) / 64 ));
-
+#endif
           edge->pos = edge2->pos - cur_len;
         }
 
@@ -4501,12 +4553,13 @@
 
           edge->pos  = cur_pos1 - cur_len / 2;
           edge2->pos = cur_pos1 + cur_len / 2;
-
+#ifdef FT_DEBUG_LEVEL_TRACE
           FT_TRACE5(( "  STEM: edge %td (opos=%.2f) linked to %td (opos=%.2f)"
                       " snapped to %.2f and %.2f\n",
                       edge - edges, (double)edge->opos / 64,
                       edge2 - edges, (double)edge2->opos / 64,
                       (double)edge->pos / 64, (double)edge2->pos / 64 ));
+#endif
         }
 
         else
@@ -4533,11 +4586,13 @@
           edge->pos  = ( delta1 < delta2 ) ? cur_pos1 : cur_pos2;
           edge2->pos = edge->pos + cur_len;
 
+#ifdef FT_DEBUG_LEVEL_TRACE
           FT_TRACE5(( "  STEM: edge %td (opos=%.2f) linked to %td (opos=%.2f)"
                       " snapped to %.2f and %.2f\n",
                       edge - edges, (double)edge->opos / 64,
                       edge2 - edges, (double)edge2->opos / 64,
                       (double)edge->pos / 64, (double)edge2->pos / 64 ));
+#endif
         }
 
 #ifdef FT_DEBUG_LEVEL_TRACE
@@ -4724,20 +4779,24 @@
         if ( delta < 64 + 16 )
         {
           af_latin_align_serif_edge( hints, edge->serif, edge );
+#ifdef FT_DEBUG_LEVEL_TRACE
           FT_TRACE5(( "  SERIF: edge %td (opos=%.2f) serif to %td (opos=%.2f)"
                       " aligned to %.2f\n",
                       edge - edges, (double)edge->opos / 64,
                       edge->serif - edges, (double)edge->serif->opos / 64,
                       (double)edge->pos / 64 ));
+#endif
         }
         else if ( !anchor )
         {
           edge->pos = FT_PIX_ROUND( edge->opos );
           anchor    = edge;
+#ifdef FT_DEBUG_LEVEL_TRACE
           FT_TRACE5(( "  SERIF_ANCHOR: edge %td (opos=%.2f)"
                       " snapped to %.2f\n",
                       edge - edges,
                       (double)edge->opos / 64, (double)edge->pos / 64 ));
+#endif
         }
         else
         {
@@ -4762,21 +4821,24 @@
                           FT_MulDiv( edge->opos - before->opos,
                                      after->pos - before->pos,
                                      after->opos - before->opos );
-
+#ifdef FT_DEBUG_LEVEL_TRACE
             FT_TRACE5(( "  SERIF_LINK1: edge %td (opos=%.2f) snapped to %.2f"
                         " from %td (opos=%.2f)\n",
                         edge - edges, (double)edge->opos / 64,
                         (double)edge->pos / 64,
                         before - edges, (double)before->opos / 64 ));
+#endif
           }
           else
           {
             edge->pos = anchor->pos +
                         ( ( edge->opos - anchor->opos + 16 ) & ~31 );
+#ifdef FT_DEBUG_LEVEL_TRACE
             FT_TRACE5(( "  SERIF_LINK2: edge %td (opos=%.2f)"
                         " snapped to %.2f\n",
                         edge - edges,
                         (double)edge->opos / 64, (double)edge->pos / 64 ));
+#endif
           }
         }
 
@@ -4853,7 +4915,6 @@
     AF_LatinAxis  axis;
 
     FT_Pos  accent_height_limit = 0;
-
 
     error = af_glyph_hints_reload( hints, outline );
     if ( error )

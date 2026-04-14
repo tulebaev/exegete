@@ -66,8 +66,8 @@
 #include "MagickCore/xml-tree.h"
 #include "MagickCore/xml-tree-private.h"
 #if defined(MAGICKCORE_XML_DELEGATE)
-#  include <xml/parser.h>
-#  include <xml/tree.h>
+#  include <libxml/parser.h>
+#  include <libxml/tree.h>
 #endif
 
 /*

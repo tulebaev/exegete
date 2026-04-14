@@ -6,7 +6,6 @@ SRCS = zip_fopen.c zip_fread.c zip_fclose.c\
   zip_fopen_index_encrypted.c zip_discard.c\
   zip_name_locate.c
   
-
 OBJS = $(SRCS:.c=.obj)
 
 lib: $(OBJS)
