@@ -9,7 +9,7 @@ SRCS = Blob.cpp BlobRef.cpp CoderInfo.cpp\
 OBJS = $(SRCS:.cpp=.obj)
 
 all:
-	cl /c $(SRCS) /I.. /EHsc /DMAGICKCORE_WINDOWS_SUPPORT
+	cl /nologo /c $(SRCS) /I.. /EHsc /DMAGICKCORE_WINDOWS_SUPPORT
 	lib $(OBJS) /nologo /out:..\Magick++.lib
 
 clean:

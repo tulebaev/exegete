@@ -1,13 +1,15 @@
-OBJS = cmsplugin.obj cmserr.obj cmsio0.obj cmsxform.obj\
-       cmsintrp.obj cmspack.obj
+SRCS = cmsplugin.c cmserr.c cmsio0.c cmsxform.c\
+       cmsintrp.c cmspack.c
 
-CFLAGS = -nologo
+OBJS = $(SRCS:.c=.obj)
+
+CFLAGS = /nologo
 
 lib: $(OBJS)
-	lib /out:..\..\lcms2.lib $(OBJS)
+	lib /nologo /out:..\..\lcms2.lib $(OBJS)
 
 .c.obj:
-	cl $(CFLAGS) -c $*.c
+	cl $(CFLAGS) /c $*.c
 
 clean:
 	del *.obj

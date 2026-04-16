@@ -1,23 +1,20 @@
-# Makefile for Microsoft Visual C++ 6.0
-# K.M. Syring (syring@gsf.de)
-# Fixed up by JRS for bzip2-0.9.5d release.
+SRCS = blocksort.c  \
+       huffman.c    \
+       crctable.c   \
+       randtable.c  \
+       compress.c   \
+       decompress.c \
+       bzlib.c
 
-CC = cl
-CFLAGS = -DWIN32 -D_LIB -Ox -D_FILE_OFFSET_BITS=64 -nologo
+OBJS = $(SRCS:.c=.obj)
 
-OBJS = blocksort.obj  \
-       huffman.obj    \
-       crctable.obj   \
-       randtable.obj  \
-       compress.obj   \
-       decompress.obj \
-       bzlib.obj
+CFLAGS = /nologo /DWIN32 /D_LIB /Ox /D_FILE_OFFSET_BITS=64
 
 lib: $(OBJS)
-	lib /out:..\..\bz2.lib $(OBJS)
+	lib /nologo /out:..\..\bz2.lib $(OBJS)
 
 .c.obj:
-	$(CC) $(CFLAGS) -c $*.c
+	cl $(CFLAGS) /c $*.c
 
 clean:
 	del *.obj

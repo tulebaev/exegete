@@ -1,5 +1,3 @@
-CFLAGS = /nologo /I..\
-
 SRCS = zip_fopen.c zip_fread.c zip_fclose.c\
   zip_open.c\
   zip_error.c zip_source_error.c zip_err_str.c\
@@ -8,11 +6,13 @@ SRCS = zip_fopen.c zip_fread.c zip_fclose.c\
   
 OBJS = $(SRCS:.c=.obj)
 
+CFLAGS = /nologo /I..\
+
 lib: $(OBJS)
-	lib /out:..\..\zip.lib $(OBJS)
+	lib /nologo /out:..\..\zip.lib $(OBJS)
 
 .c.obj:
-	cl $(CFLAGS) -c $*.c
+	cl $(CFLAGS) /c $*.c
 
 clean:
 	del *.obj

@@ -886,8 +886,8 @@ g_ascii_dtostr (gchar       *buffer,
   return g_ascii_formatd (buffer, buf_len, "%.17g", d);
 }
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wformat-nonliteral"
+#pragma warning(push)
+#pragma warning(disable: 4774)
 
 /**
  * g_ascii_formatd:
@@ -998,7 +998,7 @@ g_ascii_formatd (gchar       *buffer,
   return buffer;
 #endif
 }
-#pragma GCC diagnostic pop
+#pragma warning(pop)
 
 #define ISSPACE(c)              ((c) == ' ' || (c) == '\f' || (c) == '\n' || \
                                  (c) == '\r' || (c) == '\t' || (c) == '\v')

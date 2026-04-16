@@ -17,7 +17,7 @@
    Boston, MA 02111-1307, USA.  */
 
 
-/* Interface Programmable des Applications ??
+/* Interface Programmable des Applications
  */
 #ifndef LIBWMF_IPA_H
 #define LIBWMF_IPA_H
@@ -30,8 +30,22 @@ extern "C" {
 
 /* Type declarations
  */
-typedef struct _wmfRGB                 wmfRGB;
-typedef struct _wmfBMP                 wmfBMP;
+
+//typedef struct _wmfRGB wmfRGB;
+typedef struct _wmfRGB
+{
+  unsigned char r;
+  unsigned char g;
+  unsigned char b;
+} wmfRGB;
+
+//typedef struct _wmfBMP wmfBMP;
+typedef struct _wmfBMP
+{
+  U16 width;
+  U16 height;
+  void* data;
+} wmfBMP;
 
 typedef struct _wmfBrush               wmfBrush;
 typedef struct _wmfPen                 wmfPen;
@@ -92,6 +106,7 @@ extern wmfRGB wmf_rgb_color (wmfAPI*,float,float,float);
 
 /* Structure definitions
  */
+/*
 struct _wmfRGB
 {	unsigned char r;
 	unsigned char g;
@@ -104,7 +119,7 @@ struct _wmfBMP
 
 	void* data;
 };
-
+*/
 struct _wmfPen
 {	U16 lopnStyle;
 

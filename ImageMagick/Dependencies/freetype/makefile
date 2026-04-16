@@ -1,5 +1,3 @@
-CFLAGS = /nologo /D_LIB /DFT2_BUILD_LIBRARY /I..\
-
 SRCS = ftsystem.c ftdebug.c autofit/autofit.c\
   base/ftbase.c base/ftbbox.c base/ftbdf.c\
   base/ftbitmap.c base/ftcid.c base/ftfstype.c\
@@ -18,11 +16,13 @@ SRCS = ftsystem.c ftdebug.c autofit/autofit.c\
 
 OBJS = $(SRCS:.c=.obj)
 
+CFLAGS = /nologo /D_LIB /DFT2_BUILD_LIBRARY /I..\
+
 lib: $(OBJS)
-	lib /out:..\..\freetype.lib *.obj
+	lib /nologo /out:..\..\freetype.lib *.obj
 
 .c.obj:
-	cl $(CFLAGS) -c $*.c
+	cl $(CFLAGS) /c $*.c
 
 clean:
 	del *.obj

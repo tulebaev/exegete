@@ -25,6 +25,7 @@
 #endif
 
 #include <glib/gtypes.h>
+#include "gversionmacros.h"
 
 G_BEGIN_DECLS
 

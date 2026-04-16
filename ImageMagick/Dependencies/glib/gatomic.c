@@ -18,7 +18,6 @@
  */
 
 #include "config.h"
-
 #include "gatomic.h"
 
 /**
@@ -608,7 +607,7 @@ void
 }
 
 gboolean
-(g_atomic_pointer_compare_and_exchange) (volatile void *atomic,
+(g_atomic_pointer_compare_and_exchange) (PVOID volatile *atomic,
                                          gpointer       oldval,
                                          gpointer       newval)
 {
