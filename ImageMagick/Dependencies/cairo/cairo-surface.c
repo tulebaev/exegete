@@ -35,7 +35,7 @@
  * Contributor(s):
  *	Carl D. Worth <cworth@cworth.org>
  */
-
+#include "cairo.h"
 #include "cairoint.h"
 
 #include "cairo-array-private.h"
