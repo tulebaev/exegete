@@ -17,6 +17,8 @@
 
 #define DBL_EXPBIT0_WORD 1
 
+#undef DLL_EXPORT
+
 #undef ENABLE_NLS
 
 #define EXEEXT ".exe"
@@ -161,11 +163,11 @@
 
 #undef USE_SYSTEM_PRINTF
 
+#undef _GLIB_EXTERN
+
 #define _GNU_SOURCE 1
 
 #define _WIN32_WINNT 0x0601
-
-//#define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_4
 
 #define gl_extern_inline 
 /* Please see the Gnulib manual for how to use these macros.
@@ -270,5 +272,3 @@
 #else
 # define _GL_UNUSED
 #endif
-
-
