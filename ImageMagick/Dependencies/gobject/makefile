@@ -1,4 +1,4 @@
-SRCS = gobject.c
+SRCS = gobject.c gtype.c gvalue.c
 
 OBJS = $(SRCS:.c=.obj)
 
