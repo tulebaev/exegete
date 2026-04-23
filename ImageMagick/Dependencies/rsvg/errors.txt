@@ -1,6 +1,0 @@
-rsvg_new_mask
-rsvg_new_clip_path
-rsvg_create_xml_parser_from_stream
-rsvg_handle_flags_get_type
-rsvg_eval_switch_attributes
-rsvg_get_url_string

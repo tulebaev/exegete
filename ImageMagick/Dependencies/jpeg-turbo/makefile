@@ -1,8 +1,8 @@
-SRCS = 
+SRCS = jerror.c
 
 OBJS = $(SRCS:.c=.obj)
 
-CFLAGS = /nologo
+CFLAGS = /nologo /D_LIB
 
 lib: $(OBJS)
 	lib /nologo /out:..\..\jpeg.lib $(OBJS)

@@ -35,7 +35,7 @@ SRCS = cairo.c cairo-device.c cairo-gstate.c cairo-mutex.c\
        cairo-bentley-ottmann-rectilinear.c cairo-spans.c\
        cairo-default-context.c cairo-debug.c cairo-wideint.c\
        cairo-mesh-pattern-rasterizer.c cairo-mono-scan-converter.c\
-       cairo-output-stream.c\
+       cairo-output-stream.c cairo-freed-pool.c\
        cairo-win32-device.c cairo-win32-system.c\
        cairo-win32-surface.c cairo-win32-font.c\
        cairo-win32-display-surface.c cairo-win32-gdi-compositor.c

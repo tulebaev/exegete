@@ -1,8 +1,11 @@
 SRCS = gatomic.c gmem.c gtimer.c gstrfuncs.c gslice.c\
-       garray.c ghash.c gslist.c gstring.c gmessages.c\
-       grefcount.c gerror.c genviron.c gutils.c gtestutils.c\
-       gquark.c gthread-win32.c\
-       gnulib/printf.c
+       garray.c ghash.c glist.c gslist.c gstring.c\
+       gerror.c genviron.c gquark.c gtrashstack.c\
+       grefcount.c gutils.c gfileutils.c gtestutils.c\
+       gmessages.c gcharset.c gconvert.c gtranslit.c\
+       gutf8.c gprintf.c gnulib/printf.c gvariant-core.c\
+       glib-init.c gmain.c gstdio.c\
+       gthread.c gthread-win32.c
 
 OBJS = $(SRCS:.c=.obj)
 

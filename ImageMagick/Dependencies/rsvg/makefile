@@ -3,7 +3,8 @@ SRCS = rsvg-base.c rsvg-gobject.c rsvg-io.c\
   rsvg-paint-server.c rsvg-filter.c rsvg-cairo-clip.c\
   rsvg-css.c rsvg-styles.c rsvg-defs.c rsvg-shapes.c\
   rsvg-structure.c rsvg-text.c rsvg-marker.c\
-  rsvg-path.c
+  rsvg-cond.c rsvg-path.c rsvg-xml.c rsvg-mask.c\
+  librsvg-enum-types.c
 
 OBJS = $(SRCS:.c=.obj)
 
