@@ -4,7 +4,7 @@ SRCS = gatomic.c gmem.c gtimer.c gstrfuncs.c gslice.c\
        grefcount.c gutils.c gfileutils.c gtestutils.c\
        gmessages.c gcharset.c gconvert.c gtranslit.c\
        gutf8.c gprintf.c gnulib/printf.c gvariant-core.c\
-       glib-init.c gmain.c gstdio.c\
+       glib-init.c gmain.c gstdio.c guniprop.c\
        gthread.c gthread-win32.c
 
 OBJS = $(SRCS:.c=.obj)

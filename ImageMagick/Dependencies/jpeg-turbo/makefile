@@ -1,4 +1,4 @@
-SRCS = jerror.c
+SRCS = jerror.c jcomapi.c
 
 OBJS = $(SRCS:.c=.obj)
 

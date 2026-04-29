@@ -2,7 +2,7 @@ SRCS =
 
 OBJS = $(SRCS:.c=.obj)
 
-CFLAGS = /nologo /I..\
+CFLAGS = /nologo /D_LIB /I..\
 
 lib: $(OBJS)
 	lib /nologo /out:..\..\harfbuzz.lib $(OBJS)

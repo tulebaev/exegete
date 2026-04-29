@@ -13,7 +13,7 @@
 
 #define HAVE_CAIRO_PS 1
 
-#define HAVE_CAIRO_WIN32 1
+//#define HAVE_CAIRO_WIN32 1
 
 #define PANGO_BINARY_AGE 4503
 
