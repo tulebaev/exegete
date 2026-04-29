@@ -1,4 +1,4 @@
-SRCS = 
+SRCS = fonts.c pango-language.c pango-layout.c
 
 OBJS = $(SRCS:.c=.obj)
 
