@@ -103,7 +103,7 @@
 
 #undef HAVE_UNIX98_PRINTF
 
-#define HAVE_VASPRINTF 1
+#undef HAVE_VASPRINTF
 
 #define HAVE_WCHAR_H 1
 
@@ -161,7 +161,7 @@
 
 #undef USE_SYSTEM_PCRE
 
-#undef USE_SYSTEM_PRINTF
+#define USE_SYSTEM_PRINTF
 
 #undef _GLIB_EXTERN
 

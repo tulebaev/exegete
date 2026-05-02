@@ -47,7 +47,7 @@
 #include "gthread.h"
 #include "gthreadprivate.h"
 #include "glib_trace.h"
-#include "gprintf.h"
+#include "gprintfint.h"
 
 #include "gvalgrind.h"
 
@@ -1470,9 +1470,9 @@ mem_error (const char *format,
   /* at least, put out "MEMORY-ERROR", in case we segfault during the rest of the function */
   fputs ("\n***MEMORY-ERROR***: ", stderr);
   pname = g_get_prgname();
-  g_fprintf (stderr, "%s[%ld]: GSlice: ", pname ? pname : "", (long)getpid());
+  _g_fprintf (stderr, "%s[%ld]: GSlice: ", pname ? pname : "", (long)getpid());
   va_start (args, format);
-  g_vfprintf (stderr, format, args);
+  _g_vfprintf (stderr, format, args);
   va_end (args);
   fputs ("\n", stderr);
   abort();
@@ -1526,17 +1526,17 @@ smc_notify_free (void   *pointer,
   found_one = smc_tree_lookup (address, &real_size);
   if (!found_one)
     {
-      g_fprintf (stderr, "GSlice: MemChecker: attempt to release non-allocated block: %p size=%" G_GSIZE_FORMAT "\n", pointer, size);
+      _g_fprintf (stderr, "GSlice: MemChecker: attempt to release non-allocated block: %p size=%" G_GSIZE_FORMAT "\n", pointer, size);
       return 0;
     }
   if (real_size != size && (real_size || size))
     {
-      g_fprintf (stderr, "GSlice: MemChecker: attempt to release block with invalid size: %p size=%" G_GSIZE_FORMAT " invalid-size=%" G_GSIZE_FORMAT "\n", pointer, real_size, size);
+      _g_fprintf (stderr, "GSlice: MemChecker: attempt to release block with invalid size: %p size=%" G_GSIZE_FORMAT " invalid-size=%" G_GSIZE_FORMAT "\n", pointer, real_size, size);
       return 0;
     }
   if (!smc_tree_remove (address))
     {
-      g_fprintf (stderr, "GSlice: MemChecker: attempt to release non-allocated block: %p size=%" G_GSIZE_FORMAT "\n", pointer, size);
+      _g_fprintf (stderr, "GSlice: MemChecker: attempt to release non-allocated block: %p size=%" G_GSIZE_FORMAT "\n", pointer, size);
       return 0;
     }
   return 1; /* all fine */

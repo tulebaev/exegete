@@ -54,6 +54,7 @@
 #include "gspawn.h"
 #include "glib-private.h"
 #include "gutilsprivate.h"
+#include "gprintfint.h"
 
 
 /**
@@ -1481,7 +1482,7 @@ void
   va_end (args);
 
   /* setup random seed string */
-  g_snprintf (seedstr, sizeof (seedstr), "R02S%08x%08x%08x%08x", g_random_int(), g_random_int(), g_random_int(), g_random_int());
+  _g_snprintf (seedstr, sizeof (seedstr), "R02S%08x%08x%08x%08x", g_random_int(), g_random_int(), g_random_int(), g_random_int());
   test_run_seedstr = seedstr;
 
   /* parse args, sets up mode, changes seed, etc. */
@@ -2871,7 +2872,7 @@ g_assertion_message (const char     *domain,
 
   if (!message)
     message = "code should not be reached";
-  g_snprintf (lstr, 32, "%d", line);
+  _g_snprintf (lstr, 32, "%d", line);
   s = g_strconcat (domain ? domain : "", domain && domain[0] ? ":" : "",
                    "ERROR:", file, ":", lstr, ":",
                    func, func[0] ? ":" : "",
@@ -3475,7 +3476,7 @@ g_test_trap_subprocess (const char           *test_path,
       char log_fd_buf[128];
 
       g_ptr_array_add (argv, "--GTestLogFD");
-      g_snprintf (log_fd_buf, sizeof (log_fd_buf), "%d", test_log_fd);
+      _g_snprintf (log_fd_buf, sizeof (log_fd_buf), "%d", test_log_fd);
       g_ptr_array_add (argv, log_fd_buf);
     }
   g_ptr_array_add (argv, NULL);
@@ -4026,7 +4027,6 @@ g_test_get_dir (GTestFileType file_type)
     return test_built_files_dir;
 
   g_assert_not_reached ();
-  return ".";
 }
 
 /**

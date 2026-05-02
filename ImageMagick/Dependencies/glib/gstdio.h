@@ -19,9 +19,10 @@
 #ifndef __G_STDIO_H__
 #define __G_STDIO_H__
 
-#include <glib/gprintf.h>
+#include <glib/glib.h>
 
 #include <sys/stat.h>
+#include <stdio.h>
 
 G_BEGIN_DECLS
 

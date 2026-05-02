@@ -117,7 +117,6 @@ typedef unsigned long long guintptr;
 
 /* #undef G_VA_COPY */
 
-
 #ifndef __cplusplus
 # define G_HAVE_ISO_VARARGS 1
 #endif

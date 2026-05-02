@@ -1,4 +1,4 @@
-SRCS = gfile.c
+SRCS = gfile.c gfileinputstream.c
 
 OBJS = $(SRCS:.c=.obj)
 

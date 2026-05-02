@@ -481,7 +481,7 @@ _pango_cairo_renderer_draw_unknown_glyph (PangoCairoRenderer *crenderer,
       /* Everything else gets a traditional hex box. */
       rows = hbi->rows;
       cols = (ch > 0xffff ? 6 : 4) / rows;
-      g_snprintf (buf, sizeof(buf), (ch > 0xffff) ? "%06X" : "%04X", ch);
+      snprintf (buf, sizeof(buf), (ch > 0xffff) ? "%06X" : "%04X", ch);
       name = buf;
     }
 

@@ -34,9 +34,11 @@
 #include <string.h>
 #include <ctype.h>
 
+#include "gmem.h"
+#include "gslice.h"
 #include "gstring.h"
-
-#include "gprintf.h"
+#include "gstrfuncs.h"
+#include "gprintfint.h"
 
 
 /**

@@ -2793,7 +2793,7 @@ g_warn_message (const char     *domain,
                 const char     *warnexpr)
 {
   char *s, lstr[32];
-  g_snprintf (lstr, 32, "%d", line);
+  _g_snprintf (lstr, 32, "%d", line);
   if (warnexpr)
     s = g_strconcat ("(", file, ":", lstr, "):",
                      func, func[0] ? ":" : "",

@@ -33,6 +33,7 @@
 #include <glib/gmacros.h>
 #include <glib/gtypes.h>
 #include <glib/gerror.h>
+#include <glib/gmessages.h>
 
 G_BEGIN_DECLS
 
@@ -356,6 +357,11 @@ gboolean              g_ascii_string_to_unsigned   (const gchar  *str,
                                                     guint64       max,
                                                     guint64      *out_num,
                                                     GError      **error);
+
+GLIB_AVAILABLE_IN_ALL
+gint                  g_vasprintf (gchar      **string,
+                                   gchar const *format,
+                                   va_list      args);
 
 G_END_DECLS
 

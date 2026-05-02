@@ -51,6 +51,14 @@
 #include "gstdio.h"
 #include "gstdioprivate.h"
 #include "glibintl.h"
+#include "gstring.h"
+#include "gstrfuncs.h"
+#include "gunicode.h"
+#include "gconvert.h"
+#include "ggettext.h"
+#include "genviron.h"
+#include "gtimer.h"
+#include "gmem.h"
 
 #ifdef HAVE_LINUX_MAGIC_H /* for btrfs check */
 #include <linux/magic.h>
