@@ -198,6 +198,7 @@
 #include "ggettext.h"
 #include "gstrfuncs.h"
 #include "gfileutils.h"
+#include "gtestutils.h"
 
 #if defined G_OS_WIN32
 #include <windows.h>

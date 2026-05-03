@@ -40,17 +40,7 @@
 #define GDK_PIXBUF_VERSION "2.44.6"
 
 #ifndef _GDK_PIXBUF_EXTERN
-  #if defined(_MSC_VER)
-    #if defined(_LIB)
-      #define _GDK_PIXBUF_EXTERN extern
-    #elif defined(PIXBUF_COMPILATION)
-      #define _GDK_PIXBUF_EXTERN extern __declspec(dllexport)
-    #else
-      #define _GDK_PIXBUF_EXTERN __declspec(dllimport)
-    #endif
-  #else
-    #define _GDK_PIXBUF_EXTERN extern
-  #endif
+#define _GDK_PIXBUF_EXTERN extern
 #endif
 
 /* We prefix variable declarations so they can

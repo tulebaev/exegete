@@ -46,6 +46,7 @@ POSSIBILITY OF SUCH DAMAGE.
 #define PCRE_PRERELEASE     
 #define PCRE_DATE           2012-07-06
 
+#define PCRE_STATIC
 /* When an application links to a PCRE DLL in Windows, the symbols that are
 imported have to be identified as such. When building PCRE, the appropriate
 export setting is defined in pcre_internal.h, which includes this file. So we

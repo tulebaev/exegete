@@ -20,7 +20,7 @@
  */
 
 #include <glib/config.h>
-#include <glib/glibintl.h>
+
 #include "gbufferedinputstream.h"
 #include "ginputstream.h"
 #include "gcancellable.h"
@@ -28,6 +28,7 @@
 #include "gtask.h"
 #include "gseekable.h"
 #include "gioerror.h"
+#include <glib/glibintl.h>
 #include <string.h>
 
 

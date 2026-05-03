@@ -1,0 +1,9 @@
+#pragma once
+
+#define LINK_SIZE 2
+#define MAX_NAME_SIZE 32
+#define MAX_NAME_COUNT 10000
+#define NEWLINE -1
+#define POSIX_MALLOC_THRESHOLD 10
+#define MATCH_LIMIT 10000000
+#define MATCH_LIMIT_RECURSION 8192
