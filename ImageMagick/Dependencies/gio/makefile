@@ -1,4 +1,6 @@
-SRCS = gfile.c gfileinputstream.c
+SRCS = gfile.c gcancellable.c gioerror.c\
+       ginputstream.c gfileinputstream.c\
+       gbufferedinputstream.c
 
 OBJS = $(SRCS:.c=.obj)
 
