@@ -115,8 +115,6 @@ G_GNUC_END_IGNORE_DEPRECATIONS
 
 #ifdef GDK_PIXBUF_ENABLE_BACKEND
 
-
-
 /**
  * GdkPixbufAnimationClass:
  * @parent_class: the parent class
@@ -162,7 +160,7 @@ struct _GdkPixbufAnimationClass {
 };
 G_GNUC_END_IGNORE_DEPRECATIONS
 
-
+
 
 /**
  * GdkPixbufAnimationIterClass:

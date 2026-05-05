@@ -154,7 +154,7 @@ typedef enum {
 GDK_PIXBUF_AVAILABLE_IN_ALL
 GQuark gdk_pixbuf_error_quark (void);
 
-
+
 
 GDK_PIXBUF_AVAILABLE_IN_ALL
 GType gdk_pixbuf_get_type (void) G_GNUC_CONST;
@@ -196,7 +196,7 @@ const guint8* gdk_pixbuf_read_pixels         (const GdkPixbuf  *pixbuf);
 GDK_PIXBUF_AVAILABLE_IN_2_32
 GBytes *      gdk_pixbuf_read_pixel_bytes    (const GdkPixbuf  *pixbuf);
 
-
+
 
 /* Create a blank pixbuf with an optimal rowstride and a new buffer */
 

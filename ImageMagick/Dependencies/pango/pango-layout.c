@@ -3030,7 +3030,7 @@ pango_layout_line_leaked (PangoLayoutLine *line)
     }
 }
 
-
+
 /*****************
  * Line Breaking *
  *****************/

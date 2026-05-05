@@ -38,7 +38,7 @@
 #define LOAD_BUFFER_SIZE 65536
 #define SNIFF_BUFFER_SIZE 4096
 
-
+
 
 typedef struct _GdkPixbufClass GdkPixbufClass;
 

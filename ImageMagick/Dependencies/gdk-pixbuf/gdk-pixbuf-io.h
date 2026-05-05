@@ -95,6 +95,8 @@ void             gdk_pixbuf_format_free (GdkPixbufFormat       *format);
 
 #ifdef GDK_PIXBUF_ENABLE_BACKEND
 
+
+
 /**
  * GdkPixbufModuleSizeFunc:
  * @width: pointer to a location containing the current image width

@@ -158,7 +158,7 @@
  * to a socket or store it in a database.
  */
 
-#include <glib/config.h>
+#include "config.h"
 
 #include <math.h>
 #include <stdlib.h>
@@ -170,6 +170,7 @@
 #include "gdk-pixbuf-enum-types.h"
 
 /* Include the marshallers */
+#include <glib/glib-object.h>
 #include <gio/gio.h>
 #include "gdk-pixbuf-marshal.h"
 
@@ -184,7 +185,8 @@ static void gdk_pixbuf_get_property (GObject        *object,
 				     GParamSpec     *pspec);
 static void gdk_pixbuf_constructed  (GObject        *object);
 
-enum
+
+enum 
 {
   PROP_0,
   PROP_COLORSPACE,
@@ -205,7 +207,7 @@ G_DEFINE_TYPE_WITH_CODE (GdkPixbuf, gdk_pixbuf, G_TYPE_OBJECT,
                          G_IMPLEMENT_INTERFACE (G_TYPE_ICON, gdk_pixbuf_icon_iface_init)
                          G_IMPLEMENT_INTERFACE (G_TYPE_LOADABLE_ICON, gdk_pixbuf_loadable_icon_iface_init))
 
-static void
+static void 
 gdk_pixbuf_init (GdkPixbuf *pixbuf)
 {
   pixbuf->colorspace = GDK_COLORSPACE_RGB;
@@ -612,7 +614,7 @@ gdk_pixbuf_calculate_rowstride (GdkColorspace colorspace,
  * Return value: (transfer full) (nullable): A newly-created pixel buffer
  **/
 GdkPixbuf *
-gdk_pixbuf_new (GdkColorspace colorspace,
+gdk_pixbuf_new (GdkColorspace colorspace, 
                 gboolean      has_alpha,
                 int           bits_per_sample,
                 int           width,
@@ -738,7 +740,7 @@ gdk_pixbuf_new_subpixbuf (GdkPixbuf *src_pixbuf,
         return sub;
 }
 
-
+
 
 /* Accessors */
 
@@ -1022,7 +1024,7 @@ gdk_pixbuf_get_byte_length (const GdkPixbuf *pixbuf)
                 pixbuf->width * ((pixbuf->n_channels * pixbuf->bits_per_sample + 7) / 8));
 }
 
-
+
 
 /* General initialization hooks */
 const guint gdk_pixbuf_major_version = GDK_PIXBUF_MAJOR;
@@ -1104,7 +1106,7 @@ gdk_pixbuf_fill (GdkPixbuf *pixbuf,
         }
 }
 
-
+
 
 /**
  * gdk_pixbuf_get_option:

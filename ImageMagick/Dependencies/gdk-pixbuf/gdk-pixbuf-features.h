@@ -43,26 +43,9 @@
 #define _GDK_PIXBUF_EXTERN extern
 #endif
 
-/* We prefix variable declarations so they can
- * properly get exported/imported from Windows DLLs.
- */
-#ifdef G_PLATFORM_WIN32
-#  ifdef GDK_PIXBUF_STATIC_COMPILATION
-#    define GDK_PIXBUF_VAR extern
-#  else /* !GDK_PIXBUF_STATIC_COMPILATION */
-#    ifdef GDK_PIXBUF_C_COMPILATION
-#      ifdef DLL_EXPORT
-#        define GDK_PIXBUF_VAR _GDK_PIXBUF_EXTERN
-#      else /* !DLL_EXPORT */
-#        define GDK_PIXBUF_VAR extern
-#      endif /* !DLL_EXPORT */
-#    else /* !GDK_PIXBUF_C_COMPILATION */
-#      define GDK_PIXBUF_VAR extern __declspec(dllimport)
-#    endif /* !GDK_PIXBUF_C_COMPILATION */
-#  endif /* !GDK_PIXBUF_STATIC_COMPILATION */
-#else /* !G_PLATFORM_WIN32 */
+#ifndef GDK_PIXBUF_VAR
 #  define GDK_PIXBUF_VAR _GDK_PIXBUF_EXTERN
-#endif /* !G_PLATFORM_WIN32 */
+#endif
 
 /**
  * gdk_pixbuf_major_version:

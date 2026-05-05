@@ -30,7 +30,7 @@ SRCS = jcapimin.c jdapimin.c jcapistd.c jdapistd.c\
        jchuff.c jclhuff.c jcphuff.c\
        jdhuff.c jdlhuff.c jdphuff.c\
        jpeg_nbits.c jaricom.c jfdctflt.c\
-       jerror.c jmemmgr.c jmemnobs.c
+       jerror.c jmemmgr.c jmemnobs.c jdatadst.c
 
 OBJS = $(SRCS:.c=.obj)
 

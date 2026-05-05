@@ -948,7 +948,7 @@ _gdk_pixbuf_load_module (GdkPixbufModule *image_module,
         return ret;
 }
 
-
+
 
 GdkPixbufModule *
 _gdk_pixbuf_get_named_module (const char *name,

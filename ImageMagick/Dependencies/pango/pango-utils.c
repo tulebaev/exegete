@@ -1019,9 +1019,6 @@ pango_extents_to_pixels (PangoRectangle *inclusive,
 }
 
 
-
-
-
 /*********************************************************
  * Some internal functions for handling PANGO_ATTR_SHAPE *
  ********************************************************/
