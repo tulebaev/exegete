@@ -11,7 +11,7 @@ SRCS = gatomic.c gmem.c gtimer.c gstrfuncs.c gslice.c\
        gmain.c glib-init.c glib-private.c gthread.c gpoll.c gwakeup.c\
        gbitlock.c gchecksum.c gshell.c gdir.c dirent/wdirent.c\
        gtimezone.c gdate.c gdatetime.c gurifuncs.c gthreadpool.c\
-       gasyncqueue.c\
+       gasyncqueue.c gbase64.c\
        gwin32.c giowin32.c gthread-win32.c gspawn-win32.c\
        gregex.c pcre/pcre_globals.c pcre/pcre_config.c pcre/pcre_get.c\
        pcre/pcre_compile.c pcre/pcre_fullinfo.c pcre/pcre_study.c\

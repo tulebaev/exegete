@@ -6,7 +6,7 @@ SRCS = gfile.c gcancellable.c gioerror.c gtask.c\
        glocalfileiostream.c gunionvolumemonitor.c\
        gmemoryinputstream.c gconverterinputstream.c\
        gbufferedinputstream.c gpollableinputstream.c\
-       gfilterinputstream.c
+       gfilterinputstream.c gcontenttype-win32.c
 
 OBJS = $(SRCS:.c=.obj)
 

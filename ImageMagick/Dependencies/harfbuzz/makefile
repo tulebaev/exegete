@@ -1,4 +1,4 @@
-SRCS = hb-font.cc hb-set.cc
+SRCS = hb-common.cc hb-buffer.cc hb-font.cc hb-set.cc
 
 OBJS = $(SRCS:.cc=.obj)
 
