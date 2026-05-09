@@ -23,7 +23,7 @@
 #ifndef __LQR_ALL_H__
 #define __LQR_ALL_H__
 
-#include "../glib/glib.h"
+#include <glib/glib.h>
 
 G_BEGIN_DECLS
 

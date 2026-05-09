@@ -1,8 +1,8 @@
-SRCS = hb-common.cc hb-buffer.cc hb-font.cc hb-set.cc
+SRCS = harfbuzz.cc 
 
 OBJS = $(SRCS:.cc=.obj)
 
-CFLAGS = /nologo /D_LIB /I..\
+CFLAGS = /nologo /D_LIB /DHAVE_GLIB /I..\
 
 lib: $(OBJS)
 	lib /nologo /out:..\..\harfbuzz.lib $(OBJS)

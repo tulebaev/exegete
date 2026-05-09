@@ -4,7 +4,7 @@ SRCS = lqr_carver.c lqr_carver_list.c lqr_cursor.c\
 
 OBJS = $(SRCS:.c=.obj)
 
-CFLAGS = /nologo /D_LIB
+CFLAGS = /nologo /I.. /D_LIB
 
 lib: $(OBJS)
 	lib /nologo /out:..\..\lqr.lib $(OBJS)
