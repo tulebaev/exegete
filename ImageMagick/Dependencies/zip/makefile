@@ -30,7 +30,7 @@ SRCS =\
   
 OBJS = $(SRCS:.c=.obj)
 
-CFLAGS = /nologo /I..\
+CFLAGS = /nologo /I..
 
 lib: $(OBJS)
 	lib /nologo /out:..\..\zip.lib $(OBJS)

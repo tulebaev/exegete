@@ -1,6 +1,6 @@
 SRCS = gatomic.c gmem.c gtimer.c gstrfuncs.c gslice.c\
        garray.c ghash.c glist.c gslist.c gstring.c\
-       gerror.c genviron.c gquark.c gtrashstack.c\
+       gnode.c gerror.c genviron.c gquark.c gtrashstack.c\
        grefcount.c gutils.c gfileutils.c gtestutils.c\
        gmessages.c gcharset.c gconvert.c gtranslit.c\
        gutf8.c guniprop.c gunidecomp.c libcharset/localcharset.c\
@@ -11,7 +11,8 @@ SRCS = gatomic.c gmem.c gtimer.c gstrfuncs.c gslice.c\
        gmain.c glib-init.c glib-private.c gthread.c gpoll.c gwakeup.c\
        gbitlock.c gchecksum.c gshell.c gdir.c dirent/wdirent.c\
        gtimezone.c gdate.c gdatetime.c gurifuncs.c gthreadpool.c\
-       gasyncqueue.c gbase64.c\
+       gasyncqueue.c gbase64.c gmodule.c gtree.c ghostutils.c\
+       gscanner.c gsequence.c gunibreak.c gvariant-parser.c\
        gwin32.c giowin32.c gthread-win32.c gspawn-win32.c\
        gregex.c pcre/pcre_globals.c pcre/pcre_config.c pcre/pcre_get.c\
        pcre/pcre_compile.c pcre/pcre_fullinfo.c pcre/pcre_study.c\

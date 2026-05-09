@@ -2,12 +2,12 @@ SRCS = gobject.c gtype.c gvalue.c gvaluetypes.c\
        genums.c gatomicarray.c gparam.c gsignal.c\
        gboxed.c gtypeplugin.c gclosure.c\
        gparamspecs.c gvaluearray.c gvaluetransform.c\
-       gmarshal.c\
+       gmarshal.c gtypemodule.c gsourceclosure.c\
        libffi/types.c libffi/prep_cif.c libffi/ffiw64.c
 
 OBJS = $(SRCS:.c=.obj)
 
-CFLAGS = /nologo /I.. /DGOBJECT_COMPILATION /DFFI_STATIC_BUILD /wd4090
+CFLAGS = /nologo /I.. /DGOBJECT_COMPILATION /DFFI_STATIC_BUILD /DG_ENABLE_DEBUG /wd4090
 
 lib: $(OBJS) win64_intel.S.obj
 	lib /nologo /out:..\..\gobject.lib *.obj

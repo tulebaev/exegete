@@ -16,7 +16,7 @@ SRCS = ftsystem.c ftdebug.c autofit/autofit.c\
 
 OBJS = $(SRCS:.c=.obj)
 
-CFLAGS = /nologo /D_LIB /DFT2_BUILD_LIBRARY /I..\
+CFLAGS = /nologo /D_LIB /DFT2_BUILD_LIBRARY /I..
 
 lib: $(OBJS)
 	lib /nologo /out:..\..\freetype.lib *.obj

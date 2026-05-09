@@ -20,7 +20,7 @@ SRCS = break.c glyphstring.c fonts.c\
 
 OBJS = $(SRCS:.c=.obj)
 
-CFLAGS = /nologo /D_LIB /DFRIBIDI_LIB_STATIC /I..\
+CFLAGS = /nologo /D_LIB /DFRIBIDI_LIB_STATIC /I..
 
 lib: $(OBJS)
 	lib /nologo /out:..\..\pango.lib *.obj

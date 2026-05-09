@@ -14,7 +14,6 @@ SRCS = pixman.c pixman-image.c pixman-bits-image.c\
 OBJS = $(SRCS:.c=.obj)
 
 CFLAGS = /nologo /DHAVE_CONFIG_H
-# /D_LIB /I..\
 
 lib: $(OBJS)
 	lib /nologo /out:..\..\pixman.lib $(OBJS)

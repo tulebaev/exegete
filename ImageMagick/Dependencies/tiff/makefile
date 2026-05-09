@@ -1,5 +1,3 @@
-CFLAGS = /nologo /I..\
-
 SRCS = tif_version.c tif_codec.c tif_predict.c tif_strip.c\
        tif_dirinfo.c tif_dir.c tif_dirread.c tif_dirwrite.c\
        tif_open.c tif_close.c tif_read.c tif_write.c\
@@ -11,6 +9,8 @@ SRCS = tif_version.c tif_codec.c tif_predict.c tif_strip.c\
        tif_hash_set.c tif_color.c tif_extension.c
 
 OBJS = $(SRCS:.c=.obj)
+
+CFLAGS = /nologo /I..
 
 lib: $(OBJS)
 	lib /nologo /out:..\..\tiff.lib $(OBJS)

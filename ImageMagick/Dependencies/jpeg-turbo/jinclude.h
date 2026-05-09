@@ -143,5 +143,10 @@ static INLINE int PUTENV_S(const char *name, const char *value)
 
 #endif /* NO_PUTENV */
 
+#define MEMCOPY(dest, src, size) \
+  memcpy((void *)(dest), (const void *)(src), (size_t)(size))
+
+#define JFWRITE(file, buf, sizeofbuf) \
+  ((size_t)fwrite((const void *)(buf), (size_t)1, (size_t)(sizeofbuf), (file)))
 
 #endif /* JINCLUDE_H */

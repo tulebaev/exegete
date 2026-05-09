@@ -1,9 +1,5 @@
-SRCS = blocksort.c  \
-       huffman.c    \
-       crctable.c   \
-       randtable.c  \
-       compress.c   \
-       decompress.c \
+SRCS = blocksort.c huffman.c crctable.c\
+       randtable.c compress.c decompress.c\
        bzlib.c
 
 OBJS = $(SRCS:.c=.obj)

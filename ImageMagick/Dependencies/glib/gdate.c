@@ -29,9 +29,10 @@
 #include "config.h"
 #include "glibconfig.h"
 
-#define DEBUG_MSG(x)	/* */
 #ifdef G_ENABLE_DEBUG
-/* #define DEBUG_MSG(args)	g_message args ; */
+#define DEBUG_MSG(args)	g_message args ;
+#else
+#define DEBUG_MSG(args)	/* */
 #endif
 
 #include <time.h>

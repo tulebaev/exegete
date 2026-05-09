@@ -8,7 +8,7 @@ SRCS = rsvg-base.c rsvg-gobject.c rsvg-io.c\
 
 OBJS = $(SRCS:.c=.obj)
 
-CFLAGS = /nologo /D_LIB /DRSVG_COMPILATION /I..\
+CFLAGS = /nologo /D_LIB /DRSVG_COMPILATION /I..
 
 lib: $(OBJS)
 	lib /nologo /out:..\..\rsvg.lib $(OBJS)

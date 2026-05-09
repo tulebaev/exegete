@@ -5,7 +5,7 @@ SRCS = png.c pngerror.c pngread.c pngwrite.c\
 
 OBJS = $(SRCS:.c=.obj)
 
-CFLAGS = /nologo /I..\
+CFLAGS = /nologo /I..
 
 lib: $(OBJS)
 	lib /nologo /out:..\..\png.lib $(OBJS)
