@@ -1715,15 +1715,15 @@ g_slice_debug_tree_statistics (void)
       en = b ? en : 0;
       tf = MAX (t, 1.0); /* max(1) to be a valid divisor */
       bf = MAX (b, 1.0); /* max(1) to be a valid divisor */
-      g_fprintf (stderr, "GSlice: MemChecker: %u trunks, %u branches, %u old branches\n", t, b, o);
-      g_fprintf (stderr, "GSlice: MemChecker: %f branches per trunk, %.2f%% utilization\n",
+      _g_fprintf (stderr, "GSlice: MemChecker: %u trunks, %u branches, %u old branches\n", t, b, o);
+      _g_fprintf (stderr, "GSlice: MemChecker: %f branches per trunk, %.2f%% utilization\n",
                b / tf,
                100.0 - (SMC_BRANCH_COUNT - b / tf) / (0.01 * SMC_BRANCH_COUNT));
-      g_fprintf (stderr, "GSlice: MemChecker: %f entries per branch, %u minimum, %u maximum\n",
+      _g_fprintf (stderr, "GSlice: MemChecker: %f entries per branch, %u minimum, %u maximum\n",
                su / bf, en, ex);
     }
   else
-    g_fprintf (stderr, "GSlice: MemChecker: root=NULL\n");
+    _g_fprintf (stderr, "GSlice: MemChecker: root=NULL\n");
   g_mutex_unlock (&smc_tree_mutex);
   
   /* sample statistics (beast + GSLice + 24h scripted core & GUI activity):

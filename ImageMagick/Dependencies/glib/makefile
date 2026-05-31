@@ -21,7 +21,7 @@ SRCS = gatomic.c gmem.c gtimer.c gstrfuncs.c gslice.c\
 
 OBJS = $(SRCS:.c=.obj)
 
-CFLAGS = /nologo /I.. /DGLIB_COMPILATION /wd4090 /wd4116 /wd4715
+CFLAGS = /Z7 /nologo /I.. /DGLIB_COMPILATION /wd4090 /wd4116 /wd4715
 
 lib: $(OBJS)
 	lib /nologo /out:..\..\glib.lib *.obj

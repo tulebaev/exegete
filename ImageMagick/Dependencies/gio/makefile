@@ -39,7 +39,7 @@ SRCS = gfile.c gcancellable.c gioerror.c gtask.c\
 
 OBJS = $(SRCS:.c=.obj)
 
-CFLAGS = /nologo /I.. /DGIO_COMPILATION /DG_ENABLE_DEBUG /wd4090
+CFLAGS = /Z7 /nologo /I.. /DGIO_COMPILATION /wd4090
 
 lib: $(OBJS)
 	lib /nologo /out:..\..\gio.lib $(OBJS)
