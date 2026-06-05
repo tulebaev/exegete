@@ -1048,8 +1048,8 @@ g_locale_to_utf8 (const gchar  *opsysstring,
  **/
 gchar *
 g_locale_from_utf8 (const gchar *utf8string,
-		    gssize       len,            
-		    gsize       *bytes_read,    
+		    gssize       len,
+		    gsize       *bytes_read,
 		    gsize       *bytes_written,
 		    GError     **error)
 {

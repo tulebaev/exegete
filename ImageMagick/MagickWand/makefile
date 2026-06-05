@@ -9,7 +9,7 @@ SRCS = magick-wand.c animate.c compare.c\
 
 OBJS = $(SRCS:.c=.obj)
 
-CFLAGS = /nologo /TP /DWIN32 /I.. /I..\MagickCore /std:c++17
+CFLAGS = /nologo /TP /DWIN32 /D_LIB /I.. /I..\MagickCore /std:c++17 /Zi
 
 lib: $(OBJS)
 	lib $(OBJS) /nologo /out:..\MagickWand.lib

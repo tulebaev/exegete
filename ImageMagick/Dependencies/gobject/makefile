@@ -7,7 +7,7 @@ SRCS = gobject.c gtype.c gvalue.c gvaluetypes.c\
 
 OBJS = $(SRCS:.c=.obj)
 
-CFLAGS = /Z7 /nologo /I.. /DGOBJECT_COMPILATION /DFFI_STATIC_BUILD /wd4090
+CFLAGS = /nologo /I.. /DGOBJECT_COMPILATION /DFFI_STATIC_BUILD /wd4090
 
 lib: $(OBJS) win64_intel.S.obj
 	lib /nologo /out:..\..\gobject.lib *.obj

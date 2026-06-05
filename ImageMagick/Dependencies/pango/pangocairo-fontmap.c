@@ -284,7 +284,7 @@ pango_cairo_font_map_create_context (PangoCairoFontMap *fontmap)
  * pango_cairo_font_map_get_font_type:
  * @fontmap: a #PangoCairoFontMap
  *
- * Gets the type of Cairo font backend that @fontmap uses.  
+ * Gets the type of Cairo font backend that @fontmap uses.
  *
  * Return value: the #cairo_font_type_t cairo font backend type
  *
@@ -307,6 +307,6 @@ pango_fontmap_dtor(void)
   if (fontmap == NULL)
     return;
 
-  g_object_unref(fontmap);
+  //g_object_unref(fontmap);
   g_private_set(&default_font_map, NULL);
 }

@@ -1253,7 +1253,7 @@ void
 g_logv (const gchar   *log_domain,
 	GLogLevelFlags log_level,
 	const gchar   *format,
-	va_list	       args)
+	va_list        args)
 {
   gboolean was_fatal = (log_level & G_LOG_FLAG_FATAL) != 0;
   gboolean was_recursion = (log_level & G_LOG_FLAG_RECURSION) != 0;
@@ -1372,7 +1372,7 @@ g_logv (const gchar   *log_domain,
 
               _g_log_abort (!(test_level & G_LOG_FLAG_RECURSION));
 	    }
-	  
+
 	  depth--;
 	  g_private_set (&g_log_depth, GUINT_TO_POINTER (depth));
 	}
@@ -1410,7 +1410,7 @@ g_log (const gchar   *log_domain,
        ...)
 {
   va_list args;
-  
+
   va_start (args, format);
   g_logv (log_domain, log_level, format, args);
   va_end (args);

@@ -1184,7 +1184,7 @@ g_object_finalize (GObject *object)
     }
 
   g_datalist_clear (&object->qdata);
-  
+
   GOBJECT_IF_DEBUG (OBJECTS,
     {
       G_LOCK (debug_objects);
@@ -2401,9 +2401,9 @@ g_object_setv (GObject       *object,
  * Sets properties on an object.
  */
 void
-g_object_set_valist (GObject	 *object,
-		     const gchar *first_property_name,
-		     va_list	  var_args)
+g_object_set_valist (GObject     *object,
+                     const gchar *first_property_name,
+                     va_list      var_args)
 {
   GObjectNotifyQueue *nqueue;
   const gchar *name;
@@ -2419,7 +2419,7 @@ g_object_set_valist (GObject	 *object,
       GValue value = G_VALUE_INIT;
       GParamSpec *pspec;
       gchar *error = NULL;
-      
+
       pspec = g_param_spec_pool_lookup (pspec_pool,
 					name,
 					G_OBJECT_TYPE (object),
@@ -2533,24 +2533,24 @@ g_object_getv (GObject      *object,
  * See g_object_get().
  */
 void
-g_object_get_valist (GObject	 *object,
-		     const gchar *first_property_name,
-		     va_list	  var_args)
+g_object_get_valist (GObject     *object,
+                     const gchar *first_property_name,
+                     va_list      var_args)
 {
   const gchar *name;
-  
+
   g_return_if_fail (G_IS_OBJECT (object));
-  
+
   g_object_ref (object);
-  
+
   name = first_property_name;
-  
+
   while (name)
     {
       GValue value = G_VALUE_INIT;
       GParamSpec *pspec;
       gchar *error;
-      
+
       pspec = g_param_spec_pool_lookup (pspec_pool,
 					name,
 					G_OBJECT_TYPE (object),
@@ -2600,8 +2600,8 @@ g_object_get_valist (GObject	 *object,
  */
 void
 g_object_set (gpointer     _object,
-	      const gchar *first_property_name,
-	      ...)
+              const gchar *first_property_name,
+              ...)
 {
   GObject *object = _object;
   va_list var_args;
@@ -2649,14 +2649,14 @@ g_object_set (gpointer     _object,
  */
 void
 g_object_get (gpointer     _object,
-	      const gchar *first_property_name,
-	      ...)
+              const gchar *first_property_name,
+              ...)
 {
   GObject *object = _object;
   va_list var_args;
-  
+
   g_return_if_fail (G_IS_OBJECT (object));
-  
+
   va_start (var_args, first_property_name);
   g_object_get_valist (object, first_property_name, var_args);
   va_end (var_args);
@@ -2707,13 +2707,13 @@ g_object_get_property (GObject	   *object,
 		       GValue	   *value)
 {
   GParamSpec *pspec;
-  
+
   g_return_if_fail (G_IS_OBJECT (object));
   g_return_if_fail (property_name != NULL);
   g_return_if_fail (value != NULL);
-  
+
   g_object_ref (object);
-  
+
   pspec = g_param_spec_pool_lookup (pspec_pool,
 				    property_name,
 				    G_OBJECT_TYPE (object),
@@ -2756,7 +2756,7 @@ g_object_get_property (GObject	   *object,
           g_value_unset (&tmp_value);
         }
     }
-  
+
   g_object_unref (object);
 }
 
@@ -3081,8 +3081,8 @@ g_object_remove_weak_pointer (GObject  *object,
   g_return_if_fail (G_IS_OBJECT (object));
   g_return_if_fail (weak_pointer_location != NULL);
 
-  g_object_weak_unref (object, 
-                       (GWeakNotify) g_nullify_pointer, 
+  g_object_weak_unref (object,
+                       (GWeakNotify) g_nullify_pointer,
                        weak_pointer_location);
 }
 
@@ -3392,9 +3392,9 @@ g_object_unref (gpointer _object)
 {
   GObject *object = _object;
   gint old_ref;
-  
+
   g_return_if_fail (G_IS_OBJECT (object));
-  
+
   /* here we want to atomically do: if (ref_count>1) { ref_count--; return; } */
  retry_atomic_decrement1:
   old_ref = g_atomic_int_get (&object->ref_count);
@@ -3404,13 +3404,13 @@ g_object_unref (gpointer _object)
       gboolean has_toggle_ref = OBJECT_HAS_TOGGLE_REF (object);
 
       if (!g_atomic_int_compare_and_exchange ((int *)&object->ref_count, old_ref, old_ref - 1))
-	goto retry_atomic_decrement1;
+        goto retry_atomic_decrement1;
 
       TRACE (GOBJECT_OBJECT_UNREF(object,G_TYPE_FROM_INSTANCE(object),old_ref));
 
       /* if we went from 2->1 we need to notify toggle refs if any */
       if (old_ref == 2 && has_toggle_ref) /* The last ref being held in this case is owned by the toggle_ref */
-	toggle_refs_notify (object, TRUE);
+        toggle_refs_notify (object, TRUE);
     }
   else
     {

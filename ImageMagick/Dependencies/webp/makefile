@@ -25,7 +25,7 @@ SRCS = webp_dec.c buffer_dec.c io_dec.c tree_dec.c alpha_dec.c\
 
 OBJS = $(SRCS:.c=.obj)
 
-CFLAGS = /nologo /DHAVE_CONFIG_H
+CFLAGS = /nologo /DHAVE_CONFIG_H /D_LIB
 
 lib: $(OBJS)
 	lib /nologo /out:..\..\webp.lib $(OBJS)

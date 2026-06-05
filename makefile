@@ -8,10 +8,10 @@ LIBS = user32.lib gdi32.lib shell32.lib advapi32.lib ole32.lib\
        croco.lib libwmf.lib cairo.lib pango.lib gdk-pixbuf.lib\
        pixman.lib harfbuzz.lib png.lib jpeg.lib tiff.lib
 
-CPPFLAGS = /EHsc /DWIN32 /I$(IMAGE_MAGICK_DIR)
+CPPFLAGS = /EHsc /DWIN32 /I$(IMAGE_MAGICK_DIR) /Zi
 
 exe: exegete.obj
-	link /NOLOGO /NOEXP /NOIMPLIB /LIBPATH:$(IMAGE_MAGICK_DIR) exegete.obj $(IMAGE_MAGICK_LIBS) $(LIBS)
+	link /DEBUG /NOLOGO /NOEXP /NOIMPLIB /LIBPATH:$(IMAGE_MAGICK_DIR) exegete.obj $(IMAGE_MAGICK_LIBS) $(LIBS)
 
 exegete.obj: exegete.cpp
 	cl /nologo /c exegete.cpp $(CPPFLAGS)

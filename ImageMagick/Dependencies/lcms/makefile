@@ -6,7 +6,7 @@ SRCS = cmsplugin.c cmserr.c cmstypes.c cmsxform.c\
 
 OBJS = $(SRCS:.c=.obj)
 
-CFLAGS = /nologo
+CFLAGS = /nologo /D_LIB
 
 lib: $(OBJS)
 	lib /nologo /out:..\..\lcms2.lib $(OBJS)
